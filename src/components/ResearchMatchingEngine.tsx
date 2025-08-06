@@ -157,7 +157,7 @@ const ResearchMatchingEngine: React.FC<ResearchMatchingEngineProps> = ({
         title: 'Advanced Meditation State Classification',
         institution: 'ISHA Foundation Research',
         researcher: 'Dr. Rajesh Kumar',
-        category: 'neuroscience',
+        category: 'wellness',
         compatibility: 0,
         urgency: 'high' as const,
         exclusivity: 'limited' as const,
@@ -198,7 +198,7 @@ const ResearchMatchingEngine: React.FC<ResearchMatchingEngineProps> = ({
         title: 'Wellness Product Effectiveness Validation',
         institution: 'Patanjali Research Center',
         researcher: 'Dr. Priya Sharma',
-        category: 'wellness',
+        category: 'medical',
         compatibility: 0,
         urgency: 'critical' as const,
         exclusivity: 'exclusive' as const,
@@ -239,7 +239,7 @@ const ResearchMatchingEngine: React.FC<ResearchMatchingEngineProps> = ({
         title: 'Gaming Performance & Cognitive Load Study',
         institution: 'Art of Living Research',
         researcher: 'Dr. Meera Patel',
-        category: 'ai-training',
+        category: 'psychology',
         compatibility: 0,
         urgency: 'medium' as const,
         exclusivity: 'open' as const,
@@ -284,7 +284,7 @@ const ResearchMatchingEngine: React.FC<ResearchMatchingEngineProps> = ({
         title: 'Sleep Quality & Dream Pattern Analysis',
         institution: 'Hindustan Wellness Institute',
         researcher: 'Dr. Anjali Sharma',
-        category: 'medical',
+        category: 'neuroscience',
         compatibility: 0,
         urgency: 'high' as const,
         exclusivity: 'limited' as const,
@@ -319,6 +319,94 @@ const ResearchMatchingEngine: React.FC<ResearchMatchingEngineProps> = ({
         targetCount: 150,
         deadline: Date.now() + 30 * 24 * 60 * 60 * 1000,
         impactScore: 9.5
+      });
+    }
+
+    // Add AI Training opportunities
+    opportunities.push({
+      id: 'ai-005',
+      title: 'EEG-Based Brain-Computer Interface Training',
+      institution: 'Indian Institute of Technology Delhi',
+      researcher: 'Prof. Anil Sharma',
+      category: 'ai-training',
+      compatibility: 0,
+      urgency: 'medium' as const,
+      exclusivity: 'limited' as const,
+      requirements: {
+        dataTypes: ['focus', 'meditation'],
+        qualityThreshold: 75,
+        demographicFilters: { techBackground: true },
+        exclusivityPeriod: 30,
+        followUpStudies: true
+      },
+      rewards: {
+        baseCompensation: 800,
+        qualityBonus: 120,
+        exclusivityBonus: 150,
+        citationRoyalties: 4,
+        completionBonus: 300
+      },
+      matchingFactors: {
+        dataTypeMatch: true,
+        qualityMatch: true,
+        demographicMatch: true,
+        availabilityMatch: true,
+        experienceMatch: true
+      },
+      projectedEarnings: {
+        immediate: 320,
+        shortTerm: 1500,
+        longTerm: 4200
+      },
+      researchPhase: 'data-collection' as const,
+      participantCount: 45,
+      targetCount: 120,
+      deadline: Date.now() + 90 * 24 * 60 * 60 * 1000,
+      impactScore: 8.3
+    });
+
+    // Add Psychology research
+    if (userProfile.mentalStates.includes('stress') || userProfile.mentalStates.includes('focus')) {
+      opportunities.push({
+        id: 'ai-006',
+        title: 'Workplace Stress & Mental Resilience Study',
+        institution: 'National Institute of Mental Health India',
+        researcher: 'Dr. Kavitha Menon',
+        category: 'psychology',
+        compatibility: 0,
+        urgency: 'high' as const,
+        exclusivity: 'open' as const,
+        requirements: {
+          dataTypes: ['stress', 'focus'],
+          qualityThreshold: 70,
+          demographicFilters: { workingProfessional: true },
+          exclusivityPeriod: 0,
+          followUpStudies: false
+        },
+        rewards: {
+          baseCompensation: 650,
+          qualityBonus: 80,
+          exclusivityBonus: 0,
+          citationRoyalties: 2,
+          completionBonus: 150
+        },
+        matchingFactors: {
+          dataTypeMatch: true,
+          qualityMatch: true,
+          demographicMatch: true,
+          availabilityMatch: true,
+          experienceMatch: false
+        },
+        projectedEarnings: {
+          immediate: 250,
+          shortTerm: 950,
+          longTerm: 2800
+        },
+        researchPhase: 'analysis' as const,
+        participantCount: 78,
+        targetCount: 200,
+        deadline: Date.now() + 75 * 24 * 60 * 60 * 1000,
+        impactScore: 7.8
       });
     }
 
@@ -458,122 +546,122 @@ const ResearchMatchingEngine: React.FC<ResearchMatchingEngineProps> = ({
         </CardContent>
       </Card>
 
-      {/* Earning Projections */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 px-2 md:px-4">
+      {/* Earning Projections - Tablet Optimized */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 px-2 sm:px-4 md:px-4">
         <Card className="bg-gradient-to-br from-green-900/20 to-emerald-900/20 border-green-500/30">
-          <CardContent className="p-4 md:p-6 text-center">
-            <DollarSign className="h-6 w-6 md:h-8 md:w-8 text-green-400 mx-auto mb-3" />
-            <div className="text-xl md:text-2xl font-bold text-white mb-2">
+          <CardContent className="p-3 sm:p-4 lg:p-6 text-center">
+            <DollarSign className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 text-green-400 mx-auto mb-2 sm:mb-3" />
+            <div className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-1 sm:mb-2">
               ₹{earningProjections.immediate}
             </div>
-            <div className="text-sm text-green-300">Current Value</div>
+            <div className="text-xs sm:text-sm text-green-300">Current Value</div>
           </CardContent>
         </Card>
         
         <Card className="bg-gradient-to-br from-blue-900/20 to-cyan-900/20 border-blue-500/30">
-          <CardContent className="p-4 md:p-6 text-center">
-            <Clock className="h-6 w-6 md:h-8 md:w-8 text-blue-400 mx-auto mb-3" />
-            <div className="text-xl md:text-2xl font-bold text-white mb-2">
+          <CardContent className="p-3 sm:p-4 lg:p-6 text-center">
+            <Clock className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 text-blue-400 mx-auto mb-2 sm:mb-3" />
+            <div className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-1 sm:mb-2">
               ₹{earningProjections.shortTerm}
             </div>
-            <div className="text-sm text-blue-300">Monthly Potential</div>
+            <div className="text-xs sm:text-sm text-blue-300">Monthly Potential</div>
           </CardContent>
         </Card>
         
         <Card className="bg-gradient-to-br from-purple-900/20 to-indigo-900/20 border-purple-500/30">
-          <CardContent className="p-4 md:p-6 text-center">
-            <TrendingUp className="h-6 w-6 md:h-8 md:w-8 text-purple-400 mx-auto mb-3" />
-            <div className="text-xl md:text-2xl font-bold text-white mb-2">
+          <CardContent className="p-3 sm:p-4 lg:p-6 text-center">
+            <TrendingUp className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 text-purple-400 mx-auto mb-2 sm:mb-3" />
+            <div className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-1 sm:mb-2">
               ₹{earningProjections.longTerm}
             </div>
-            <div className="text-sm text-purple-300">Annual Potential</div>
+            <div className="text-xs sm:text-sm text-purple-300">Annual Potential</div>
           </CardContent>
         </Card>
         
         <Card className="bg-gradient-to-br from-yellow-900/20 to-orange-900/20 border-yellow-500/30">
-          <CardContent className="p-4 md:p-6 text-center">
-            <Award className="h-6 w-6 md:h-8 md:w-8 text-yellow-400 mx-auto mb-3" />
-            <div className="text-xl md:text-2xl font-bold text-white mb-2">
+          <CardContent className="p-3 sm:p-4 lg:p-6 text-center">
+            <Award className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 text-yellow-400 mx-auto mb-2 sm:mb-3" />
+            <div className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-1 sm:mb-2">
               ₹{earningProjections.lifetime}
             </div>
-            <div className="text-sm text-yellow-300">Total Potential</div>
+            <div className="text-xs sm:text-sm text-yellow-300">Total Potential</div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Perfect Matches */}
+      {/* Perfect Matches - Tablet Optimized */}
       {opportunities.perfectMatches.length > 0 && (
-        <div className="space-y-6 px-2 md:px-4">
-          <div className="flex items-center justify-between flex-wrap gap-3">
-            <h3 className="text-lg md:text-xl font-semibold flex items-center gap-3">
-              <Target className="h-6 w-6 text-cyan-400" />
+        <div className="space-y-4 sm:space-y-6 px-2 sm:px-4">
+          <div className="flex items-center justify-between flex-wrap gap-2 sm:gap-3">
+            <h3 className="text-base sm:text-lg lg:text-xl font-semibold flex items-center gap-2 sm:gap-3">
+              <Target className="h-5 w-5 sm:h-6 sm:w-6 text-cyan-400" />
               Perfect Matches ({opportunities.perfectMatches.length})
             </h3>
-            <Badge className="bg-cyan-600 text-white px-3 py-2 text-sm md:text-base">95%+ Compatibility</Badge>
+            <Badge className="bg-cyan-600 text-white px-2 sm:px-3 py-1 sm:py-2 text-xs sm:text-sm lg:text-base">95%+ Compatibility</Badge>
           </div>
           
-          <div className="grid gap-4">
+          <div className="grid gap-3 sm:gap-4">
             {opportunities.perfectMatches.map(opp => (
               <Card 
                 key={opp.id} 
-                className="bg-gradient-to-r from-cyan-900/20 to-teal-900/20 border-cyan-500/30 hover:border-cyan-400/50 transition-colors cursor-pointer"
-onClick={() => console.log('Selected opportunity:', opp.title)}
+                className="bg-gradient-to-r from-cyan-900/20 to-teal-900/20 border-cyan-500/30 hover:border-cyan-400/50 transition-all duration-300 cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
+                onClick={() => console.log('Selected opportunity:', opp.title)}
               >
-                <CardContent className="p-6 md:p-8">
-                  <div className="flex items-start justify-between mb-6 gap-4">
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-3 mb-2 flex-wrap">
-                        <h4 className="font-semibold text-white text-base md:text-lg leading-relaxed">{opp.title}</h4>
-                        <Badge className={`${getUrgencyColor(opp.urgency)} text-white text-sm px-3 py-1`}>
+                <CardContent className="p-4 sm:p-6 lg:p-8">
+                  <div className="flex flex-col sm:flex-row items-start justify-between mb-4 sm:mb-6 gap-3 sm:gap-4">
+                    <div className="flex-1 min-w-0 w-full sm:w-auto">
+                      <div className="flex items-start sm:items-center gap-2 sm:gap-3 mb-2 flex-wrap">
+                        <h4 className="font-semibold text-white text-sm sm:text-base lg:text-lg leading-tight sm:leading-relaxed">{opp.title}</h4>
+                        <Badge className={`${getUrgencyColor(opp.urgency)} text-white text-xs sm:text-sm px-2 sm:px-3 py-1 flex-shrink-0`}>
                           {opp.urgency.toUpperCase()}
                         </Badge>
                       </div>
-                      <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{opp.institution} • {opp.researcher}</p>
+                      <p className="text-xs sm:text-sm lg:text-base text-muted-foreground leading-relaxed">{opp.institution} • {opp.researcher}</p>
                     </div>
-                    <div className="text-right flex-shrink-0">
-                      <div className="text-2xl md:text-3xl font-bold text-cyan-300">
+                    <div className="text-left sm:text-right flex-shrink-0 w-full sm:w-auto">
+                      <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-300">
                         ₹{opp.rewards.baseCompensation}
                       </div>
-                      <div className="text-sm text-muted-foreground">+bonuses</div>
+                      <div className="text-xs sm:text-sm text-muted-foreground">+bonuses</div>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-6">
-                    <div className="text-center p-3 bg-background/50 rounded-lg">
-                      <Star className="h-5 w-5 text-yellow-400 mx-auto mb-2" />
-                      <div className="text-sm text-muted-foreground mb-1">Impact</div>
-                      <div className="text-base md:text-lg font-semibold">{opp.impactScore}/10</div>
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-4 sm:mb-6">
+                    <div className="text-center p-2 sm:p-3 bg-background/50 rounded-lg">
+                      <Star className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-400 mx-auto mb-1 sm:mb-2" />
+                      <div className="text-xs sm:text-sm text-muted-foreground mb-1">Impact</div>
+                      <div className="text-sm sm:text-base lg:text-lg font-semibold">{opp.impactScore}/10</div>
                     </div>
-                    <div className="text-center p-3 bg-background/50 rounded-lg">
+                    <div className="text-center p-2 sm:p-3 bg-background/50 rounded-lg">
                       {React.createElement(getExclusivityIcon(opp.exclusivity), {
-                        className: "h-5 w-5 text-cyan-400 mx-auto mb-2"
+                        className: "h-4 w-4 sm:h-5 sm:w-5 text-cyan-400 mx-auto mb-1 sm:mb-2"
                       })}
-                      <div className="text-sm text-muted-foreground mb-1">Access</div>
-                      <div className="text-base md:text-lg font-semibold capitalize">{opp.exclusivity}</div>
+                      <div className="text-xs sm:text-sm text-muted-foreground mb-1">Access</div>
+                      <div className="text-sm sm:text-base lg:text-lg font-semibold capitalize">{opp.exclusivity}</div>
                     </div>
-                    <div className="text-center p-3 bg-background/50 rounded-lg">
-                      <FileText className="h-5 w-5 text-cyan-400 mx-auto mb-2" />
-                      <div className="text-sm text-muted-foreground mb-1">Royalties</div>
-                      <div className="text-base md:text-lg font-semibold">{opp.rewards.citationRoyalties}%</div>
+                    <div className="text-center p-2 sm:p-3 bg-background/50 rounded-lg">
+                      <FileText className="h-4 w-4 sm:h-5 sm:w-5 text-cyan-400 mx-auto mb-1 sm:mb-2" />
+                      <div className="text-xs sm:text-sm text-muted-foreground mb-1">Royalties</div>
+                      <div className="text-sm sm:text-base lg:text-lg font-semibold">{opp.rewards.citationRoyalties}%</div>
                     </div>
-                    <div className="text-center p-3 bg-background/50 rounded-lg">
-                      <Users className="h-5 w-5 text-cyan-400 mx-auto mb-2" />
-                      <div className="text-sm text-muted-foreground mb-1">Progress</div>
-                      <div className="text-base md:text-lg font-semibold">{opp.participantCount}/{opp.targetCount}</div>
+                    <div className="text-center p-2 sm:p-3 bg-background/50 rounded-lg">
+                      <Users className="h-4 w-4 sm:h-5 sm:w-5 text-cyan-400 mx-auto mb-1 sm:mb-2" />
+                      <div className="text-xs sm:text-sm text-muted-foreground mb-1">Progress</div>
+                      <div className="text-sm sm:text-base lg:text-lg font-semibold">{opp.participantCount}/{opp.targetCount}</div>
                     </div>
                   </div>
 
-                  <div className="flex items-start md:items-center justify-between gap-4 flex-col md:flex-row">
-                    <div className="flex flex-wrap gap-2 md:gap-3">
+                  <div className="flex items-start sm:items-center justify-between gap-3 sm:gap-4 flex-col sm:flex-row">
+                    <div className="flex flex-wrap gap-1 sm:gap-2 lg:gap-3 w-full sm:w-auto">
                       {Object.entries(opp.matchingFactors).filter(([_, match]) => match).map(([factor]) => (
-                        <Badge key={factor} variant="outline" className="text-sm px-3 py-1.5 whitespace-nowrap">
+                        <Badge key={factor} variant="outline" className="text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-1.5 whitespace-nowrap">
                           ✓ {factor.replace(/([A-Z])/g, ' $1').trim()}
                         </Badge>
                       ))}
                     </div>
-                    <Button size="lg" className="bg-cyan-600 hover:bg-cyan-500 px-6 py-3 text-base font-semibold">
+                    <Button className="bg-cyan-600 hover:bg-cyan-500 px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-semibold w-full sm:w-auto flex-shrink-0">
                       Apply Now
-                      <ChevronRight className="h-4 w-4 ml-2" />
+                      <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 ml-2" />
                     </Button>
                   </div>
                 </CardContent>
@@ -583,35 +671,38 @@ onClick={() => console.log('Selected opportunity:', opp.title)}
         </div>
       )}
 
-      {/* Good Matches */}
+      {/* Good Matches - Tablet Optimized */}
       {opportunities.goodMatches.length > 0 && (
-        <div className="space-y-6 px-2 md:px-4">
-          <div className="flex items-center justify-between flex-wrap gap-3">
-            <h3 className="text-lg md:text-xl font-semibold flex items-center gap-3">
-              <Brain className="h-6 w-6 text-blue-400" />
+        <div className="space-y-4 sm:space-y-6 px-2 sm:px-4">
+          <div className="flex items-center justify-between flex-wrap gap-2 sm:gap-3">
+            <h3 className="text-base sm:text-lg lg:text-xl font-semibold flex items-center gap-2 sm:gap-3">
+              <Brain className="h-5 w-5 sm:h-6 sm:w-6 text-blue-400" />
               Good Matches ({opportunities.goodMatches.length})
             </h3>
-            <Badge className="bg-blue-600 text-white px-3 py-2 text-sm md:text-base">80-95% Compatibility</Badge>
+            <Badge className="bg-blue-600 text-white px-2 sm:px-3 py-1 sm:py-2 text-xs sm:text-sm lg:text-base">80-95% Compatibility</Badge>
           </div>
           
-          <div className="grid gap-4">
+          <div className="grid gap-3 sm:gap-4">
             {opportunities.goodMatches.slice(0, 3).map(opp => (
               <Card 
                 key={opp.id} 
-                className="bg-card border-border hover:border-primary/50 transition-colors cursor-pointer"
-onClick={() => console.log('Selected opportunity:', opp.title)}
+                className="bg-card border-border hover:border-primary/50 transition-all duration-300 cursor-pointer hover:scale-[1.01] active:scale-[0.99]"
+                onClick={() => console.log('Selected opportunity:', opp.title)}
               >
-                <CardContent className="p-6 md:p-8">
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-semibold text-base md:text-lg mb-1 leading-relaxed">{opp.title}</h4>
-                      <p className="text-sm md:text-base text-muted-foreground">{opp.institution}</p>
+                <CardContent className="p-4 sm:p-6 lg:p-8">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+                    <div className="flex-1 min-w-0 w-full sm:w-auto">
+                      <h4 className="font-semibold text-sm sm:text-base lg:text-lg mb-1 leading-tight sm:leading-relaxed">{opp.title}</h4>
+                      <p className="text-xs sm:text-sm lg:text-base text-muted-foreground">{opp.institution}</p>
                     </div>
-                    <div className="text-right flex-shrink-0">
-                      <div className="text-xl md:text-2xl font-bold text-primary mb-2">
+                    <div className="text-left sm:text-right flex-shrink-0 w-full sm:w-auto flex flex-col sm:block">
+                      <div className="text-lg sm:text-xl lg:text-2xl font-bold text-primary mb-1 sm:mb-2">
                         ₹{opp.rewards.baseCompensation}
                       </div>
-                      <Progress value={opp.compatibility} className="w-24 md:w-32 h-2" />
+                      <div className="flex items-center gap-2 sm:justify-end">
+                        <Progress value={opp.compatibility} className="w-20 sm:w-24 lg:w-32 h-2" />
+                        <span className="text-xs text-muted-foreground">{opp.compatibility}%</span>
+                      </div>
                     </div>
                   </div>
                 </CardContent>

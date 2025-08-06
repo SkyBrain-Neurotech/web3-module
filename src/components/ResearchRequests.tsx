@@ -160,22 +160,22 @@ const ResearchRequests: React.FC<ResearchRequestsProps> = ({ sessions, onSession
                 className={`${cardClass} neural-stagger-item animate-neural-fade-in p-8 space-y-6 group transition-all duration-500 hover:scale-105 hover:rotate-1`}
                 style={{ '--index': index } as React.CSSProperties}
               >
-                {/* University Header */}
-                <div className="flex items-start justify-between relative">
-                  <div className="flex items-center gap-4">
-                    <div className={`neural-blob w-16 h-16 bg-gradient-to-br ${theme.color} flex items-center justify-center shadow-lg`}>
-                      <IconComponent className="h-8 w-8 text-white drop-shadow-lg" />
+                {/* University Header - Tablet Optimized */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between relative gap-3 sm:gap-4">
+                  <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto">
+                    <div className={`neural-blob w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br ${theme.color} flex items-center justify-center shadow-lg flex-shrink-0`}>
+                      <IconComponent className="h-6 w-6 sm:h-8 sm:w-8 text-white drop-shadow-lg" />
                     </div>
-                    <div>
+                    <div className="flex-1 min-w-0">
                       <Badge 
-                        className={`bg-gradient-to-r ${theme.color} text-white border-0 font-semibold px-3 py-1 rounded-full shadow-lg`}
+                        className={`bg-gradient-to-r ${theme.color} text-white border-0 font-semibold px-2 sm:px-3 py-1 rounded-full shadow-lg text-xs sm:text-sm`}
                       >
                         {university}
                       </Badge>
-                      <h3 className="font-bold text-base md:text-lg mt-2 neural-glow-text group-hover:text-accent transition-colors text-center">
+                      <h3 className="font-bold text-sm sm:text-base lg:text-lg mt-1 sm:mt-2 neural-glow-text group-hover:text-accent transition-colors">
                         {request.title}
                       </h3>
-                      <p className="text-muted-foreground text-xs font-medium text-center">
+                      <p className="text-muted-foreground text-xs font-medium">
                         Research Lead: {request.researcher}
                       </p>
                     </div>
@@ -187,39 +187,39 @@ const ResearchRequests: React.FC<ResearchRequestsProps> = ({ sessions, onSession
                       request.status === 'active' 
                         ? 'bg-gradient-to-r from-green-500 to-emerald-500 text-white animate-neural-pulse' 
                         : 'bg-muted text-muted-foreground'
-                    } font-semibold px-4 py-2 rounded-organic shadow-md`}
+                    } font-semibold px-3 sm:px-4 py-1 sm:py-2 rounded-organic shadow-md text-xs sm:text-sm flex-shrink-0`}
                   >
                     {request.status.toUpperCase()}
                   </Badge>
                 </div>
 
-                {/* Research Metrics */}
-                <div className="grid grid-cols-3 gap-6">
-                  <div className="neural-morphism rounded-flow p-4 text-center group-hover:bg-gradient-to-br group-hover:from-green-500/10 group-hover:to-emerald-500/10 transition-all duration-300">
-                    <div className="flex items-center justify-center mb-2">
-                      <QuantumCoin className="h-5 w-5 text-green-400 animate-synapse-flicker" />
+                {/* Research Metrics - Tablet Optimized */}
+                <div className="grid grid-cols-3 gap-3 sm:gap-6">
+                  <div className="neural-morphism rounded-flow p-2 sm:p-4 text-center group-hover:bg-gradient-to-br group-hover:from-green-500/10 group-hover:to-emerald-500/10 transition-all duration-300">
+                    <div className="flex items-center justify-center mb-1 sm:mb-2">
+                      <QuantumCoin className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 animate-synapse-flicker" />
                     </div>
-                    <div className="font-bold text-base md:text-lg neural-glow-text text-green-400 text-center">
+                    <div className="font-bold text-sm sm:text-base lg:text-lg neural-glow-text text-green-400 text-center">
                       {request.compensation} {request.currency}
                     </div>
                     <div className="text-xs text-muted-foreground font-medium">Reward</div>
                   </div>
                   
-                  <div className="neural-morphism rounded-flow p-4 text-center group-hover:bg-gradient-to-br group-hover:from-blue-500/10 group-hover:to-cyan-500/10 transition-all duration-300">
-                    <div className="flex items-center justify-center mb-2">
-                      <Clock className="h-5 w-5 text-blue-400 animate-synapse-flicker" />
+                  <div className="neural-morphism rounded-flow p-2 sm:p-4 text-center group-hover:bg-gradient-to-br group-hover:from-blue-500/10 group-hover:to-cyan-500/10 transition-all duration-300">
+                    <div className="flex items-center justify-center mb-1 sm:mb-2">
+                      <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-blue-400 animate-synapse-flicker" />
                     </div>
-                    <div className="font-bold text-base md:text-lg neural-glow-text text-blue-400 text-center">
+                    <div className="font-bold text-sm sm:text-base lg:text-lg neural-glow-text text-blue-400 text-center">
                       {Math.floor(request.criteria.minDuration / 60)}+ min
                     </div>
                     <div className="text-xs text-muted-foreground font-medium">Duration</div>
                   </div>
                   
-                  <div className="neural-morphism rounded-flow p-4 text-center group-hover:bg-gradient-to-br group-hover:from-purple-500/10 group-hover:to-violet-500/10 transition-all duration-300">
-                    <div className="flex items-center justify-center mb-2">
-                      <Users className="h-5 w-5 text-purple-400 animate-synapse-flicker" />
+                  <div className="neural-morphism rounded-flow p-2 sm:p-4 text-center group-hover:bg-gradient-to-br group-hover:from-purple-500/10 group-hover:to-violet-500/10 transition-all duration-300">
+                    <div className="flex items-center justify-center mb-1 sm:mb-2">
+                      <Users className="h-4 w-4 sm:h-5 sm:w-5 text-purple-400 animate-synapse-flicker" />
                     </div>
-                    <div className="font-bold text-base md:text-lg neural-glow-text text-purple-400 text-center">
+                    <div className="font-bold text-sm sm:text-base lg:text-lg neural-glow-text text-purple-400 text-center">
                       {request.submissions}/{request.maxSubmissions}
                     </div>
                     <div className="text-xs text-muted-foreground font-medium">Participants</div>
@@ -267,13 +267,13 @@ const ResearchRequests: React.FC<ResearchRequestsProps> = ({ sessions, onSession
                         {eligibleSessions.length} Eligible Session{eligibleSessions.length > 1 ? 's' : ''} Ready
                       </span>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-2 sm:gap-3">
                       {eligibleSessions.slice(0, 3).map((session) => (
                         <Button
                           key={session.id}
                           onClick={() => handleSubmitSession(request.id, session.id)}
                           disabled={submitting === request.id || request.status !== 'active'}
-                          className={`neural-btn-primary relative overflow-hidden ${
+                          className={`neural-btn-primary relative overflow-hidden text-xs sm:text-sm lg:text-base px-3 sm:px-4 py-2 sm:py-3 ${
                             submitting === request.id 
                               ? 'animate-neural-pulse' 
                               : 'hover:scale-105 active:scale-95'

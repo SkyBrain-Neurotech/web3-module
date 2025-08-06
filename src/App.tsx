@@ -23,6 +23,7 @@ const SynapseNetwork = ({ className }: { className?: string }) => (
   </svg>
 );
 import './styles/globals.css';
+import PWAInstallPrompt from './components/PWAInstallPrompt';
 
 // Landing Page Component - Now starts with Education
 function LandingPage() {
@@ -137,40 +138,97 @@ function TokenizerPage({ sessions, loadSessions }: { sessions: EEGSession[], loa
 
 function App() {
   const [sessions, setSessions] = useState<EEGSession[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Ensure dark theme is applied
-    document.documentElement.classList.add('dark');
-    document.body.classList.add('dark');
-    loadSessions();
+    try {
+      // Ensure dark theme is applied
+      document.documentElement.classList.add('dark');
+      document.body.classList.add('dark');
+      loadSessions();
+      
+      // Register service worker for PWA
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+          .then((registration) => {
+            console.log('SW registered: ', registration);
+          })
+          .catch((registrationError) => {
+            console.log('SW registration failed: ', registrationError);
+          });
+      }
+    } catch (err) {
+      console.error('App initialization error:', err);
+      setError('Failed to initialize app');
+    }
   }, []);
 
   const loadSessions = async () => {
-    const data = await mockDataService.getSessions();
-    setSessions(data);
+    try {
+      const data = await mockDataService.getSessions();
+      setSessions(data);
+    } catch (err) {
+      console.error('Failed to load sessions:', err);
+      setError('Failed to load sessions');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-950 text-white flex items-center justify-center">
+        <div className="text-center">
+          <SynapseNetwork className="h-12 w-12 text-cyan-400 mx-auto mb-4 animate-pulse" />
+          <h1 className="text-2xl font-bold mb-2">SkyBrain NeuroBank</h1>
+          <p className="text-cyan-400">Loading neural ecosystem...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-950 text-white flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">SkyBrain NeuroBank</h1>
+          <p className="text-red-400">Error: {error}</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="mt-4 px-4 py-2 bg-blue-600 rounded hover:bg-blue-700"
+          >
+            Reload App
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <Router>
-      <Routes>
-        <Route 
-          path="/" 
-          element={<LandingPage />} 
-        />
-        <Route 
-          path="/business-model" 
-          element={<BusinessModelPage />} 
-        />
-        <Route 
-          path="/demo-interface" 
-          element={<DemoInterfacePage sessions={sessions} loadSessions={loadSessions} />} 
-        />
-        <Route 
-          path="/tokenizer" 
-          element={<TokenizerPage sessions={sessions} loadSessions={loadSessions} />} 
-        />
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <Routes>
+          <Route 
+            path="/" 
+            element={<LandingPage />} 
+          />
+          <Route 
+            path="/business-model" 
+            element={<BusinessModelPage />} 
+          />
+          <Route 
+            path="/demo-interface" 
+            element={<DemoInterfacePage sessions={sessions} loadSessions={loadSessions} />} 
+          />
+          <Route 
+            path="/tokenizer" 
+            element={<TokenizerPage sessions={sessions} loadSessions={loadSessions} />} 
+          />
+        </Routes>
+      </Router>
+      <PWAInstallPrompt />
+    </>
   );
 }
 
