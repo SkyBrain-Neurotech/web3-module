@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ErrorBoundary } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { Button } from './components/ui/button';
 import NeuroDataEcosystemEnhanced from './components/NeuroDataEcosystemEnhanced';
@@ -9,6 +9,7 @@ import { mockDataService, EEGSession } from './utils/mockDataService';
 import { 
   ArrowLeft
 } from 'lucide-react';
+import { Component, ReactNode } from 'react';
 
 // Custom distinctive neuroscience icons
 const SynapseNetwork = ({ className }: { className?: string }) => (
@@ -24,6 +25,56 @@ const SynapseNetwork = ({ className }: { className?: string }) => (
 );
 import './styles/globals.css';
 import PWAInstallPrompt from './components/PWAInstallPrompt';
+
+// Error Boundary Component
+class AppErrorBoundary extends Component<
+  { children: ReactNode },
+  { hasError: boolean; error?: Error }
+> {
+  constructor(props: { children: ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    console.error('React Error Boundary caught error:', error);
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error: Error, errorInfo: any) {
+    console.error('Error Boundary Details:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen bg-gray-950 text-white flex items-center justify-center p-4">
+          <div className="text-center max-w-md">
+            <SynapseNetwork className="h-12 w-12 text-red-400 mx-auto mb-4" />
+            <h1 className="text-2xl font-bold mb-4 text-red-400">App Error Detected</h1>
+            <p className="text-gray-300 mb-4">Something went wrong with the application.</p>
+            <div className="bg-gray-800 p-4 rounded-lg mb-4 text-left">
+              <p className="text-sm font-mono text-red-300">
+                {this.state.error?.name}: {this.state.error?.message}
+              </p>
+            </div>
+            <button 
+              onClick={() => {
+                this.setState({ hasError: false, error: undefined });
+                window.location.reload();
+              }}
+              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition-colors"
+            >
+              Reload Application
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
+}
 
 // Landing Page Component - Now starts with Education
 function LandingPage() {
@@ -140,28 +191,52 @@ function App() {
   const [sessions, setSessions] = useState<EEGSession[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [debugInfo, setDebugInfo] = useState<string>('');
 
   useEffect(() => {
-    try {
-      // Ensure dark theme is applied
-      document.documentElement.classList.add('dark');
-      document.body.classList.add('dark');
-      loadSessions();
-      
-      // Register service worker for PWA
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
-          .then((registration) => {
-            console.log('SW registered: ', registration);
-          })
-          .catch((registrationError) => {
-            console.log('SW registration failed: ', registrationError);
-          });
+    const initApp = async () => {
+      try {
+        console.log('🚀 App initialization started');
+        console.log('Current URL:', window.location.href);
+        console.log('User Agent:', navigator.userAgent);
+        
+        // Add debug info
+        setDebugInfo(`URL: ${window.location.href} | UA: ${navigator.userAgent.slice(0, 50)}`);
+        
+        // Ensure dark theme is applied
+        document.documentElement.classList.add('dark');
+        document.body.classList.add('dark');
+        console.log('✅ Dark theme applied');
+        
+        // Load sessions with timeout
+        const sessionLoadPromise = loadSessions();
+        const timeoutPromise = new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('Session load timeout')), 10000)
+        );
+        
+        await Promise.race([sessionLoadPromise, timeoutPromise]);
+        console.log('✅ Sessions loaded successfully');
+        
+        // Register service worker for PWA (non-blocking)
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('✅ SW registered:', registration);
+            })
+            .catch((registrationError) => {
+              console.warn('⚠️ SW registration failed:', registrationError);
+              // Don't fail the app for SW issues
+            });
+        }
+        
+        console.log('🎉 App initialization completed successfully');
+      } catch (err) {
+        console.error('❌ App initialization error:', err);
+        setError(`Failed to initialize app: ${err instanceof Error ? err.message : 'Unknown error'}`);
       }
-    } catch (err) {
-      console.error('App initialization error:', err);
-      setError('Failed to initialize app');
-    }
+    };
+    
+    initApp();
   }, []);
 
   const loadSessions = async () => {
@@ -178,11 +253,16 @@ function App() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-950 text-white flex items-center justify-center">
-        <div className="text-center">
+      <div className="min-h-screen bg-gray-950 text-white flex items-center justify-center p-4">
+        <div className="text-center max-w-md">
           <SynapseNetwork className="h-12 w-12 text-cyan-400 mx-auto mb-4 animate-pulse" />
           <h1 className="text-2xl font-bold mb-2">SkyBrain NeuroBank</h1>
-          <p className="text-cyan-400">Loading neural ecosystem...</p>
+          <p className="text-cyan-400 mb-4">Loading neural ecosystem...</p>
+          {debugInfo && (
+            <div className="bg-gray-800 p-3 rounded-lg">
+              <p className="text-xs font-mono text-gray-400">{debugInfo}</p>
+            </div>
+          )}
         </div>
       </div>
     );
@@ -190,23 +270,45 @@ function App() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-950 text-white flex items-center justify-center">
-        <div className="text-center">
+      <div className="min-h-screen bg-gray-950 text-white flex items-center justify-center p-4">
+        <div className="text-center max-w-md">
           <h1 className="text-2xl font-bold mb-4">SkyBrain NeuroBank</h1>
-          <p className="text-red-400">Error: {error}</p>
-          <button 
-            onClick={() => window.location.reload()} 
-            className="mt-4 px-4 py-2 bg-blue-600 rounded hover:bg-blue-700"
-          >
-            Reload App
-          </button>
+          <p className="text-red-400 mb-4">Error: {error}</p>
+          {debugInfo && (
+            <div className="bg-gray-800 p-3 rounded-lg mb-4">
+              <p className="text-xs font-mono text-gray-400">{debugInfo}</p>
+            </div>
+          )}
+          <div className="space-y-2">
+            <button 
+              onClick={() => {
+                setError(null);
+                setIsLoading(true);
+                window.location.reload();
+              }} 
+              className="block w-full px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 transition-colors"
+            >
+              Reload App
+            </button>
+            <button 
+              onClick={() => {
+                console.log('Manual session load attempt');
+                setError(null);
+                setIsLoading(true);
+                loadSessions();
+              }} 
+              className="block w-full px-4 py-2 bg-green-600 rounded hover:bg-green-700 transition-colors"
+            >
+              Retry Load
+            </button>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <>
+    <AppErrorBoundary>
       <Router>
         <Routes>
           <Route 
@@ -228,7 +330,7 @@ function App() {
         </Routes>
       </Router>
       <PWAInstallPrompt />
-    </>
+    </AppErrorBoundary>
   );
 }
 

@@ -954,97 +954,187 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
 
           {/* Professional Staking Tab */}
           <TabsContent value="staking" className="space-y-6">
-            <Card className="bg-gray-900 border-gray-800">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Lock className="h-5 w-5" />
-                  SKY Staking Pools
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <Alert>
-                    <Info className="h-4 w-4" />
-                    <AlertDescription>
-                      Stake your SKY tokens to earn rewards and support the ecosystem. Each pool has different benefits and requirements.
-                    </AlertDescription>
-                  </Alert>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {stakePools.map((pool) => {
-                      const stakingRewards = enhancedBlockchain.calculateStakingRewards(
-                        pool.minStake,
-                        pool.category,
-                        pool.lockPeriod
-                      );
-                      
-                      return (
-                        <Card key={pool.id} className="bg-gray-900 border-gray-800">
-                          <CardHeader className="pb-3">
-                            <div className="flex items-center justify-between">
-                              <Badge className={`bg-${pool.category === 'research' ? 'purple' : pool.category === 'validation' ? 'blue' : 'orange'}-600`}>
-                                {pool.category}
-                              </Badge>
-                              <div className="text-right">
-                                <div className="text-lg font-bold text-green-500">{stakingRewards.totalAPY}%</div>
-                                <div className="text-xs text-muted-foreground">APY</div>
-                              </div>
-                            </div>
-                            <CardTitle className="text-base">{pool.name}</CardTitle>
-                          </CardHeader>
-                          <CardContent className="space-y-4">
-                            <div className="space-y-2 text-sm">
-                              <div className="flex justify-between">
-                                <span className="text-muted-foreground">Min Stake:</span>
-                                <span>{pool.minStake.toLocaleString()} SKY</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span className="text-muted-foreground">Lock Period:</span>
-                                <span>{pool.lockPeriod} days</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span className="text-muted-foreground">Total Staked:</span>
-                                <span>{(pool.totalStaked / 1000000).toFixed(1)}M SKY</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span className="text-muted-foreground">Est. Rewards:</span>
-                                <span className="text-green-400">+{stakingRewards.projectedRewards.toFixed(0)} SKY</span>
-                              </div>
-                            </div>
-                            
-                            <div className="text-xs text-muted-foreground">
-                              {pool.rewards}
-                            </div>
-
-                            <Button 
-                              className="w-full"
-                              disabled={wallet.balance < pool.minStake}
-                              onClick={() => handleStake(pool.id, pool.minStake)}
-                            >
-                              <Lock className="h-4 w-4 mr-2" />
-                              Stake {pool.minStake.toLocaleString()} SKY
-                            </Button>
-                          </CardContent>
-                        </Card>
-                      );
-                    })}
+            {/* Staking Overview - Glass Morphism Header */}
+            <div className="glass-morphism-surface rounded-2xl p-6 mb-8">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="neural-hexagon w-12 h-12 bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center">
+                    <Lock className="h-6 w-6 text-white" />
                   </div>
-
-                  <Card className="bg-gray-900 border-gray-800">
-                    <CardHeader>
-                      <CardTitle className="text-base">Your Staking Positions</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-center py-8 text-muted-foreground">
-                        <Lock className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                        <p>No active staking positions.</p>
-                        <p className="text-sm mt-2">Start staking to earn passive rewards!</p>
-                      </div>
-                    </CardContent>
-                  </Card>
+                  <div>
+                    <h2 className="neural-text-gradient text-xl font-bold">SKY Staking Ecosystem</h2>
+                    <p className="text-sm text-muted-foreground">Earn rewards while supporting neural research</p>
+                  </div>
                 </div>
-              </CardContent>
-            </Card>
+                <div className="text-right">
+                  <div className="text-2xl font-bold neural-glow-text text-cyan-400">{wallet.balance.toLocaleString()}</div>
+                  <div className="text-xs text-muted-foreground">Available SKY</div>
+                </div>
+              </div>
+              
+              {/* Staking Statistics */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
+                <div className="glass-morphism-card p-4 text-center">
+                  <div className="text-lg font-bold text-green-400">39.7%</div>
+                  <div className="text-xs text-muted-foreground">Max APY</div>
+                </div>
+                <div className="glass-morphism-card p-4 text-center">
+                  <div className="text-lg font-bold text-blue-400">{(stakePools.reduce((acc, pool) => acc + pool.totalStaked, 0) / 1000000).toFixed(1)}M</div>
+                  <div className="text-xs text-muted-foreground">Total Staked</div>
+                </div>
+                <div className="glass-morphism-card p-4 text-center">
+                  <div className="text-lg font-bold text-purple-400">{stakePools.length}</div>
+                  <div className="text-xs text-muted-foreground">Active Pools</div>
+                </div>
+                <div className="glass-morphism-card p-4 text-center">
+                  <div className="text-lg font-bold text-orange-400">15.5%</div>
+                  <div className="text-xs text-muted-foreground">Bonus APY</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Enhanced Staking Pools Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+              {stakePools.map((pool) => {
+                const stakingRewards = enhancedBlockchain.calculateStakingRewards(
+                  pool.minStake,
+                  pool.category,
+                  pool.lockPeriod
+                );
+                
+                const categoryColors = {
+                  'research': 'from-purple-600 to-indigo-600',
+                  'validation': 'from-blue-600 to-cyan-600', 
+                  'governance': 'from-orange-600 to-red-600'
+                };
+                
+                const categoryIcons = {
+                  'research': '🧬',
+                  'validation': '✅',
+                  'governance': '🏛️'
+                };
+                
+                return (
+                  <div key={pool.id} className="glass-morphism-accent rounded-2xl p-6 hover:scale-[1.02] transition-all duration-500 group">
+                    {/* Pool Header */}
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="flex items-center gap-3">
+                        <div className={`w-12 h-12 bg-gradient-to-br ${categoryColors[pool.category]} rounded-xl flex items-center justify-center text-lg shadow-lg`}>
+                          {categoryIcons[pool.category]}
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-white text-lg">{pool.name}</h3>
+                          <Badge className={`bg-gradient-to-r ${categoryColors[pool.category]} text-white text-xs mt-1 capitalize`}>
+                            {pool.category}
+                          </Badge>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-2xl font-bold neural-glow-text text-green-400">{stakingRewards.totalAPY}%</div>
+                        <div className="text-xs text-muted-foreground">Total APY</div>
+                      </div>
+                    </div>
+
+                    {/* APY Breakdown */}
+                    <div className="glass-morphism-card p-4 mb-4 space-y-2">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Base APY:</span>
+                        <span className="text-white font-medium">{stakingRewards.baseAPY}%</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Lock Bonus:</span>
+                        <span className="text-green-400 font-medium">+{(stakingRewards.bonusAPY * 0.7).toFixed(1)}%</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Compounding:</span>
+                        <span className="text-blue-400 font-medium">{stakingRewards.compoundingFactor}x</span>
+                      </div>
+                      <hr className="border-white/10" />
+                      <div className="flex justify-between text-sm font-bold">
+                        <span className="text-white">Risk-Adjusted APY:</span>
+                        <span className="text-cyan-400">{stakingRewards.riskAdjustedAPY}%</span>
+                      </div>
+                    </div>
+
+                    {/* Detailed Metrics */}
+                    <div className="space-y-3 mb-6">
+                      <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div className="glass-morphism-card p-3 text-center">
+                          <div className="text-white font-bold">{pool.minStake.toLocaleString()}</div>
+                          <div className="text-xs text-muted-foreground">Min Stake (SKY)</div>
+                        </div>
+                        <div className="glass-morphism-card p-3 text-center">
+                          <div className="text-white font-bold">{pool.lockPeriod}</div>
+                          <div className="text-xs text-muted-foreground">Lock Days</div>
+                        </div>
+                      </div>
+                      
+                      <div className="grid grid-cols-3 gap-3 text-sm">
+                        <div className="text-center">
+                          <div className="text-green-400 font-bold">{stakingRewards.dailyRewards.toFixed(2)}</div>
+                          <div className="text-xs text-muted-foreground">Daily SKY</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-blue-400 font-bold">{stakingRewards.monthlyRewards.toFixed(0)}</div>
+                          <div className="text-xs text-muted-foreground">Monthly SKY</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-purple-400 font-bold">{stakingRewards.yearlyRewards.toFixed(0)}</div>
+                          <div className="text-xs text-muted-foreground">Yearly SKY</div>
+                        </div>
+                      </div>
+
+                      <div className="glass-morphism-card p-3">
+                        <div className="flex justify-between items-center text-sm">
+                          <span className="text-muted-foreground">Total Staked:</span>
+                          <span className="text-white font-medium">{(pool.totalStaked / 1000000).toFixed(1)}M SKY</span>
+                        </div>
+                        <div className="w-full bg-black/30 rounded-full h-2 mt-2">
+                          <div 
+                            className={`h-2 bg-gradient-to-r ${categoryColors[pool.category]} rounded-full transition-all duration-1000`}
+                            style={{ width: `${Math.min(100, (pool.totalStaked / 10000000) * 100)}%` }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Stake Button */}
+                    <Button 
+                      className={`w-full neural-btn-accent h-12 bg-gradient-to-r ${categoryColors[pool.category]} hover:scale-105 transition-all duration-300 shadow-lg font-bold`}
+                      disabled={wallet.balance < pool.minStake}
+                      onClick={() => handleStake(pool.id, pool.minStake)}
+                    >
+                      <Lock className="h-4 w-4 mr-2" />
+                      {wallet.balance >= pool.minStake ? 
+                        `Stake ${pool.minStake.toLocaleString()} SKY` : 
+                        'Insufficient Balance'
+                      }
+                    </Button>
+                    
+                    {/* Pool Benefits */}
+                    <div className="mt-4 text-xs text-muted-foreground bg-black/20 rounded-lg p-3">
+                      <div className="font-medium text-white mb-1">Pool Benefits:</div>
+                      {pool.rewards}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Your Staking Positions */}
+            <div className="glass-morphism-surface rounded-2xl p-6">
+              <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                <Lock className="h-5 w-5" />
+                Your Staking Positions
+              </h3>
+              <div className="text-center py-8 text-muted-foreground">
+                <div className="w-16 h-16 bg-gradient-to-br from-cyan-500/20 to-purple-600/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Lock className="h-8 w-8 text-cyan-400" />
+                </div>
+                <p className="text-white font-medium mb-2">No active staking positions</p>
+                <p className="text-sm">Start staking to earn passive rewards and support the neural ecosystem!</p>
+              </div>
+            </div>
           </TabsContent>
         </Tabs>
       </div>

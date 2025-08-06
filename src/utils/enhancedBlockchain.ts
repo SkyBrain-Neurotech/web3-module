@@ -375,36 +375,70 @@ class EnhancedBlockchainService {
     bonusAPY: number;
     totalAPY: number;
     projectedRewards: number;
+    monthlyRewards: number;
+    yearlyRewards: number;
+    dailyRewards: number;
     unlockDate: number;
+    compoundingFactor: number;
+    riskAdjustedAPY: number;
   } {
+    // Realistic DeFi staking APYs with market conditions
     const baseAPYs = {
-      'research': 12.5,
-      'validation': 8.7,
-      'governance': 15.2
+      'research': 18.5,    // Higher APY for research funding pool
+      'validation': 12.8,  // Moderate APY for validation services  
+      'governance': 24.2   // Highest APY for governance participation
     };
     
+    // Lock period bonus scaling
     const lockPeriodBonus = {
-      30: 0,
-      90: 2,
-      180: 5,
-      365: 10
+      30: 0,      // No bonus for 30 days
+      90: 3.2,    // 3.2% bonus for quarterly lock
+      180: 7.8,   // 7.8% bonus for semi-annual lock
+      365: 15.5   // 15.5% bonus for annual lock
     }[lockPeriod] || 0;
     
-    const amountBonus = amount > 10000 ? 1.5 : amount > 5000 ? 1 : 0;
+    // Amount-based tier bonuses (encouraging larger stakes)
+    let amountBonus = 0;
+    if (amount >= 100000) amountBonus = 4.5;      // Whale tier
+    else if (amount >= 50000) amountBonus = 3.2;  // Large tier
+    else if (amount >= 10000) amountBonus = 2.1;  // Medium tier
+    else if (amount >= 5000) amountBonus = 1.0;   // Small tier
+    
+    // Market volatility adjustment (realistic DeFi conditions)
+    const volatilityDiscount = {
+      'research': 0.8,     // Stable research funding
+      'validation': 1.2,   // Medium risk validation
+      'governance': 2.1    // Higher risk governance tokens
+    }[poolType];
     
     const baseAPY = baseAPYs[poolType];
     const bonusAPY = lockPeriodBonus + amountBonus;
-    const totalAPY = baseAPY + bonusAPY;
+    const totalAPY = Math.max(0, baseAPY + bonusAPY - volatilityDiscount);
+    const riskAdjustedAPY = totalAPY * 0.92; // 8% safety margin for realistic expectations
     
-    const projectedRewards = (amount * totalAPY / 100) * (lockPeriod / 365);
+    // Compounding factor based on lock period
+    const compoundingFactor = lockPeriod >= 180 ? 1.08 : lockPeriod >= 90 ? 1.04 : 1.0;
+    
+    // Detailed reward calculations
+    const annualRewards = amount * (riskAdjustedAPY / 100) * compoundingFactor;
+    const dailyRewards = annualRewards / 365;
+    const monthlyRewards = annualRewards / 12;
+    const projectedRewards = annualRewards * (lockPeriod / 365);
+    const yearlyRewards = annualRewards;
+    
     const unlockDate = Date.now() + lockPeriod * 24 * 60 * 60 * 1000;
     
     return {
-      baseAPY,
-      bonusAPY,
-      totalAPY,
-      projectedRewards,
-      unlockDate
+      baseAPY: Number(baseAPY.toFixed(2)),
+      bonusAPY: Number(bonusAPY.toFixed(2)),
+      totalAPY: Number(riskAdjustedAPY.toFixed(2)),
+      projectedRewards: Number(projectedRewards.toFixed(2)),
+      monthlyRewards: Number(monthlyRewards.toFixed(2)),
+      yearlyRewards: Number(yearlyRewards.toFixed(2)),
+      dailyRewards: Number(dailyRewards.toFixed(2)),
+      unlockDate,
+      compoundingFactor: Number(compoundingFactor.toFixed(2)),
+      riskAdjustedAPY: Number(riskAdjustedAPY.toFixed(2))
     };
   }
 }
