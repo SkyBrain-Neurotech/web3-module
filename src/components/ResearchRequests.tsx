@@ -50,6 +50,7 @@ import { mockDataService, ResearchRequest, EEGSession } from '../utils/mockDataS
 interface ResearchRequestsProps {
   sessions: EEGSession[];
   onSessionUpdate: () => void;
+  onSubmitToResearch?: (nftId: string, projectId: string) => Promise<{ success: boolean; reward: number }>;
 }
 
 // Academic institution data with colors and categories
@@ -62,7 +63,7 @@ const universityThemes = {
   'Yale University': { color: 'from-cyan-500 to-blue-500', category: 'neuroscience', icon: GraduationCap }
 };
 
-const ResearchRequests: React.FC<ResearchRequestsProps> = ({ sessions, onSessionUpdate }) => {
+const ResearchRequests: React.FC<ResearchRequestsProps> = ({ sessions, onSessionUpdate, onSubmitToResearch }) => {
   const [requests, setRequests] = useState<ResearchRequest[]>([]);
   const [submitting, setSubmitting] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -85,10 +86,22 @@ const ResearchRequests: React.FC<ResearchRequestsProps> = ({ sessions, onSession
   const handleSubmitSession = async (requestId: string, sessionId: string) => {
     setSubmitting(requestId);
     try {
-      const result = await mockDataService.submitToResearch(sessionId, requestId);
-      console.log('Submission successful:', result);
-      await loadRequests(); // Refresh requests
-      onSessionUpdate();
+      let result;
+      
+      if (onSubmitToResearch) {
+        // Use enhanced blockchain submission if available
+        result = await onSubmitToResearch(sessionId, requestId);
+        console.log('Enhanced submission successful:', result);
+      } else {
+        // Fallback to mock service
+        result = await mockDataService.submitToResearch(sessionId, requestId);
+        console.log('Mock submission successful:', result);
+      }
+      
+      if (result.success) {
+        await loadRequests(); // Refresh requests
+        onSessionUpdate();
+      }
     } catch (error) {
       console.error('Submission failed:', error);
     } finally {

@@ -108,6 +108,11 @@ interface NeuroDataEcosystemEnhancedProps {
 }
 
 const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({ sessions, onSessionUpdate }) => {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   const [wallet, setWallet] = useState<SKYWallet | null>(null);
   const [dataNFTs, setDataNFTs] = useState<DataNFT[]>([]);
   const [researchProjects, setResearchProjects] = useState<ResearchProject[]>([]);
@@ -294,10 +299,20 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
   };
 
   const handleSubmitToResearch = async (nftId: string, projectId: string) => {
+    const oldBalance = wallet?.balance || 0;
     const result = await skyEcosystem.submitToResearch(nftId, projectId);
     if (result.success) {
       await loadEcosystemData();
-      console.log('Research submission successful');
+      const newBalance = skyEcosystem.getWallet().balance;
+      
+      // Show success message with reward
+      setAchievements(prev => [...prev, `earned-${result.reward}-sky`]);
+      
+      // Force wallet state update
+      const updatedWallet = skyEcosystem.getWallet();
+      setWallet(updatedWallet);
+      
+      console.log(`Research submission successful! Balance: ${oldBalance} → ${newBalance} (+${result.reward} SKY)`);
     }
     return result;
   };
@@ -369,11 +384,11 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse" />
               )}
             </div>
-            <div>
-              <h1 className="text-base md:text-lg font-bold text-white text-center">
+            <div className="flex flex-col justify-center">
+              <h1 className="text-base md:text-lg font-bold text-white leading-tight">
                 SKY Ecosystem
               </h1>
-              <p className="text-muted-foreground text-xs font-medium text-center">Decentralized Neurodata Economy</p>
+              <p className="text-muted-foreground text-xs font-medium leading-tight">Decentralized Neurodata Economy</p>
             </div>
           </div>
           
@@ -919,7 +934,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
                 <CardTitle>All Research Projects</CardTitle>
               </CardHeader>
               <CardContent>
-                <ResearchRequests sessions={sessions} onSessionUpdate={onSessionUpdate} />
+                <ResearchRequests sessions={sessions} onSessionUpdate={onSessionUpdate} onSubmitToResearch={handleSubmitToResearch} />
               </CardContent>
             </Card>
           </TabsContent>

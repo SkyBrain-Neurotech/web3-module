@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
@@ -28,6 +28,73 @@ import {
 const WellnessValidationLanding = () => {
   const navigate = useNavigate();
   const [showContactModal, setShowContactModal] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(true);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  // Handle scroll-based header visibility
+  useEffect(() => {
+    let ticking = false;
+    let prevScrollY = window.scrollY;
+    let scrollTimeout: NodeJS.Timeout;
+    
+    // Detect tablet/touch device
+    const isTablet = /iPad|Android(?=.*Tablet)|Tablet|KFAPWI|RIM Tablet|PlayBook|Silk/.test(navigator.userAgent) ||
+      (window.innerWidth >= 768 && window.innerWidth <= 1024);
+    
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          const scrollDelta = currentScrollY - prevScrollY;
+          
+          // Clear any existing timeout
+          clearTimeout(scrollTimeout);
+          
+          // For tablets, use more sensitive thresholds and add delay
+          const hideThreshold = isTablet ? 30 : 50;
+          const showThreshold = isTablet ? 10 : 25;
+          
+          if (isTablet) {
+            // On tablets, wait for scroll to settle before hiding
+            scrollTimeout = setTimeout(() => {
+              if (currentScrollY <= hideThreshold) {
+                setHeaderVisible(true);
+              } else if (scrollDelta > showThreshold) {
+                // Scrolling down significantly
+                setHeaderVisible(false);
+              } else if (scrollDelta < -showThreshold) {
+                // Scrolling up significantly
+                setHeaderVisible(true);
+              }
+            }, 100);
+          } else {
+            // Desktop behavior (immediate)
+            if (currentScrollY < prevScrollY || currentScrollY <= hideThreshold) {
+              setHeaderVisible(true);
+            } else if (currentScrollY > prevScrollY && currentScrollY > 100) {
+              setHeaderVisible(false);
+            }
+          }
+          
+          prevScrollY = currentScrollY;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    // Initial setup
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      clearTimeout(scrollTimeout);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const validationPackages = [
     {
@@ -105,7 +172,7 @@ const WellnessValidationLanding = () => {
       duration: '2-3 weeks',
       icon: Users,
       tasks: [
-        'Access to 50,000+ user database',
+        'Access to 1000+ user database',
         'Targeted participant screening',
         'Informed consent process',
         'Baseline assessments'
@@ -363,7 +430,9 @@ const WellnessValidationLanding = () => {
   return (
     <div className="min-h-screen bg-background font-sans">
       {/* Navigation Header */}
-      <div className="sticky top-0 bg-card/90 backdrop-blur-sm border-b border-border z-40">
+      <div className={`sticky top-0 bg-card/90 backdrop-blur-sm border-b border-border z-40 transition-all duration-300 ${
+        headerVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'
+      }`}>
         <div className="container-responsive py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -833,7 +902,7 @@ const WellnessValidationLanding = () => {
               <CardContent className="p-6">
                 <Users className="h-12 w-12 text-purple-400 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-white mb-2">Large Participant Network</h3>
-                <p className="text-gray-400 text-sm">50,000+ pre-screened participants ready for studies</p>
+                <p className="text-gray-400 text-sm">1,000+ pre-screened participants ready for studies</p>
               </CardContent>
             </Card>
             

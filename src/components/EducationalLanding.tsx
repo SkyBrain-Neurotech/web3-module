@@ -30,6 +30,11 @@ const EducationalLanding = () => {
   const [headerVisible, setHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   const educationSteps = [
     {
       id: 'intro',
@@ -525,6 +530,24 @@ const EducationalLanding = () => {
               </div>
             </div>
           </div>
+
+          {/* Center Demo Button */}
+          <div className="text-center mt-16">
+            <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-2xl p-8">
+              <h3 className="text-2xl font-bold text-white mb-4">Experience Our Flagship Center</h3>
+              <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+                Take an interactive virtual tour of our state-of-the-art research facility in Bengaluru 
+                and see how cutting-edge technology meets scientific precision.
+              </p>
+              <Button 
+                onClick={() => navigate('/flagship-center')}
+                className="bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-semibold px-8 py-3"
+              >
+                <Building2 className="h-5 w-5 mr-2" />
+                Explore Flagship Center
+              </Button>
+            </div>
+          </div>
         </div>
       )
     }
@@ -547,18 +570,46 @@ const EducationalLanding = () => {
   // Handle scroll-based header visibility
   useEffect(() => {
     let ticking = false;
-    let prevScrollY = 0;
+    let prevScrollY = window.scrollY;
+    let scrollTimeout: NodeJS.Timeout;
+    
+    // Detect tablet/touch device
+    const isTablet = /iPad|Android(?=.*Tablet)|Tablet|KFAPWI|RIM Tablet|PlayBook|Silk/.test(navigator.userAgent) ||
+      (window.innerWidth >= 768 && window.innerWidth <= 1024);
     
     const handleScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
+          const scrollDelta = currentScrollY - prevScrollY;
           
-          // Show header when scrolling up or at top, hide when scrolling down
-          if (currentScrollY < prevScrollY || currentScrollY <= 50) {
-            setHeaderVisible(true);
-          } else if (currentScrollY > prevScrollY && currentScrollY > 100) {
-            setHeaderVisible(false);
+          // Clear any existing timeout
+          clearTimeout(scrollTimeout);
+          
+          // For tablets, use less sensitive thresholds and add delay
+          const hideThreshold = isTablet ? 50 : 50;
+          const showThreshold = isTablet ? 30 : 25;
+          
+          if (isTablet) {
+            // On tablets, wait for scroll to settle before hiding
+            scrollTimeout = setTimeout(() => {
+              if (currentScrollY <= hideThreshold) {
+                setHeaderVisible(true);
+              } else if (scrollDelta > showThreshold) {
+                // Scrolling down significantly
+                setHeaderVisible(false);
+              } else if (scrollDelta < -showThreshold) {
+                // Scrolling up significantly
+                setHeaderVisible(true);
+              }
+            }, 100);
+          } else {
+            // Desktop behavior (immediate)
+            if (currentScrollY < prevScrollY || currentScrollY <= hideThreshold) {
+              setHeaderVisible(true);
+            } else if (currentScrollY > prevScrollY && currentScrollY > 100) {
+              setHeaderVisible(false);
+            }
           }
           
           prevScrollY = currentScrollY;
@@ -573,6 +624,7 @@ const EducationalLanding = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     
     return () => {
+      clearTimeout(scrollTimeout);
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
@@ -624,14 +676,14 @@ const EducationalLanding = () => {
       </div>
 
       {/* Content */}
-      <div className={`container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12 lg:py-16 xl:py-20 transition-all duration-300 ${
+      <div className={`container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12 lg:py-16 xl:py-20 pb-32 transition-all duration-300 ${
         !headerVisible ? 'mt-16' : ''
       }`}>
         {currentStepData.content}
       </div>
 
       {/* Navigation Footer */}
-      <div className="sticky bottom-0 bg-gray-900/90 backdrop-blur-sm border-t border-gray-800">
+      <div className="sticky bottom-0 bg-gray-900/90 backdrop-blur-sm border-t border-gray-800 z-30">
         <div className="container mx-auto px-4 sm:px-6 py-6">
           <div className="flex items-center justify-between">
             <Button

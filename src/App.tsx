@@ -5,6 +5,7 @@ import NeuroDataEcosystemEnhanced from './components/NeuroDataEcosystemEnhanced'
 import SessionTokenizer from './components/SessionTokenizer';
 import EducationalLanding from './components/EducationalLanding';
 import WellnessValidationLanding from './components/WellnessValidationLanding';
+import FlagshipCenterDemo from './components/FlagshipCenterDemo';
 import { mockDataService, EEGSession } from './utils/mockDataService';
 import { 
   ArrowLeft
@@ -89,11 +90,73 @@ function BusinessModelPage() {
 // Demo Interface Page Component - The actual platform demo
 function DemoInterfacePage({ sessions, loadSessions }: { sessions: EEGSession[], loadSessions: () => void }) {
   const navigate = useNavigate();
+  const [headerVisible, setHeaderVisible] = useState(true);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  // Handle scroll-based header visibility
+  useEffect(() => {
+    let ticking = false;
+    let prevScrollY = window.scrollY;
+    let scrollTimeout: NodeJS.Timeout;
+    
+    // Detect tablet/touch device
+    const isTablet = /iPad|Android(?=.*Tablet)|Tablet|KFAPWI|RIM Tablet|PlayBook|Silk/.test(navigator.userAgent) ||
+      (window.innerWidth >= 768 && window.innerWidth <= 1024);
+    
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          const scrollDelta = currentScrollY - prevScrollY;
+          
+          clearTimeout(scrollTimeout);
+          
+          const hideThreshold = isTablet ? 30 : 50;
+          const showThreshold = isTablet ? 10 : 25;
+          
+          if (isTablet) {
+            scrollTimeout = setTimeout(() => {
+              if (currentScrollY <= hideThreshold) {
+                setHeaderVisible(true);
+              } else if (scrollDelta > showThreshold) {
+                setHeaderVisible(false);
+              } else if (scrollDelta < -showThreshold) {
+                setHeaderVisible(true);
+              }
+            }, 100);
+          } else {
+            if (currentScrollY < prevScrollY || currentScrollY <= hideThreshold) {
+              setHeaderVisible(true);
+            } else if (currentScrollY > prevScrollY && currentScrollY > 100) {
+              setHeaderVisible(false);
+            }
+          }
+          
+          prevScrollY = currentScrollY;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      clearTimeout(scrollTimeout);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation Header */}
-      <div className="sticky top-0 bg-card/90 backdrop-blur-sm border-b border-border z-40">
+      <div className={`sticky top-0 bg-card/90 backdrop-blur-sm border-b border-border z-40 transition-all duration-300 ${
+        headerVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'
+      }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -114,7 +177,7 @@ function DemoInterfacePage({ sessions, loadSessions }: { sessions: EEGSession[],
               </Button>
             </div>
             <div className="flex items-center gap-3">
-              <h1 className="text-base md:text-lg font-bold text-foreground text-center">Demo Platform</h1>
+              <h1 className="text-base md:text-lg font-bold text-white leading-tight">Demo Platform</h1>
               <Button
                 onClick={() => navigate('/tokenizer')}
                 variant="outline"
@@ -141,11 +204,73 @@ function DemoInterfacePage({ sessions, loadSessions }: { sessions: EEGSession[],
 // Tokenizer Page Component
 function TokenizerPage({ sessions, loadSessions }: { sessions: EEGSession[], loadSessions: () => void }) {
   const navigate = useNavigate();
+  const [headerVisible, setHeaderVisible] = useState(true);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  // Handle scroll-based header visibility
+  useEffect(() => {
+    let ticking = false;
+    let prevScrollY = window.scrollY;
+    let scrollTimeout: NodeJS.Timeout;
+    
+    // Detect tablet/touch device
+    const isTablet = /iPad|Android(?=.*Tablet)|Tablet|KFAPWI|RIM Tablet|PlayBook|Silk/.test(navigator.userAgent) ||
+      (window.innerWidth >= 768 && window.innerWidth <= 1024);
+    
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          const scrollDelta = currentScrollY - prevScrollY;
+          
+          clearTimeout(scrollTimeout);
+          
+          const hideThreshold = isTablet ? 30 : 50;
+          const showThreshold = isTablet ? 10 : 25;
+          
+          if (isTablet) {
+            scrollTimeout = setTimeout(() => {
+              if (currentScrollY <= hideThreshold) {
+                setHeaderVisible(true);
+              } else if (scrollDelta > showThreshold) {
+                setHeaderVisible(false);
+              } else if (scrollDelta < -showThreshold) {
+                setHeaderVisible(true);
+              }
+            }, 100);
+          } else {
+            if (currentScrollY < prevScrollY || currentScrollY <= hideThreshold) {
+              setHeaderVisible(true);
+            } else if (currentScrollY > prevScrollY && currentScrollY > 100) {
+              setHeaderVisible(false);
+            }
+          }
+          
+          prevScrollY = currentScrollY;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      clearTimeout(scrollTimeout);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation Header */}
-      <div className="sticky top-0 bg-card/90 backdrop-blur-sm border-b border-border z-40">
+      <div className={`sticky top-0 bg-card/90 backdrop-blur-sm border-b border-border z-40 transition-all duration-300 ${
+        headerVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'
+      }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -166,7 +291,7 @@ function TokenizerPage({ sessions, loadSessions }: { sessions: EEGSession[], loa
               </Button>
             </div>
             <div className="flex items-center gap-3">
-              <h1 className="text-base md:text-lg font-bold text-foreground text-center">Session Tokenizer</h1>
+              <h1 className="text-base md:text-lg font-bold text-white leading-tight">Session Tokenizer</h1>
               <Button
                 onClick={() => navigate('/demo-interface')}
                 variant="outline"
@@ -268,11 +393,6 @@ function App() {
           <SynapseNetwork className="h-12 w-12 text-cyan-400 mx-auto mb-4 animate-pulse" />
           <h1 className="text-2xl font-bold mb-2">SkyBrain NeuroBank</h1>
           <p className="text-cyan-400 mb-4">Loading neural ecosystem...</p>
-          {debugInfo && (
-            <div className="bg-gray-800 p-3 rounded-lg">
-              <p className="text-xs font-mono text-gray-400">{debugInfo}</p>
-            </div>
-          )}
         </div>
       </div>
     );
@@ -284,11 +404,6 @@ function App() {
         <div className="text-center max-w-md">
           <h1 className="text-2xl font-bold mb-4">SkyBrain NeuroBank</h1>
           <p className="text-red-400 mb-4">Error: {error}</p>
-          {debugInfo && (
-            <div className="bg-gray-800 p-3 rounded-lg mb-4">
-              <p className="text-xs font-mono text-gray-400">{debugInfo}</p>
-            </div>
-          )}
           <div className="space-y-2">
             <button 
               onClick={() => {
@@ -336,6 +451,10 @@ function App() {
           <Route 
             path="/tokenizer" 
             element={<TokenizerPage sessions={sessions} loadSessions={loadSessions} />} 
+          />
+          <Route 
+            path="/flagship-center" 
+            element={<FlagshipCenterDemo />} 
           />
         </Routes>
       </Router>

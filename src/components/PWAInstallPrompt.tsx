@@ -17,7 +17,6 @@ const PWAInstallPrompt: React.FC = () => {
     if (!isInstalled) {
       // Show prompt after a delay
       const timer = setTimeout(() => {
-        console.log('📱 Forcing PWA prompt to show for testing');
         setIsVisible(true);
       }, 3000); // Show after 3 seconds
       

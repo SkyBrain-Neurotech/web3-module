@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
@@ -61,6 +61,11 @@ interface SessionTokenizerProps {
 }
 
 const SessionTokenizer: React.FC<SessionTokenizerProps> = ({ sessions, onSessionUpdate }) => {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   const [tokenizing, setTokenizing] = useState<string | null>(null);
   const [listing, setListing] = useState<string | null>(null);
 
