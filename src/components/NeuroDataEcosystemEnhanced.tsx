@@ -353,7 +353,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
         {/* Enhanced Wallet Overview with Achievements */}
         <div className="space-y-3 md:space-y-4 px-2">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
-            <Card className="bg-gradient-to-br from-slate-800/80 to-slate-900/60 border-cyan-400/40 shadow-lg hover:shadow-cyan-500/20 transition-all duration-300">
+            <Card className="glass-morphism-card border-cyan-400/40 shadow-lg hover:shadow-cyan-500/20 transition-all duration-300">
               <CardContent className="p-3 md:p-4 text-center">
                 <div className="p-1.5 md:p-2 bg-gradient-to-r from-cyan-500/20 to-teal-500/20 rounded-lg w-fit mx-auto mb-1.5 md:mb-2">
                   <Wallet className="h-4 md:h-6 w-4 md:w-6 text-cyan-400 mx-auto" />
@@ -365,7 +365,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-to-br from-slate-800/80 to-slate-900/60 border-emerald-400/40 shadow-lg hover:shadow-emerald-500/20 transition-all duration-300">
+            <Card className="glass-morphism-card border-emerald-400/40 shadow-lg hover:shadow-emerald-500/20 transition-all duration-300">
               <CardContent className="p-3 md:p-4 text-center">
                 <div className="p-1.5 md:p-2 bg-gradient-to-r from-emerald-500/20 to-green-500/20 rounded-lg w-fit mx-auto mb-1.5 md:mb-2">
                   <TrendingUp className="h-4 md:h-6 w-4 md:w-6 text-emerald-400 mx-auto" />
@@ -377,7 +377,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-to-br from-slate-800/80 to-slate-900/60 border-blue-400/40 shadow-lg hover:shadow-blue-500/20 transition-all duration-300">
+            <Card className="glass-morphism-card border-blue-400/40 shadow-lg hover:shadow-blue-500/20 transition-all duration-300">
               <CardContent className="p-4 text-center">
                 <div className="p-2 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 rounded-lg w-fit mx-auto mb-2">
                   <Database className="h-6 w-6 text-blue-400 mx-auto" />
@@ -389,7 +389,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-to-br from-slate-800/80 to-slate-900/60 border-purple-400/40 shadow-lg hover:shadow-purple-500/20 transition-all duration-300">
+            <Card className="glass-morphism-card border-purple-400/40 shadow-lg hover:shadow-purple-500/20 transition-all duration-300">
               <CardContent className="p-4 text-center">
                 <div className="p-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-lg w-fit mx-auto mb-2">
                   <Trophy className="h-6 w-6 text-purple-400 mx-auto" />
@@ -432,7 +432,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
 
         {/* Pending Transactions */}
         {pendingTransactions.length > 0 && (
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="glass-morphism-card">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
                 <NeuralWave className="h-4 w-4" />
@@ -514,7 +514,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
           <TabsContent value="dashboard" className="space-y-6">
             {/* User Profile & Scoring System */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <Card className="bg-gray-900 border-gray-800 shadow-xl">
+              <Card className="glass-morphism-accent shadow-xl">
                 <CardHeader className="pb-4">
                   <CardTitle className="flex items-center gap-2 text-lg font-semibold">
                     <Signal className="h-5 w-5" />
@@ -554,7 +554,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
                 </CardContent>
               </Card>
 
-              <Card className="bg-gray-900 border-gray-800 shadow-xl">
+              <Card className="glass-morphism-accent shadow-xl">
                 <CardHeader className="pb-4">
                   <CardTitle className="flex items-center gap-2 text-lg font-semibold">
                     <Target className="h-5 w-5" />
@@ -588,7 +588,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
                 </CardContent>
               </Card>
 
-              <Card className="bg-gray-900 border-gray-800 shadow-xl">
+              <Card className="glass-morphism-accent shadow-xl">
                 <CardHeader className="pb-4">
                   <CardTitle className="flex items-center gap-2 text-lg font-semibold">
                     <Award className="h-5 w-5" />
@@ -629,7 +629,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
             </div>
 
             {/* Quick Actions with Live Status */}
-            <Card className="bg-gray-900 border-gray-800">
+            <Card className="glass-morphism-accent">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <BioElectric className="h-5 w-5" />
@@ -664,7 +664,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
 
             {/* Network & Market Status */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <Card className="bg-gray-900 border-gray-800">
+              <Card className="glass-morphism-card">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-base">
                     <NeuralWave className="h-4 w-4" />
@@ -695,7 +695,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
                 </CardContent>
               </Card>
 
-              <Card className="bg-gray-900 border-gray-800">
+              <Card className="glass-morphism-card">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-base">
                     <TrendingUp className="h-4 w-4" />
@@ -730,7 +730,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
 
           {/* Professional Mint Data Tab */}
           <TabsContent value="mint" className="space-y-6">
-            <Card className="bg-gray-900 border-gray-800">
+            <Card className="glass-morphism-accent">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Plus className="h-5 w-5" />
@@ -795,7 +795,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
                         );
                         
                         return (
-                          <Card key={nft.id} className="bg-gray-900 border-gray-800 hover:border-primary/50 transition-colors">
+                          <Card key={nft.id} className="glass-morphism-card hover:border-primary/50 transition-colors">
                             <CardHeader className="pb-2">
                               <div className="flex items-center justify-between">
                                 <Badge className={`${getQualityColor(nft.quality)} border text-xs`}>
@@ -858,7 +858,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
 
           {/* Professional Research Tab with AI Matching */}
           <TabsContent value="research" className="space-y-6">
-            <Card className="bg-gray-900 border-gray-800">
+            <Card className="glass-morphism-accent">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <SynapseNetwork className="h-5 w-5" />
@@ -874,7 +874,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
             </Card>
 
             {/* Traditional Research Projects (kept for fallback) */}
-            <Card className="bg-gray-900 border-gray-800">
+            <Card className="glass-morphism-card">
               <CardHeader>
                 <CardTitle>All Research Projects</CardTitle>
               </CardHeader>
@@ -886,7 +886,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
 
           {/* Professional Marketplace Tab */}
           <TabsContent value="marketplace" className="space-y-6">
-            <Card className="bg-gray-900 border-gray-800">
+            <Card className="glass-morphism-accent">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <ShoppingCart className="h-5 w-5" />
@@ -911,7 +911,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
                   ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                       {marketplaceItems.map((item) => (
-                        <Card key={item.id} className="bg-gray-900 border-gray-800 hover:border-primary/50 transition-colors">
+                        <Card key={item.id} className="glass-morphism-card hover:border-primary/50 transition-colors">
                           <CardHeader className="pb-2">
                             <div className="flex items-center justify-between">
                               <Badge className={`${getQualityColor(item.quality)} border text-xs`}>
@@ -1142,7 +1142,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
         {/* Enhanced NFT Detail Modal */}
         {selectedNFT && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-            <Card className="bg-gray-900 border-gray-800 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <Card className="glass-morphism-surface max-w-2xl w-full max-h-[90vh] overflow-y-auto">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle>{selectedNFT.title}</CardTitle>
