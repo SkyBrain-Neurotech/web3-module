@@ -6,29 +6,93 @@ import { Badge } from './ui/badge';
 import { Progress } from './ui/progress';
 import { Alert, AlertDescription } from './ui/alert';
 import { 
-  Coins, 
-  Zap, 
   TrendingUp, 
   Users, 
   Database, 
   Shield, 
   Award, 
-  Brain,
   ShoppingCart,
   Wallet,
   Target,
   Lock,
   Upload,
-  Activity,
   Eye,
   Info,
   Plus,
   BarChart3,
   Signal,
-  Sparkles,
   Trophy,
   Gift
 } from 'lucide-react';
+
+// Custom distinctive neuroscience icons
+const SynapseNetwork = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="6" cy="6" r="2" fill="currentColor" opacity="0.8"/>
+    <circle cx="18" cy="6" r="2" fill="currentColor" opacity="0.8"/>
+    <circle cx="12" cy="12" r="2" fill="currentColor"/>
+    <circle cx="6" cy="18" r="2" fill="currentColor" opacity="0.8"/>
+    <circle cx="18" cy="18" r="2" fill="currentColor" opacity="0.8"/>
+    <path d="m8 8 4 4m0 0 4-4M12 12l-4 4m4-4 4 4" stroke="currentColor" strokeWidth="1" opacity="0.6"/>
+    <circle cx="12" cy="12" r="6" stroke="currentColor" strokeWidth="1" strokeDasharray="2,2" fill="none" opacity="0.3"/>
+  </svg>
+);
+
+const QuantumCoin = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.6"/>
+    <circle cx="12" cy="12" r="6" stroke="currentColor" strokeWidth="1.5" fill="none" opacity="0.8"/>
+    <circle cx="12" cy="12" r="3" fill="currentColor"/>
+    <path d="M12 6v12M6 12h12" stroke="currentColor" strokeWidth="1" opacity="0.4"/>
+    <circle cx="12" cy="6" r="1" fill="currentColor" opacity="0.7"/>
+    <circle cx="18" cy="12" r="1" fill="currentColor" opacity="0.7"/>
+    <circle cx="12" cy="18" r="1" fill="currentColor" opacity="0.7"/>
+    <circle cx="6" cy="12" r="1" fill="currentColor" opacity="0.7"/>
+  </svg>
+);
+
+const BioElectric = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 2L6 8l4 4-4 4 2 6h8l-2-6 4-4-4-4 2-6H8z" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.6"/>
+    <circle cx="12" cy="12" r="2" fill="currentColor"/>
+    <circle cx="12" cy="8" r="1" fill="currentColor" opacity="0.8"/>
+    <circle cx="12" cy="16" r="1" fill="currentColor" opacity="0.8"/>
+    <path d="M9 9l6 6M15 9l-6 6" stroke="currentColor" strokeWidth="1" opacity="0.4"/>
+  </svg>
+);
+
+const NeuralWave = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 12c0-1 1-2 2-2s2 1 2 2-1 2-2 2-2-1-2-2zM18 12c0-1 1-2 2-2s2 1 2 2-1 2-2 2-2-1-2-2z" fill="currentColor" opacity="0.6"/>
+    <path d="M6 12c1.5-4 3-4 4.5 0S13 16 14.5 12s3-4 4.5 0" stroke="currentColor" strokeWidth="2" fill="none"/>
+    <circle cx="4" cy="8" r="1" fill="currentColor" opacity="0.4"/>
+    <circle cx="8" cy="16" r="1" fill="currentColor" opacity="0.4"/>
+    <circle cx="16" cy="8" r="1" fill="currentColor" opacity="0.4"/>
+    <circle cx="20" cy="16" r="1" fill="currentColor" opacity="0.4"/>
+  </svg>
+);
+
+const DataCrystal = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2L4 7v10l8 5 8-5V7l-8-5z" stroke="currentColor" strokeWidth="2" fill="none"/>
+    <path d="M4 7l8 5 8-5M12 12v10" stroke="currentColor" strokeWidth="1.5" opacity="0.7"/>
+    <circle cx="12" cy="7" r="2" fill="currentColor" opacity="0.8"/>
+    <circle cx="8" cy="14" r="1" fill="currentColor" opacity="0.6"/>
+    <circle cx="16" cy="14" r="1" fill="currentColor" opacity="0.6"/>
+    <circle cx="12" cy="17" r="1.5" fill="currentColor" opacity="0.7"/>
+  </svg>
+);
+
+const AchievementStar = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2l3.5 7 7.5 1-5.5 5.5 1.5 7.5L12 19l-6.5 4 1.5-7.5L1 10l7.5-1L12 2z" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.7"/>
+    <circle cx="12" cy="12" r="4" fill="currentColor" opacity="0.8"/>
+    <circle cx="12" cy="8" r="1" fill="currentColor" opacity="0.6"/>
+    <circle cx="12" cy="16" r="1" fill="currentColor" opacity="0.6"/>
+    <circle cx="8" cy="12" r="1" fill="currentColor" opacity="0.6"/>
+    <circle cx="16" cy="12" r="1" fill="currentColor" opacity="0.6"/>
+  </svg>
+);
 import { skyEcosystem, DataNFT, ResearchProject, SKYWallet, SKYStakePool } from '../utils/skyEcosystem';
 import { enhancedBlockchain } from '../utils/enhancedBlockchain';
 import SessionTokenizer from './SessionTokenizer';
@@ -221,13 +285,13 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
 
   const getCategoryIcon = (category: string) => {
     const icons = {
-      'neuroscience': Brain,
+      'neuroscience': SynapseNetwork,
       'psychology': Users,
       'ai-training': Database,
       'medical': Shield,
-      'wellness': Activity
+      'wellness': NeuralWave
     };
-    return icons[category as keyof typeof icons] || Brain;
+    return icons[category as keyof typeof icons] || SynapseNetwork;
   };
 
   const getQualityColor = (quality: string) => {
@@ -241,7 +305,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
 
   const getAchievementDetails = (achievementId: string) => {
     const details = {
-      'first-earner': { icon: Coins, name: 'First Earner', description: 'Made your first SKY' },
+      'first-earner': { icon: QuantumCoin, name: 'First Earner', description: 'Made your first SKY' },
       'thousand-club': { icon: Trophy, name: 'Thousand Club', description: 'Earned 1,000 SKY' },
       'quality-master': { icon: Award, name: 'Quality Master', description: '90%+ data quality' },
       'data-contributor': { icon: Database, name: 'Data Contributor', description: '10+ sessions contributed' }
@@ -257,29 +321,29 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
     <>
       {showOnboarding && <OnboardingFlow onComplete={handleOnboardingComplete} />}
       
-      <div className="p-4 sm:p-6 space-y-4 sm:space-y-6 max-w-7xl mx-auto min-h-screen">
+      <div className="p-3 sm:p-4 md:p-6 space-y-3 sm:space-y-4 md:space-y-6 max-w-7xl mx-auto min-h-screen">
         {/* Enhanced Header with Live Stats */}
-        <div className="text-center space-y-4">
-          <div className="flex items-center justify-center gap-3">
-            <div className="p-3 bg-gradient-to-r from-cyan-500 to-teal-500 rounded-xl shadow-lg relative">
-              <Coins className="h-8 w-8 text-white" />
+        <div className="text-center space-y-3 md:space-y-4 px-2">
+          <div className="flex items-center justify-center gap-2 md:gap-3">
+            <div className="p-2 md:p-3 bg-gradient-to-r from-cyan-500 to-teal-500 rounded-lg md:rounded-xl shadow-lg relative">
+              <QuantumCoin className="h-6 md:h-8 w-6 md:w-8 text-white" />
               {sessionActive && (
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse" />
               )}
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-white">
+              <h1 className="text-lg md:text-xl font-bold text-white text-center">
                 SKY Ecosystem
               </h1>
-              <p className="text-muted-foreground text-sm font-medium">Decentralized Neurodata Economy</p>
+              <p className="text-muted-foreground text-xs font-medium text-center">Decentralized Neurodata Economy</p>
             </div>
           </div>
           
           {/* Genesis Program Banner */}
-          <div className="bg-gradient-to-r from-yellow-900/20 to-orange-900/20 rounded-lg p-3 border border-yellow-500/30 max-w-2xl mx-auto">
-            <div className="flex items-center justify-center gap-2">
-              <Gift className="h-5 w-5 text-yellow-400" />
-              <span className="text-sm font-medium text-yellow-300">
+          <div className="bg-gradient-to-r from-yellow-900/20 to-orange-900/20 rounded-lg p-2 md:p-3 border border-yellow-500/30 max-w-2xl mx-auto">
+            <div className="flex items-center justify-center gap-1.5 md:gap-2">
+              <Gift className="h-4 md:h-5 w-4 md:w-5 text-yellow-400" />
+              <span className="text-xs font-medium text-yellow-300 text-center block px-1">
                 Genesis Program Active: 3x rewards for early adopters • 287 spots remaining
               </span>
             </div>
@@ -287,29 +351,29 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
         </div>
 
         {/* Enhanced Wallet Overview with Achievements */}
-        <div className="space-y-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="space-y-3 md:space-y-4 px-2">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
             <Card className="bg-gradient-to-br from-slate-800/80 to-slate-900/60 border-cyan-400/40 shadow-lg hover:shadow-cyan-500/20 transition-all duration-300">
-              <CardContent className="p-4 text-center">
-                <div className="p-2 bg-gradient-to-r from-cyan-500/20 to-teal-500/20 rounded-lg w-fit mx-auto mb-2">
-                  <Wallet className="h-6 w-6 text-cyan-400 mx-auto" />
+              <CardContent className="p-3 md:p-4 text-center">
+                <div className="p-1.5 md:p-2 bg-gradient-to-r from-cyan-500/20 to-teal-500/20 rounded-lg w-fit mx-auto mb-1.5 md:mb-2">
+                  <Wallet className="h-4 md:h-6 w-4 md:w-6 text-cyan-400 mx-auto" />
                 </div>
-                <div className="text-xl font-bold text-white mb-1">
+                <div className="text-lg font-bold text-white mb-1 text-center">
                   {wallet.balance.toLocaleString()}
                 </div>
-                <div className="text-xs text-cyan-300 font-medium">SKY Balance</div>
+                <div className="text-xs text-cyan-300 font-medium text-center">SKY Balance</div>
               </CardContent>
             </Card>
 
             <Card className="bg-gradient-to-br from-slate-800/80 to-slate-900/60 border-emerald-400/40 shadow-lg hover:shadow-emerald-500/20 transition-all duration-300">
-              <CardContent className="p-4 text-center">
-                <div className="p-2 bg-gradient-to-r from-emerald-500/20 to-green-500/20 rounded-lg w-fit mx-auto mb-2">
-                  <TrendingUp className="h-6 w-6 text-emerald-400 mx-auto" />
+              <CardContent className="p-3 md:p-4 text-center">
+                <div className="p-1.5 md:p-2 bg-gradient-to-r from-emerald-500/20 to-green-500/20 rounded-lg w-fit mx-auto mb-1.5 md:mb-2">
+                  <TrendingUp className="h-4 md:h-6 w-4 md:w-6 text-emerald-400 mx-auto" />
                 </div>
-                <div className="text-xl font-bold text-white mb-1">
+                <div className="text-lg font-bold text-white mb-1 text-center">
                   {wallet.lifetimeEarnings.toLocaleString()}
                 </div>
-                <div className="text-xs text-emerald-300 font-medium">Lifetime Earnings</div>
+                <div className="text-xs text-emerald-300 font-medium text-center">Lifetime Earnings</div>
               </CardContent>
             </Card>
 
@@ -318,10 +382,10 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
                 <div className="p-2 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 rounded-lg w-fit mx-auto mb-2">
                   <Database className="h-6 w-6 text-blue-400 mx-auto" />
                 </div>
-                <div className="text-xl font-bold text-white mb-1">
+                <div className="text-lg font-bold text-white mb-1 text-center">
                   {dataNFTs.length}
                 </div>
-                <div className="text-xs text-blue-300 font-medium">Data Assets</div>
+                <div className="text-xs text-blue-300 font-medium text-center">Data Assets</div>
               </CardContent>
             </Card>
 
@@ -330,10 +394,10 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
                 <div className="p-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-lg w-fit mx-auto mb-2">
                   <Trophy className="h-6 w-6 text-purple-400 mx-auto" />
                 </div>
-                <div className="text-xl font-bold text-white mb-1">
+                <div className="text-lg font-bold text-white mb-1 text-center">
                   {achievements.length}
                 </div>
-                <div className="text-xs text-purple-300 font-medium">Achievements</div>
+                <div className="text-xs text-purple-300 font-medium text-center">Achievements</div>
               </CardContent>
             </Card>
           </div>
@@ -371,7 +435,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
           <Card className="bg-gray-900 border-gray-800">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
-                <Activity className="h-4 w-4" />
+                <NeuralWave className="h-4 w-4" />
                 Pending Transactions
               </CardTitle>
             </CardHeader>
@@ -423,7 +487,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
               value="research" 
               className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-500 data-[state=active]:to-teal-500 data-[state=active]:text-white text-gray-400 hover:text-gray-200 rounded-lg transition-all duration-300 text-xs sm:text-sm font-medium relative"
             >
-              <Brain className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+              <SynapseNetwork className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
               <span className="hidden sm:inline">Research</span>
               <span className="sm:hidden">Study</span>
               <div className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse" />
@@ -568,7 +632,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
             <Card className="bg-gray-900 border-gray-800">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Zap className="h-5 w-5" />
+                  <BioElectric className="h-5 w-5" />
                   Demo Actions
                 </CardTitle>
               </CardHeader>
@@ -579,7 +643,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
                     className="bg-primary hover:bg-primary/90"
                     disabled={sessionActive}
                   >
-                    <Brain className="h-4 w-4 mr-2" />
+                    <SynapseNetwork className="h-4 w-4 mr-2" />
                     {sessionActive ? 'Session Active' : 'Simulate EEG Session'}
                   </Button>
                   <Button 
@@ -587,11 +651,11 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
                     disabled={loading || !sessionActive} 
                     className="bg-green-600 hover:bg-green-500"
                   >
-                    <Coins className="h-4 w-4 mr-2" />
+                    <QuantumCoin className="h-4 w-4 mr-2" />
                     {loading ? 'Minting...' : 'Mint as NFT'}
                   </Button>
                   <Button onClick={() => setActiveTab('research')} variant="outline">
-                    <Sparkles className="h-4 w-4 mr-2" />
+                    <AchievementStar className="h-4 w-4 mr-2" />
                     Find Research Match
                   </Button>
                 </div>
@@ -603,7 +667,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
               <Card className="bg-gray-900 border-gray-800">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-base">
-                    <Activity className="h-4 w-4" />
+                    <NeuralWave className="h-4 w-4" />
                     Network Status
                   </CardTitle>
                 </CardHeader>
@@ -676,7 +740,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
               <CardContent>
                 <div className="space-y-6">
                   <Alert className="bg-gradient-to-r from-purple-900/20 to-pink-900/20 border-purple-500/30">
-                    <Sparkles className="h-4 w-4" />
+                    <AchievementStar className="h-4 w-4" />
                     <AlertDescription>
                       <strong>Live Minting Active:</strong> Your current session quality is {currentSessionData.quality.toFixed(1)}% 
                       with projected value of ${enhancedBlockchain.calculateDynamicPrice(
@@ -699,7 +763,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
                         className="w-full bg-gradient-to-r from-cyan-500 to-teal-500 hover:from-cyan-600 hover:to-teal-600"
                         size="lg"
                       >
-                        <Zap className="h-5 w-5 mr-2" />
+                        <BioElectric className="h-5 w-5 mr-2" />
                         {loading ? 'Minting NFT...' : sessionActive ? 'Mint Live Data NFT' : 'Start Session First'}
                       </Button>
                       
@@ -797,7 +861,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
             <Card className="bg-gray-900 border-gray-800">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Brain className="h-5 w-5" />
+                  <SynapseNetwork className="h-5 w-5" />
                   AI-Powered Research Matching
                 </CardTitle>
               </CardHeader>

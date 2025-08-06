@@ -169,11 +169,11 @@ const WellnessValidation: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 md:space-y-12">
       {/* Header */}
-      <div className="text-center space-y-2">
-        <h2 className="text-2xl font-bold">Wellness Company Validation Platform</h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
+      <div className="text-center space-y-4 px-4 md:px-6">
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold leading-tight">Wellness Company Validation Platform</h2>
+        <p className="text-sm md:text-base text-muted-foreground max-w-3xl mx-auto leading-relaxed">
           Help wellness companies validate their claims with real neural data. 
           Build trust through blockchain-verified studies.
         </p>
@@ -181,50 +181,50 @@ const WellnessValidation: React.FC = () => {
 
       {/* How It Works */}
       <Card className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 border-blue-500/30">
-        <CardHeader>
-          <CardTitle className="text-lg flex items-center gap-2">
-            <Shield className="h-5 w-5 text-blue-400" />
+        <CardHeader className="px-6 md:px-8 py-6">
+          <CardTitle className="text-lg md:text-xl flex items-center gap-3">
+            <Shield className="h-6 w-6 text-blue-400" />
             How Validation Works
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
-            <div className="space-y-2">
-              <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto">
-                <Building2 className="h-6 w-6 text-blue-400" />
+        <CardContent className="px-6 md:px-8 pb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 text-center">
+            <div className="space-y-4">
+              <div className="w-14 h-14 md:w-16 md:h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto">
+                <Building2 className="h-7 w-7 md:h-8 md:w-8 text-blue-400" />
               </div>
-              <h4 className="font-medium">Company Submits</h4>
-              <p className="text-xs text-muted-foreground">Wellness company requests validation study</p>
+              <h4 className="font-semibold text-base md:text-lg">Company Submits</h4>
+              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">Wellness company requests validation study</p>
             </div>
-            <div className="space-y-2">
-              <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto">
-                <Users className="h-6 w-6 text-purple-400" />
+            <div className="space-y-4">
+              <div className="w-14 h-14 md:w-16 md:h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto">
+                <Users className="h-7 w-7 md:h-8 md:w-8 text-purple-400" />
               </div>
-              <h4 className="font-medium">Users Participate</h4>
-              <p className="text-xs text-muted-foreground">Community provides neural data</p>
+              <h4 className="font-semibold text-base md:text-lg">Users Participate</h4>
+              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">Community provides neural data</p>
             </div>
-            <div className="space-y-2">
-              <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto">
-                <BarChart3 className="h-6 w-6 text-green-400" />
+            <div className="space-y-4">
+              <div className="w-14 h-14 md:w-16 md:h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto">
+                <BarChart3 className="h-7 w-7 md:h-8 md:w-8 text-green-400" />
               </div>
-              <h4 className="font-medium">AI Analysis</h4>
-              <p className="text-xs text-muted-foreground">Data analyzed for efficacy claims</p>
+              <h4 className="font-semibold text-base md:text-lg">AI Analysis</h4>
+              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">Data analyzed for efficacy claims</p>
             </div>
-            <div className="space-y-2">
-              <div className="w-12 h-12 bg-yellow-500/20 rounded-full flex items-center justify-center mx-auto">
-                <Award className="h-6 w-6 text-yellow-400" />
+            <div className="space-y-4">
+              <div className="w-14 h-14 md:w-16 md:h-16 bg-yellow-500/20 rounded-full flex items-center justify-center mx-auto">
+                <Award className="h-7 w-7 md:h-8 md:w-8 text-yellow-400" />
               </div>
-              <h4 className="font-medium">Certification</h4>
-              <p className="text-xs text-muted-foreground">Blockchain-verified results issued</p>
+              <h4 className="font-semibold text-base md:text-lg">Certification</h4>
+              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">Blockchain-verified results issued</p>
             </div>
           </div>
         </CardContent>
       </Card>
 
       {/* Verified Companies */}
-      <div className="space-y-4">
-        <h3 className="text-lg font-semibold">Verified Wellness Companies</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="space-y-6 px-2 md:px-4">
+        <h3 className="text-lg md:text-xl font-semibold">Verified Wellness Companies</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {companies.map(company => {
             const badge = getCertificationBadge(company.certificationLevel);
             return (
@@ -233,47 +233,47 @@ const WellnessValidation: React.FC = () => {
                 className="bg-card border-border hover:border-primary/50 transition-colors cursor-pointer"
                 onClick={() => setSelectedCompany(company)}
               >
-                <CardHeader className="pb-3">
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="text-3xl">{company.logo}</div>
-                      <div>
-                        <CardTitle className="text-base">{company.name}</CardTitle>
-                        <p className="text-xs text-muted-foreground">{company.description}</p>
+                <CardHeader className="pb-4 px-6 md:px-8 pt-6">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex items-center gap-4">
+                      <div className="text-4xl md:text-5xl">{company.logo}</div>
+                      <div className="flex-1 min-w-0">
+                        <CardTitle className="text-base md:text-lg leading-tight">{company.name}</CardTitle>
+                        <p className="text-sm md:text-base text-muted-foreground leading-relaxed mt-1">{company.description}</p>
                       </div>
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <Badge className={`${badge.color} text-white text-xs`}>
+                <CardContent className="space-y-4 px-6 md:px-8 pb-6">
+                  <div className="flex items-center justify-between gap-4">
+                    <Badge className={`${badge.color} text-white text-sm px-3 py-1.5`}>
                       {badge.text}
                     </Badge>
-                    <div className="flex items-center gap-1">
-                      <Star className="h-3 w-3 text-yellow-400 fill-current" />
-                      <span className="text-sm font-medium">{company.trustScore}/10</span>
+                    <div className="flex items-center gap-2">
+                      <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                      <span className="text-base font-semibold">{company.trustScore}/10</span>
                     </div>
                   </div>
                   
-                  <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div className="grid grid-cols-2 gap-4 text-sm md:text-base">
                     <div>
                       <span className="text-muted-foreground">Studies:</span>
-                      <span className="ml-1 font-medium">{company.studiesCompleted}</span>
+                      <span className="ml-2 font-semibold">{company.studiesCompleted}</span>
                     </div>
                     <div>
                       <span className="text-muted-foreground">Products:</span>
-                      <span className="ml-1 font-medium">{company.products.length}</span>
+                      <span className="ml-2 font-semibold">{company.products.length}</span>
                     </div>
                   </div>
                   
-                  <div className="flex flex-wrap gap-1">
+                  <div className="flex flex-wrap gap-2">
                     {company.products.slice(0, 2).map(product => (
-                      <Badge key={product} variant="outline" className="text-xs">
+                      <Badge key={product} variant="outline" className="text-sm px-3 py-1">
                         {product}
                       </Badge>
                     ))}
                     {company.products.length > 2 && (
-                      <Badge variant="outline" className="text-xs">
+                      <Badge variant="outline" className="text-sm px-3 py-1">
                         +{company.products.length - 2}
                       </Badge>
                     )}
@@ -286,9 +286,9 @@ const WellnessValidation: React.FC = () => {
       </div>
 
       {/* Active Validation Studies */}
-      <div className="space-y-4">
-        <h3 className="text-lg font-semibold">Active Validation Studies</h3>
-        <div className="grid gap-4">
+      <div className="space-y-6 px-2 md:px-4">
+        <h3 className="text-lg md:text-xl font-semibold">Active Validation Studies</h3>
+        <div className="grid gap-6 md:gap-8">
           {activeStudies.map(study => {
             const company = companies.find(c => c.id === study.companyId);
             const Icon = getStudyTypeIcon(study.studyType);
@@ -296,54 +296,54 @@ const WellnessValidation: React.FC = () => {
             
             return (
               <Card key={study.id} className="bg-card border-border">
-                <CardContent className="p-4">
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <Icon className="h-4 w-4 text-primary" />
-                        <h4 className="font-medium">{study.title}</h4>
-                        <Badge className={`${getStatusColor(study.status)} text-xs`}>
+                <CardContent className="p-6 md:p-8">
+                  <div className="flex items-start justify-between mb-6 gap-6">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-3 mb-3 flex-wrap">
+                        <Icon className="h-5 w-5 text-primary" />
+                        <h4 className="font-semibold text-base md:text-lg leading-tight">{study.title}</h4>
+                        <Badge className={`${getStatusColor(study.status)} text-sm px-3 py-1.5`}>
                           {study.status.toUpperCase()}
                         </Badge>
                       </div>
-                      <p className="text-sm text-muted-foreground mb-2">{study.description}</p>
-                      <div className="flex items-center gap-2 text-xs">
+                      <p className="text-sm md:text-base text-muted-foreground mb-4 leading-relaxed">{study.description}</p>
+                      <div className="flex items-center gap-3 text-sm md:text-base">
                         <span className="text-muted-foreground">by</span>
-                        <span className="font-medium">{company?.name}</span>
+                        <span className="font-semibold">{company?.name}</span>
                         <span className="text-muted-foreground">•</span>
                         <span>{study.timeline} day study</span>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <div className="text-2xl font-bold text-primary">${study.compensation}</div>
-                      <div className="text-xs text-muted-foreground">per participant</div>
+                    <div className="text-right flex-shrink-0">
+                      <div className="text-2xl md:text-3xl font-bold text-primary">${study.compensation}</div>
+                      <div className="text-sm text-muted-foreground">per participant</div>
                     </div>
                   </div>
 
                   {study.status !== 'completed' && (
-                    <div className="space-y-2 mb-3">
-                      <div className="flex justify-between text-sm">
-                        <span>Enrollment Progress</span>
-                        <span>{study.participantsEnrolled}/{study.participantsNeeded} participants</span>
+                    <div className="space-y-3 mb-6">
+                      <div className="flex justify-between text-sm md:text-base">
+                        <span className="font-medium">Enrollment Progress</span>
+                        <span className="font-semibold">{study.participantsEnrolled}/{study.participantsNeeded} participants</span>
                       </div>
-                      <Progress value={progress} className="h-2" />
+                      <Progress value={progress} className="h-3" />
                     </div>
                   )}
 
                   {study.results && (
-                    <Card className="bg-gradient-to-r from-green-900/20 to-emerald-900/20 border-green-500/30 mb-3">
-                      <CardContent className="p-3">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-sm font-medium text-green-300">Study Results</span>
-                          <Badge className="bg-green-600 text-white text-xs">
+                    <Card className="bg-gradient-to-r from-green-900/20 to-emerald-900/20 border-green-500/30 mb-6">
+                      <CardContent className="p-4 md:p-6">
+                        <div className="flex items-center justify-between mb-4 gap-4">
+                          <span className="text-base md:text-lg font-semibold text-green-300">Study Results</span>
+                          <Badge className="bg-green-600 text-white text-sm px-3 py-1.5">
                             {study.results.confidenceLevel}% Confidence
                           </Badge>
                         </div>
-                        <div className="space-y-1">
+                        <div className="space-y-3">
                           {study.results.marketingClaims.map((claim, index) => (
-                            <div key={index} className="flex items-start gap-2">
-                              <CheckCircle className="h-3 w-3 text-green-400 mt-0.5" />
-                              <span className="text-xs">{claim}</span>
+                            <div key={index} className="flex items-start gap-3">
+                              <CheckCircle className="h-4 w-4 text-green-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-sm md:text-base leading-relaxed">{claim}</span>
                             </div>
                           ))}
                         </div>
@@ -351,18 +351,18 @@ const WellnessValidation: React.FC = () => {
                     </Card>
                   )}
 
-                  <div className="flex items-center justify-between">
-                    <div className="flex gap-2">
+                  <div className="flex items-start md:items-center justify-between gap-4 flex-col md:flex-row">
+                    <div className="flex flex-wrap gap-2 md:gap-3">
                       {study.dataRequirements.map(req => (
-                        <Badge key={req} variant="outline" className="text-xs">
+                        <Badge key={req} variant="outline" className="text-sm px-3 py-1.5 whitespace-nowrap">
                           {req}
                         </Badge>
                       ))}
                     </div>
                     {study.status === 'recruiting' && (
-                      <Button size="sm" className="bg-primary hover:bg-primary/90">
+                      <Button size="lg" className="bg-primary hover:bg-primary/90 px-6 py-3 text-base font-semibold">
                         Join Study
-                        <ChevronRight className="h-3 w-3 ml-1" />
+                        <ChevronRight className="h-4 w-4 ml-2" />
                       </Button>
                     )}
                   </div>

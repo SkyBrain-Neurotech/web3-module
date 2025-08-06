@@ -2,7 +2,57 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
-import { Coins, Download, Eye, Zap, Brain, Activity } from 'lucide-react';
+import { Download, Eye } from 'lucide-react';
+
+// Custom distinctive neuroscience icons
+const QuantumCoin = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.6"/>
+    <circle cx="12" cy="12" r="6" stroke="currentColor" strokeWidth="1.5" fill="none" opacity="0.8"/>
+    <circle cx="12" cy="12" r="3" fill="currentColor"/>
+    <path d="M12 6v12M6 12h12" stroke="currentColor" strokeWidth="1" opacity="0.4"/>
+    <circle cx="12" cy="6" r="1" fill="currentColor" opacity="0.7"/>
+    <circle cx="18" cy="12" r="1" fill="currentColor" opacity="0.7"/>
+    <circle cx="12" cy="18" r="1" fill="currentColor" opacity="0.7"/>
+    <circle cx="6" cy="12" r="1" fill="currentColor" opacity="0.7"/>
+  </svg>
+);
+
+const BioElectric = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 2L6 8l4 4-4 4 2 6h8l-2-6 4-4-4-4 2-6H8z" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.6"/>
+    <circle cx="12" cy="12" r="2" fill="currentColor"/>
+    <circle cx="12" cy="8" r="1" fill="currentColor" opacity="0.8"/>
+    <circle cx="12" cy="16" r="1" fill="currentColor" opacity="0.8"/>
+    <path d="M9 9l6 6M15 9l-6 6" stroke="currentColor" strokeWidth="1" opacity="0.4"/>
+  </svg>
+);
+
+const EEGElectrode = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.3"/>
+    <circle cx="12" cy="8" r="1.5" fill="currentColor"/>
+    <circle cx="16" cy="12" r="1.5" fill="currentColor"/>
+    <circle cx="12" cy="16" r="1.5" fill="currentColor"/>
+    <circle cx="8" cy="12" r="1.5" fill="currentColor"/>
+    <circle cx="14.5" cy="9.5" r="1" fill="currentColor" opacity="0.6"/>
+    <circle cx="14.5" cy="14.5" r="1" fill="currentColor" opacity="0.6"/>
+    <circle cx="9.5" cy="14.5" r="1" fill="currentColor" opacity="0.6"/>
+    <circle cx="9.5" cy="9.5" r="1" fill="currentColor" opacity="0.6"/>
+    <path d="M12 4v4M20 12h-4M12 20v-4M4 12h4" stroke="currentColor" strokeWidth="1.5" opacity="0.7"/>
+  </svg>
+);
+
+const NeuralWave = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 12c0-1 1-2 2-2s2 1 2 2-1 2-2 2-2-1-2-2zM18 12c0-1 1-2 2-2s2 1 2 2-1 2-2 2-2-1-2-2z" fill="currentColor" opacity="0.6"/>
+    <path d="M6 12c1.5-4 3-4 4.5 0S13 16 14.5 12s3-4 4.5 0" stroke="currentColor" strokeWidth="2" fill="none"/>
+    <circle cx="4" cy="8" r="1" fill="currentColor" opacity="0.4"/>
+    <circle cx="8" cy="16" r="1" fill="currentColor" opacity="0.4"/>
+    <circle cx="16" cy="8" r="1" fill="currentColor" opacity="0.4"/>
+    <circle cx="20" cy="16" r="1" fill="currentColor" opacity="0.4"/>
+  </svg>
+);
 import { mockDataService, EEGSession } from '../utils/mockDataService';
 
 interface SessionTokenizerProps {
@@ -157,13 +207,13 @@ const SessionTokenizer: React.FC<SessionTokenizerProps> = ({ sessions, onSession
     <div className="neural-card-primary animate-neural-fade-in">
       <CardHeader className="relative">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-teal-400 rounded-t-neural opacity-60" />
-        <CardTitle className="neural-text-gradient flex items-center gap-3 text-xl font-bold">
+        <CardTitle className="neural-text-gradient flex items-center gap-3 text-sm md:text-base font-bold justify-center">
           <div className="p-2 neural-glass rounded-neural">
-            <Coins className="h-6 w-6 text-cyan-300 animate-synapse-flicker" />
+            <QuantumCoin className="h-6 w-6 text-cyan-300 animate-synapse-flicker" />
           </div>
           <div>
-            <div className="text-lg">Neural Session Tokenizer</div>
-            <div className="text-sm font-normal text-slate-400 mt-1">
+            <div className="text-sm font-semibold text-center">Neural Session Tokenizer</div>
+            <div className="text-xs font-normal text-slate-400 mt-1 text-center">
               Transform EEG consciousness data into unique NFTs
             </div>
           </div>
@@ -173,9 +223,9 @@ const SessionTokenizer: React.FC<SessionTokenizerProps> = ({ sessions, onSession
       <CardContent className="space-y-6">
         {sessions.length === 0 ? (
           <div className="neural-card-secondary p-8 text-center animate-organic-scale">
-            <Brain className="h-16 w-16 mx-auto text-slate-400 mb-4 animate-organic-float" />
-            <p className="text-slate-400 text-lg">No neural sessions recorded yet</p>
-            <p className="text-slate-500 text-sm mt-2">Start recording to create tokenizable consciousness data</p>
+            <EEGElectrode className="h-16 w-16 mx-auto text-slate-400 mb-4 animate-organic-float" />
+            <p className="text-slate-400 text-sm text-center">No neural sessions recorded yet</p>
+            <p className="text-slate-500 text-xs mt-2 text-center">Start recording to create tokenizable consciousness data</p>
           </div>
         ) : (
           <div className="space-y-6">
@@ -210,13 +260,13 @@ const SessionTokenizer: React.FC<SessionTokenizerProps> = ({ sessions, onSession
                       {/* Participant name and duration */}
                       <div className="flex items-center gap-3">
                         <div className="p-2 neural-glass rounded-neural">
-                          <Activity className="h-5 w-5 text-cyan-300 animate-neural-pulse" />
+                          <NeuralWave className="h-5 w-5 text-cyan-300 animate-neural-pulse" />
                         </div>
                         <div>
-                          <h3 className="text-xl font-bold text-white neural-glow-text">
+                          <h3 className="text-sm md:text-base font-bold text-white neural-glow-text text-center">
                             {session.participantName}
                           </h3>
-                          <p className="text-slate-300 text-sm">
+                          <p className="text-slate-300 text-xs text-center">
                             {session.duration}s Neural Session
                           </p>
                         </div>
@@ -226,7 +276,7 @@ const SessionTokenizer: React.FC<SessionTokenizerProps> = ({ sessions, onSession
                       <div className="flex items-center gap-3 flex-wrap">
                         <Badge className={`${stateConfig.badge} text-white font-medium px-3 py-1 rounded-flow
                           hover:scale-110 transition-transform duration-300`}>
-                          <Brain className="h-3 w-3 mr-1" />
+                          <EEGElectrode className="h-3 w-3 mr-1" />
                           {session.mentalState}
                         </Badge>
                         <span className="text-xs text-slate-400 bg-black/20 px-2 py-1 rounded-flow">
@@ -244,7 +294,7 @@ const SessionTokenizer: React.FC<SessionTokenizerProps> = ({ sessions, onSession
                                  animate-neural-pulse">
                             NFT #{session.tokenId}
                           </Badge>
-                          <div className="text-lg font-bold neural-text-gradient">
+                          <div className="text-sm font-bold neural-text-gradient text-center">
                             {session.price} SKY
                           </div>
                         </div>
@@ -256,7 +306,7 @@ const SessionTokenizer: React.FC<SessionTokenizerProps> = ({ sessions, onSession
                   <div className="mb-6">
                     <div className="flex items-center gap-2 mb-4">
                       <div className="w-3 h-3 bg-gradient-to-r from-purple-500 to-red-500 rounded-full animate-neural-pulse" />
-                      <h4 className="text-sm font-medium text-white/90">Neural Wave Pattern Analysis</h4>
+                      <h4 className="text-xs font-medium text-white/90 text-center">Neural Wave Pattern Analysis</h4>
                     </div>
                     <WaveVisualization wavePatterns={session.wavePatterns} />
                   </div>
@@ -270,7 +320,7 @@ const SessionTokenizer: React.FC<SessionTokenizerProps> = ({ sessions, onSession
                         className="neural-btn-primary flex-1 flex items-center justify-center gap-2
                           disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        <Zap className={`h-4 w-4 ${tokenizing === session.id ? 'animate-spin' : 'animate-synapse-flicker'}`} />
+                        <BioElectric className={`h-4 w-4 ${tokenizing === session.id ? 'animate-spin' : 'animate-synapse-flicker'}`} />
                         {tokenizing === session.id ? 'Minting Neural NFT...' : 'Tokenize Neural Session'}
                       </button>
                     ) : (

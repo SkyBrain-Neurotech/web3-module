@@ -11,7 +11,6 @@ import {
   Clock,
   DollarSign,
   Star,
-  Zap,
   Shield,
   Award,
   Users,
@@ -101,7 +100,6 @@ const ResearchMatchingEngine: React.FC<ResearchMatchingEngineProps> = ({
     trainingOpportunities: []
   });
 
-  const [selectedOpportunity, setSelectedOpportunity] = useState<ResearchOpportunity | null>(null);
   const [aiInsights, setAiInsights] = useState<string[]>([]);
   const [earningProjections, setEarningProjections] = useState({
     immediate: 0,
@@ -293,7 +291,7 @@ const ResearchMatchingEngine: React.FC<ResearchMatchingEngineProps> = ({
         requirements: {
           dataTypes: ['sleep'],
           qualityThreshold: 90,
-          demographicFilters: {},
+          demographicFilters: { ageGroup: '18-65' },
           exclusivityPeriod: 45,
           followUpStudies: true
         },
@@ -316,7 +314,7 @@ const ResearchMatchingEngine: React.FC<ResearchMatchingEngineProps> = ({
           shortTerm: 2500,
           longTerm: 8000
         },
-        researchPhase: 'validation',
+        researchPhase: 'validation' as const,
         participantCount: 89,
         targetCount: 150,
         deadline: Date.now() + 30 * 24 * 60 * 60 * 1000,
@@ -461,57 +459,57 @@ const ResearchMatchingEngine: React.FC<ResearchMatchingEngineProps> = ({
       </Card>
 
       {/* Earning Projections */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 px-2 md:px-4">
         <Card className="bg-gradient-to-br from-green-900/20 to-emerald-900/20 border-green-500/30">
-          <CardContent className="p-4 text-center">
-            <DollarSign className="h-6 w-6 text-green-400 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-white mb-1">
+          <CardContent className="p-4 md:p-6 text-center">
+            <DollarSign className="h-6 w-6 md:h-8 md:w-8 text-green-400 mx-auto mb-3" />
+            <div className="text-xl md:text-2xl font-bold text-white mb-2">
               ₹{earningProjections.immediate}
             </div>
-            <div className="text-xs text-green-300">Current Value</div>
+            <div className="text-sm text-green-300">Current Value</div>
           </CardContent>
         </Card>
         
         <Card className="bg-gradient-to-br from-blue-900/20 to-cyan-900/20 border-blue-500/30">
-          <CardContent className="p-4 text-center">
-            <Clock className="h-6 w-6 text-blue-400 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-white mb-1">
+          <CardContent className="p-4 md:p-6 text-center">
+            <Clock className="h-6 w-6 md:h-8 md:w-8 text-blue-400 mx-auto mb-3" />
+            <div className="text-xl md:text-2xl font-bold text-white mb-2">
               ₹{earningProjections.shortTerm}
             </div>
-            <div className="text-xs text-blue-300">Monthly Potential</div>
+            <div className="text-sm text-blue-300">Monthly Potential</div>
           </CardContent>
         </Card>
         
         <Card className="bg-gradient-to-br from-purple-900/20 to-indigo-900/20 border-purple-500/30">
-          <CardContent className="p-4 text-center">
-            <TrendingUp className="h-6 w-6 text-purple-400 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-white mb-1">
+          <CardContent className="p-4 md:p-6 text-center">
+            <TrendingUp className="h-6 w-6 md:h-8 md:w-8 text-purple-400 mx-auto mb-3" />
+            <div className="text-xl md:text-2xl font-bold text-white mb-2">
               ₹{earningProjections.longTerm}
             </div>
-            <div className="text-xs text-purple-300">Annual Potential</div>
+            <div className="text-sm text-purple-300">Annual Potential</div>
           </CardContent>
         </Card>
         
         <Card className="bg-gradient-to-br from-yellow-900/20 to-orange-900/20 border-yellow-500/30">
-          <CardContent className="p-4 text-center">
-            <Award className="h-6 w-6 text-yellow-400 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-white mb-1">
+          <CardContent className="p-4 md:p-6 text-center">
+            <Award className="h-6 w-6 md:h-8 md:w-8 text-yellow-400 mx-auto mb-3" />
+            <div className="text-xl md:text-2xl font-bold text-white mb-2">
               ₹{earningProjections.lifetime}
             </div>
-            <div className="text-xs text-yellow-300">Total Potential</div>
+            <div className="text-sm text-yellow-300">Total Potential</div>
           </CardContent>
         </Card>
       </div>
 
       {/* Perfect Matches */}
       {opportunities.perfectMatches.length > 0 && (
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold flex items-center gap-2">
-              <Target className="h-5 w-5 text-cyan-400" />
+        <div className="space-y-6 px-2 md:px-4">
+          <div className="flex items-center justify-between flex-wrap gap-3">
+            <h3 className="text-lg md:text-xl font-semibold flex items-center gap-3">
+              <Target className="h-6 w-6 text-cyan-400" />
               Perfect Matches ({opportunities.perfectMatches.length})
             </h3>
-            <Badge className="bg-cyan-600 text-white">95%+ Compatibility</Badge>
+            <Badge className="bg-cyan-600 text-white px-3 py-2 text-sm md:text-base">95%+ Compatibility</Badge>
           </div>
           
           <div className="grid gap-4">
@@ -519,63 +517,63 @@ const ResearchMatchingEngine: React.FC<ResearchMatchingEngineProps> = ({
               <Card 
                 key={opp.id} 
                 className="bg-gradient-to-r from-cyan-900/20 to-teal-900/20 border-cyan-500/30 hover:border-cyan-400/50 transition-colors cursor-pointer"
-                onClick={() => setSelectedOpportunity(opp)}
+onClick={() => console.log('Selected opportunity:', opp.title)}
               >
-                <CardContent className="p-4">
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h4 className="font-medium text-white">{opp.title}</h4>
-                        <Badge className={`${getUrgencyColor(opp.urgency)} text-white text-xs`}>
+                <CardContent className="p-6 md:p-8">
+                  <div className="flex items-start justify-between mb-6 gap-4">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-3 mb-2 flex-wrap">
+                        <h4 className="font-semibold text-white text-base md:text-lg leading-relaxed">{opp.title}</h4>
+                        <Badge className={`${getUrgencyColor(opp.urgency)} text-white text-sm px-3 py-1`}>
                           {opp.urgency.toUpperCase()}
                         </Badge>
                       </div>
-                      <p className="text-sm text-muted-foreground">{opp.institution} • {opp.researcher}</p>
+                      <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{opp.institution} • {opp.researcher}</p>
                     </div>
-                    <div className="text-right">
-                      <div className="text-2xl font-bold text-cyan-300">
+                    <div className="text-right flex-shrink-0">
+                      <div className="text-2xl md:text-3xl font-bold text-cyan-300">
                         ₹{opp.rewards.baseCompensation}
                       </div>
-                      <div className="text-xs text-muted-foreground">+bonuses</div>
+                      <div className="text-sm text-muted-foreground">+bonuses</div>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-4 gap-3 mb-3">
-                    <div className="text-center">
-                      <Star className="h-4 w-4 text-yellow-400 mx-auto mb-1" />
-                      <div className="text-xs text-muted-foreground">Impact</div>
-                      <div className="text-sm font-medium">{opp.impactScore}/10</div>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-6">
+                    <div className="text-center p-3 bg-background/50 rounded-lg">
+                      <Star className="h-5 w-5 text-yellow-400 mx-auto mb-2" />
+                      <div className="text-sm text-muted-foreground mb-1">Impact</div>
+                      <div className="text-base md:text-lg font-semibold">{opp.impactScore}/10</div>
                     </div>
-                    <div className="text-center">
+                    <div className="text-center p-3 bg-background/50 rounded-lg">
                       {React.createElement(getExclusivityIcon(opp.exclusivity), {
-                        className: "h-4 w-4 text-cyan-400 mx-auto mb-1"
+                        className: "h-5 w-5 text-cyan-400 mx-auto mb-2"
                       })}
-                      <div className="text-xs text-muted-foreground">Access</div>
-                      <div className="text-sm font-medium">{opp.exclusivity}</div>
+                      <div className="text-sm text-muted-foreground mb-1">Access</div>
+                      <div className="text-base md:text-lg font-semibold capitalize">{opp.exclusivity}</div>
                     </div>
-                    <div className="text-center">
-                      <FileText className="h-4 w-4 text-cyan-400 mx-auto mb-1" />
-                      <div className="text-xs text-muted-foreground">Royalties</div>
-                      <div className="text-sm font-medium">{opp.rewards.citationRoyalties}%</div>
+                    <div className="text-center p-3 bg-background/50 rounded-lg">
+                      <FileText className="h-5 w-5 text-cyan-400 mx-auto mb-2" />
+                      <div className="text-sm text-muted-foreground mb-1">Royalties</div>
+                      <div className="text-base md:text-lg font-semibold">{opp.rewards.citationRoyalties}%</div>
                     </div>
-                    <div className="text-center">
-                      <Users className="h-4 w-4 text-cyan-400 mx-auto mb-1" />
-                      <div className="text-xs text-muted-foreground">Progress</div>
-                      <div className="text-sm font-medium">{opp.participantCount}/{opp.targetCount}</div>
+                    <div className="text-center p-3 bg-background/50 rounded-lg">
+                      <Users className="h-5 w-5 text-cyan-400 mx-auto mb-2" />
+                      <div className="text-sm text-muted-foreground mb-1">Progress</div>
+                      <div className="text-base md:text-lg font-semibold">{opp.participantCount}/{opp.targetCount}</div>
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between">
-                    <div className="flex gap-2">
+                  <div className="flex items-start md:items-center justify-between gap-4 flex-col md:flex-row">
+                    <div className="flex flex-wrap gap-2 md:gap-3">
                       {Object.entries(opp.matchingFactors).filter(([_, match]) => match).map(([factor]) => (
-                        <Badge key={factor} variant="outline" className="text-xs">
+                        <Badge key={factor} variant="outline" className="text-sm px-3 py-1.5 whitespace-nowrap">
                           ✓ {factor.replace(/([A-Z])/g, ' $1').trim()}
                         </Badge>
                       ))}
                     </div>
-                    <Button size="sm" className="bg-cyan-600 hover:bg-cyan-500">
+                    <Button size="lg" className="bg-cyan-600 hover:bg-cyan-500 px-6 py-3 text-base font-semibold">
                       Apply Now
-                      <ChevronRight className="h-3 w-3 ml-1" />
+                      <ChevronRight className="h-4 w-4 ml-2" />
                     </Button>
                   </div>
                 </CardContent>
@@ -587,13 +585,13 @@ const ResearchMatchingEngine: React.FC<ResearchMatchingEngineProps> = ({
 
       {/* Good Matches */}
       {opportunities.goodMatches.length > 0 && (
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold flex items-center gap-2">
-              <Brain className="h-5 w-5 text-blue-400" />
+        <div className="space-y-6 px-2 md:px-4">
+          <div className="flex items-center justify-between flex-wrap gap-3">
+            <h3 className="text-lg md:text-xl font-semibold flex items-center gap-3">
+              <Brain className="h-6 w-6 text-blue-400" />
               Good Matches ({opportunities.goodMatches.length})
             </h3>
-            <Badge className="bg-blue-600 text-white">80-95% Compatibility</Badge>
+            <Badge className="bg-blue-600 text-white px-3 py-2 text-sm md:text-base">80-95% Compatibility</Badge>
           </div>
           
           <div className="grid gap-4">
@@ -601,19 +599,19 @@ const ResearchMatchingEngine: React.FC<ResearchMatchingEngineProps> = ({
               <Card 
                 key={opp.id} 
                 className="bg-card border-border hover:border-primary/50 transition-colors cursor-pointer"
-                onClick={() => setSelectedOpportunity(opp)}
+onClick={() => console.log('Selected opportunity:', opp.title)}
               >
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-medium">{opp.title}</h4>
-                      <p className="text-sm text-muted-foreground">{opp.institution}</p>
+                <CardContent className="p-6 md:p-8">
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-semibold text-base md:text-lg mb-1 leading-relaxed">{opp.title}</h4>
+                      <p className="text-sm md:text-base text-muted-foreground">{opp.institution}</p>
                     </div>
-                    <div className="text-right">
-                      <div className="text-xl font-bold text-primary">
+                    <div className="text-right flex-shrink-0">
+                      <div className="text-xl md:text-2xl font-bold text-primary mb-2">
                         ₹{opp.rewards.baseCompensation}
                       </div>
-                      <Progress value={opp.compatibility} className="w-20 h-1.5" />
+                      <Progress value={opp.compatibility} className="w-24 md:w-32 h-2" />
                     </div>
                   </div>
                 </CardContent>

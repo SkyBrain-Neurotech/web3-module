@@ -15,8 +15,7 @@ import {
   Building,
   DollarSign,
   Brain,
-  Eye,
-  EyeOff
+  Eye
 } from 'lucide-react';
 
 interface DataDestination {
@@ -145,7 +144,7 @@ const DataControlDashboard: React.FC = () => {
   const grantedConsents = consents.filter(c => c.granted);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 md:space-y-12 px-2 md:px-4">
       {/* Header Message */}
       <Alert>
         <Shield className="h-4 w-4" />
@@ -157,33 +156,34 @@ const DataControlDashboard: React.FC = () => {
 
       {/* Data Control Panel */}
       <Card className="bg-card border-border">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Lock className="h-5 w-5" />
+        <CardHeader className="px-6 md:px-8 py-6">
+          <CardTitle className="flex items-center gap-3 text-lg md:text-xl">
+            <Lock className="h-6 w-6" />
             Your Data, Your Control
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-8 px-6 md:px-8 pb-8">
           {/* Consent Management */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Data Usage Permissions</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="space-y-6">
+            <h3 className="text-base md:text-lg font-semibold text-center">Data Usage Permissions</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               {consents.map(consent => (
-                <div key={consent.id} className="flex items-center justify-between p-3 bg-muted/30 rounded-lg">
-                  <div className="flex-1">
-                    <div className="font-medium text-sm">{consent.category}</div>
-                    <div className="text-xs text-muted-foreground">{consent.description}</div>
+                <div key={consent.id} className="flex items-center justify-between p-4 md:p-6 bg-muted/30 rounded-lg">
+                  <div className="flex-1 mr-4">
+                    <div className="font-semibold text-sm md:text-base mb-2">{consent.category}</div>
+                    <div className="text-sm md:text-base text-muted-foreground leading-relaxed">{consent.description}</div>
                   </div>
                   <Button
-                    size="sm"
+                    size="lg"
                     variant={consent.granted ? "default" : "outline"}
                     disabled={consent.mandatory}
                     onClick={() => toggleConsent(consent.id)}
+                    className="px-4 py-2 flex-shrink-0"
                   >
                     {consent.granted ? (
-                      <CheckCircle className="h-4 w-4" />
+                      <CheckCircle className="h-5 w-5" />
                     ) : (
-                      <AlertCircle className="h-4 w-4" />
+                      <AlertCircle className="h-5 w-5" />
                     )}
                   </Button>
                 </div>
@@ -192,9 +192,9 @@ const DataControlDashboard: React.FC = () => {
           </div>
 
           {/* Data Destinations */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Choose Data Destinations</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-6">
+            <h3 className="text-base md:text-lg font-semibold text-center">Choose Data Destinations</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               {dataDestinations.map(destination => (
                 <Card 
                   key={destination.id} 
@@ -203,32 +203,32 @@ const DataControlDashboard: React.FC = () => {
                   }`}
                   onClick={() => toggleDestination(destination.id)}
                 >
-                  <CardContent className="p-4">
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="flex items-center gap-2">
-                        {destination.type === 'wellness' && <Building className="h-4 w-4" />}
-                        {destination.type === 'training' && <Brain className="h-4 w-4" />}
-                        {destination.type === 'research' && <Users className="h-4 w-4" />}
-                        {destination.type === 'clinical' && <FileCheck className="h-4 w-4" />}
-                        <div className="font-medium">{destination.name}</div>
+                  <CardContent className="p-6 md:p-8">
+                    <div className="flex items-start justify-between mb-4 gap-4">
+                      <div className="flex items-center gap-3 flex-1 min-w-0">
+                        {destination.type === 'wellness' && <Building className="h-5 w-5" />}
+                        {destination.type === 'training' && <Brain className="h-5 w-5" />}
+                        {destination.type === 'research' && <Users className="h-5 w-5" />}
+                        {destination.type === 'clinical' && <FileCheck className="h-5 w-5" />}
+                        <div className="font-semibold text-base md:text-lg leading-tight">{destination.name}</div>
                       </div>
-                      <Badge variant={destination.selected ? "default" : "outline"}>
+                      <Badge variant={destination.selected ? "default" : "outline"} className="px-3 py-1.5 text-sm flex-shrink-0">
                         {destination.selected ? 'Selected' : 'Available'}
                       </Badge>
                     </div>
-                    <p className="text-sm text-muted-foreground mb-3">{destination.description}</p>
-                    <div className="space-y-2 text-xs">
-                      <div className="flex items-center gap-2">
-                        <DollarSign className="h-3 w-3" />
-                        <span>{destination.compensation}</span>
+                    <p className="text-sm md:text-base text-muted-foreground mb-6 leading-relaxed">{destination.description}</p>
+                    <div className="space-y-3 text-sm md:text-base">
+                      <div className="flex items-center gap-3">
+                        <DollarSign className="h-4 w-4 flex-shrink-0" />
+                        <span className="leading-relaxed">{destination.compensation}</span>
                       </div>
-                      <div className="text-muted-foreground">{destination.timeline}</div>
+                      <div className="text-muted-foreground leading-relaxed">{destination.timeline}</div>
                     </div>
-                    <div className="mt-3 pt-3 border-t">
-                      <div className="text-xs font-medium mb-1">Data will be used for:</div>
-                      <div className="flex flex-wrap gap-1">
+                    <div className="mt-6 pt-6 border-t">
+                      <div className="text-sm md:text-base font-semibold mb-3">Data will be used for:</div>
+                      <div className="flex flex-wrap gap-2">
                         {destination.dataUsage.map((use, idx) => (
-                          <Badge key={idx} variant="secondary" className="text-xs">
+                          <Badge key={idx} variant="secondary" className="text-sm px-3 py-1">
                             {use}
                           </Badge>
                         ))}
@@ -244,13 +244,13 @@ const DataControlDashboard: React.FC = () => {
 
       {/* Monetization Model */}
       <Card className="bg-card border-border">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <DollarSign className="h-5 w-5" />
+        <CardHeader className="px-6 md:px-8 py-6">
+          <CardTitle className="flex items-center gap-3 text-lg md:text-xl">
+            <DollarSign className="h-6 w-6" />
             Delayed Monetization Model
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-6 px-6 md:px-8 pb-8">
           <Alert>
             <AlertCircle className="h-4 w-4" />
             <AlertDescription>
@@ -259,37 +259,37 @@ const DataControlDashboard: React.FC = () => {
             </AlertDescription>
           </Alert>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             <Card className="bg-muted/30">
-              <CardContent className="p-4 text-center">
-                <div className="text-2xl font-bold text-yellow-500">${earningsModel.immediate}</div>
-                <div className="text-sm text-muted-foreground">Immediate Earnings</div>
-                <div className="text-xs mt-1">No unsustainable promises</div>
+              <CardContent className="p-6 md:p-8 text-center">
+                <div className="text-2xl md:text-3xl font-bold text-yellow-500 mb-2">${earningsModel.immediate}</div>
+                <div className="text-sm md:text-base text-muted-foreground mb-2">Immediate Earnings</div>
+                <div className="text-sm mt-2 leading-relaxed">No unsustainable promises</div>
               </CardContent>
             </Card>
             <Card className="bg-muted/30">
-              <CardContent className="p-4 text-center">
-                <div className="text-2xl font-bold text-blue-500">${earningsModel.pending}</div>
-                <div className="text-sm text-muted-foreground">Pending (1-3 months)</div>
-                <div className="text-xs mt-1">From active validations</div>
+              <CardContent className="p-6 md:p-8 text-center">
+                <div className="text-2xl md:text-3xl font-bold text-blue-500 mb-2">${earningsModel.pending}</div>
+                <div className="text-sm md:text-base text-muted-foreground mb-2">Pending (1-3 months)</div>
+                <div className="text-sm mt-2 leading-relaxed">From active validations</div>
               </CardContent>
             </Card>
             <Card className="bg-muted/30">
-              <CardContent className="p-4 text-center">
-                <div className="text-2xl font-bold text-green-500">${earningsModel.projected}</div>
-                <div className="text-sm text-muted-foreground">Annual Projection</div>
-                <div className="text-xs mt-1">Based on selected destinations</div>
+              <CardContent className="p-6 md:p-8 text-center">
+                <div className="text-2xl md:text-3xl font-bold text-green-500 mb-2">${earningsModel.projected}</div>
+                <div className="text-sm md:text-base text-muted-foreground mb-2">Annual Projection</div>
+                <div className="text-sm mt-2 leading-relaxed">Based on selected destinations</div>
               </CardContent>
             </Card>
           </div>
 
-          <div className="space-y-2">
-            <div className="flex justify-between text-sm">
-              <span>Progress to Annual Cap (₹70,000)</span>
-              <span>85%</span>
+          <div className="space-y-4">
+            <div className="flex justify-center gap-6 text-sm md:text-base">
+              <span className="font-medium">Progress to Annual Cap (₹70,000)</span>
+              <span className="font-bold">85%</span>
             </div>
-            <Progress value={85} className="h-2" />
-            <p className="text-xs text-muted-foreground">
+            <Progress value={85} className="h-3" />
+            <p className="text-sm md:text-base text-muted-foreground text-center leading-relaxed">
               {earningsModel.timeline}
             </p>
           </div>
@@ -298,38 +298,38 @@ const DataControlDashboard: React.FC = () => {
 
       {/* Privacy & Transparency */}
       <Card className="bg-card border-border">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Eye className="h-5 w-5" />
+        <CardHeader className="px-6 md:px-8 py-6">
+          <CardTitle className="flex items-center gap-3 text-lg md:text-xl">
+            <Eye className="h-6 w-6" />
             Full Transparency
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <h4 className="font-medium flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-green-500" />
+        <CardContent className="space-y-6 px-6 md:px-8 pb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            <div className="space-y-4">
+              <h4 className="font-semibold text-base md:text-lg flex items-center gap-3">
+                <CheckCircle className="h-5 w-5 text-green-500" />
                 You Can Always:
               </h4>
-              <ul className="space-y-1 text-sm text-muted-foreground">
-                <li>• View exactly where your data is being used</li>
-                <li>• Track earnings from each destination</li>
-                <li>• Modify permissions at any time</li>
-                <li>• Request data deletion (right to be forgotten)</li>
-                <li>• Export all your data</li>
+              <ul className="space-y-3 text-sm md:text-base text-muted-foreground">
+                <li className="leading-relaxed">• View exactly where your data is being used</li>
+                <li className="leading-relaxed">• Track earnings from each destination</li>
+                <li className="leading-relaxed">• Modify permissions at any time</li>
+                <li className="leading-relaxed">• Request data deletion (right to be forgotten)</li>
+                <li className="leading-relaxed">• Export all your data</li>
               </ul>
             </div>
-            <div className="space-y-2">
-              <h4 className="font-medium flex items-center gap-2">
-                <Shield className="h-4 w-4 text-blue-500" />
+            <div className="space-y-4">
+              <h4 className="font-semibold text-base md:text-lg flex items-center gap-3">
+                <Shield className="h-5 w-5 text-blue-500" />
                 We Never:
               </h4>
-              <ul className="space-y-1 text-sm text-muted-foreground">
-                <li>• Sell raw data to third parties</li>
-                <li>• Use data beyond your consent</li>
-                <li>• Share personally identifiable information</li>
-                <li>• Lock you into exclusive agreements</li>
-                <li>• Hide how your data generates value</li>
+              <ul className="space-y-3 text-sm md:text-base text-muted-foreground">
+                <li className="leading-relaxed">• Sell raw data to third parties</li>
+                <li className="leading-relaxed">• Use data beyond your consent</li>
+                <li className="leading-relaxed">• Share personally identifiable information</li>
+                <li className="leading-relaxed">• Lock you into exclusive agreements</li>
+                <li className="leading-relaxed">• Hide how your data generates value</li>
               </ul>
             </div>
           </div>
@@ -338,24 +338,24 @@ const DataControlDashboard: React.FC = () => {
 
       {/* Summary */}
       <Card className="bg-gradient-to-r from-primary/10 to-primary/5 border-primary/20">
-        <CardContent className="p-6">
-          <div className="text-center space-y-2">
-            <h3 className="text-lg font-semibold">Your Current Data Strategy</h3>
-            <div className="flex justify-center gap-4 my-4">
-              <Badge variant="default" className="text-sm">
+        <CardContent className="p-8 md:p-12">
+          <div className="text-center space-y-6">
+            <h3 className="text-lg md:text-xl font-semibold">Your Current Data Strategy</h3>
+            <div className="flex justify-center gap-6 my-6 flex-wrap">
+              <Badge variant="default" className="text-base px-4 py-2">
                 {selectedDestinations.length} Active Destinations
               </Badge>
-              <Badge variant="default" className="text-sm">
+              <Badge variant="default" className="text-base px-4 py-2">
                 {grantedConsents.length} Permissions Granted
               </Badge>
             </div>
-            <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-sm md:text-base text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               You're contributing to {selectedDestinations.map(d => d.name).join(', ')}. 
               Earnings will be realized as these initiatives create value, ensuring sustainable compensation 
               aligned with actual impact rather than unsustainable upfront promises.
             </p>
-            <Button className="mt-4">
-              <Settings className="h-4 w-4 mr-2" />
+            <Button className="mt-6 px-8 py-3 text-base">
+              <Settings className="h-5 w-5 mr-3" />
               Update Data Strategy
             </Button>
           </div>

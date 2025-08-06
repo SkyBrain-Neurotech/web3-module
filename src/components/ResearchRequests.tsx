@@ -3,7 +3,48 @@ import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { Progress } from './ui/progress';
-import { Brain, Clock, Coins, Users, GraduationCap, Award, BookOpen, Target, Microscope } from 'lucide-react';
+import { Clock, Users, GraduationCap, Award, BookOpen, Target, Microscope } from 'lucide-react';
+
+// Custom distinctive neuroscience icons
+const SynapseNetwork = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="6" cy="6" r="2" fill="currentColor" opacity="0.8"/>
+    <circle cx="18" cy="6" r="2" fill="currentColor" opacity="0.8"/>
+    <circle cx="12" cy="12" r="2" fill="currentColor"/>
+    <circle cx="6" cy="18" r="2" fill="currentColor" opacity="0.8"/>
+    <circle cx="18" cy="18" r="2" fill="currentColor" opacity="0.8"/>
+    <path d="m8 8 4 4m0 0 4-4M12 12l-4 4m4-4 4 4" stroke="currentColor" strokeWidth="1" opacity="0.6"/>
+    <circle cx="12" cy="12" r="6" stroke="currentColor" strokeWidth="1" strokeDasharray="2,2" fill="none" opacity="0.3"/>
+  </svg>
+);
+
+const QuantumCoin = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.6"/>
+    <circle cx="12" cy="12" r="6" stroke="currentColor" strokeWidth="1.5" fill="none" opacity="0.8"/>
+    <circle cx="12" cy="12" r="3" fill="currentColor"/>
+    <path d="M12 6v12M6 12h12" stroke="currentColor" strokeWidth="1" opacity="0.4"/>
+    <circle cx="12" cy="6" r="1" fill="currentColor" opacity="0.7"/>
+    <circle cx="18" cy="12" r="1" fill="currentColor" opacity="0.7"/>
+    <circle cx="12" cy="18" r="1" fill="currentColor" opacity="0.7"/>
+    <circle cx="6" cy="12" r="1" fill="currentColor" opacity="0.7"/>
+  </svg>
+);
+
+const EEGElectrode = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.3"/>
+    <circle cx="12" cy="8" r="1.5" fill="currentColor"/>
+    <circle cx="16" cy="12" r="1.5" fill="currentColor"/>
+    <circle cx="12" cy="16" r="1.5" fill="currentColor"/>
+    <circle cx="8" cy="12" r="1.5" fill="currentColor"/>
+    <circle cx="14.5" cy="9.5" r="1" fill="currentColor" opacity="0.6"/>
+    <circle cx="14.5" cy="14.5" r="1" fill="currentColor" opacity="0.6"/>
+    <circle cx="9.5" cy="14.5" r="1" fill="currentColor" opacity="0.6"/>
+    <circle cx="9.5" cy="9.5" r="1" fill="currentColor" opacity="0.6"/>
+    <path d="M12 4v4M20 12h-4M12 20v-4M4 12h4" stroke="currentColor" strokeWidth="1.5" opacity="0.7"/>
+  </svg>
+);
 import { mockDataService, ResearchRequest, EEGSession } from '../utils/mockDataService';
 
 interface ResearchRequestsProps {
@@ -13,7 +54,7 @@ interface ResearchRequestsProps {
 
 // Academic institution data with colors and categories
 const universityThemes = {
-  'Stanford University': { color: 'from-red-500 to-orange-500', category: 'neuroscience', icon: Brain },
+  'Stanford University': { color: 'from-red-500 to-orange-500', category: 'neuroscience', icon: SynapseNetwork },
   'MIT': { color: 'from-blue-600 to-indigo-600', category: 'AI training', icon: Target },
   'Johns Hopkins': { color: 'from-purple-600 to-violet-600', category: 'medical', icon: Microscope },
   'Harvard University': { color: 'from-emerald-500 to-teal-500', category: 'psychology', icon: BookOpen },
@@ -82,7 +123,7 @@ const ResearchRequests: React.FC<ResearchRequestsProps> = ({ sessions, onSession
       <Card className="neural-glass rounded-organic">
         <CardContent className="flex items-center justify-center py-8">
           <div className="neural-glow-text animate-neural-pulse">
-            <Brain className="h-8 w-8 animate-organic-float mx-auto mb-2" />
+            <SynapseNetwork className="h-8 w-8 animate-organic-float mx-auto mb-2" />
             Loading research opportunities...
           </div>
         </CardContent>
@@ -94,13 +135,13 @@ const ResearchRequests: React.FC<ResearchRequestsProps> = ({ sessions, onSession
     <div className="neural-section">
       <Card className="neural-glass rounded-neural border-0 overflow-hidden">
         <CardHeader className="relative">
-          <CardTitle className="neural-text-gradient text-2xl font-bold flex items-center gap-3 mb-2">
+          <CardTitle className="neural-text-gradient text-base md:text-lg font-bold flex items-center gap-3 mb-2 justify-center">
             <div className="neural-hexagon w-12 h-12 flex items-center justify-center">
-              <Brain className="h-6 w-6 text-white" />
+              <SynapseNetwork className="h-6 w-6 text-white" />
             </div>
             Academic Research Partnerships
           </CardTitle>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground text-sm text-center">
             Contribute your neural data to cutting-edge research and earn SKY tokens
           </p>
         </CardHeader>
@@ -109,7 +150,7 @@ const ResearchRequests: React.FC<ResearchRequestsProps> = ({ sessions, onSession
             const eligibleSessions = getEligibleSessions(request);
             const progressPercentage = (request.submissions / request.maxSubmissions) * 100;
             const university = getUniversityFromResearcher(request.researcher);
-            const theme = universityThemes[university];
+            const theme = universityThemes[university as keyof typeof universityThemes] || universityThemes['Stanford University'];
             const cardClass = getCardVariant(index);
             const IconComponent = theme.icon;
 
@@ -131,10 +172,10 @@ const ResearchRequests: React.FC<ResearchRequestsProps> = ({ sessions, onSession
                       >
                         {university}
                       </Badge>
-                      <h3 className="font-bold text-xl mt-2 neural-glow-text group-hover:text-accent transition-colors">
+                      <h3 className="font-bold text-base md:text-lg mt-2 neural-glow-text group-hover:text-accent transition-colors text-center">
                         {request.title}
                       </h3>
-                      <p className="text-muted-foreground text-sm font-medium">
+                      <p className="text-muted-foreground text-xs font-medium text-center">
                         Research Lead: {request.researcher}
                       </p>
                     </div>
@@ -156,9 +197,9 @@ const ResearchRequests: React.FC<ResearchRequestsProps> = ({ sessions, onSession
                 <div className="grid grid-cols-3 gap-6">
                   <div className="neural-morphism rounded-flow p-4 text-center group-hover:bg-gradient-to-br group-hover:from-green-500/10 group-hover:to-emerald-500/10 transition-all duration-300">
                     <div className="flex items-center justify-center mb-2">
-                      <Coins className="h-5 w-5 text-green-400 animate-synapse-flicker" />
+                      <QuantumCoin className="h-5 w-5 text-green-400 animate-synapse-flicker" />
                     </div>
-                    <div className="font-bold text-xl neural-glow-text text-green-400">
+                    <div className="font-bold text-base md:text-lg neural-glow-text text-green-400 text-center">
                       {request.compensation} {request.currency}
                     </div>
                     <div className="text-xs text-muted-foreground font-medium">Reward</div>
@@ -168,7 +209,7 @@ const ResearchRequests: React.FC<ResearchRequestsProps> = ({ sessions, onSession
                     <div className="flex items-center justify-center mb-2">
                       <Clock className="h-5 w-5 text-blue-400 animate-synapse-flicker" />
                     </div>
-                    <div className="font-bold text-xl neural-glow-text text-blue-400">
+                    <div className="font-bold text-base md:text-lg neural-glow-text text-blue-400 text-center">
                       {Math.floor(request.criteria.minDuration / 60)}+ min
                     </div>
                     <div className="text-xs text-muted-foreground font-medium">Duration</div>
@@ -178,7 +219,7 @@ const ResearchRequests: React.FC<ResearchRequestsProps> = ({ sessions, onSession
                     <div className="flex items-center justify-center mb-2">
                       <Users className="h-5 w-5 text-purple-400 animate-synapse-flicker" />
                     </div>
-                    <div className="font-bold text-xl neural-glow-text text-purple-400">
+                    <div className="font-bold text-base md:text-lg neural-glow-text text-purple-400 text-center">
                       {request.submissions}/{request.maxSubmissions}
                     </div>
                     <div className="text-xs text-muted-foreground font-medium">Participants</div>
@@ -187,7 +228,7 @@ const ResearchRequests: React.FC<ResearchRequestsProps> = ({ sessions, onSession
 
                 {/* Research Requirements */}
                 <div className="neural-glass rounded-organic p-4 space-y-3 border border-border/20">
-                  <h4 className="font-semibold text-lg flex items-center gap-2">
+                  <h4 className="font-semibold text-sm md:text-base flex items-center gap-2 justify-center">
                     <Target className="h-5 w-5 text-accent animate-organic-float" />
                     Research Criteria
                   </h4>
@@ -222,7 +263,7 @@ const ResearchRequests: React.FC<ResearchRequestsProps> = ({ sessions, onSession
                   <div className="neural-glass rounded-organic p-6 space-y-4 border-2 border-accent/20 bg-gradient-to-br from-accent/5 to-primary/5">
                     <div className="flex items-center gap-2">
                       <Award className="h-5 w-5 text-accent animate-organic-float" />
-                      <span className="font-bold text-lg neural-glow-text text-accent">
+                      <span className="font-bold text-sm md:text-base neural-glow-text text-accent text-center block">
                         {eligibleSessions.length} Eligible Session{eligibleSessions.length > 1 ? 's' : ''} Ready
                       </span>
                     </div>
@@ -246,7 +287,7 @@ const ResearchRequests: React.FC<ResearchRequestsProps> = ({ sessions, onSession
                               </>
                             ) : (
                               <>
-                                <Brain className="h-4 w-4" />
+                                <EEGElectrode className="h-4 w-4" />
                                 <span className="font-semibold">
                                   {session.mentalState} ({Math.floor(session.duration / 60)}min)
                                 </span>
@@ -275,8 +316,8 @@ const ResearchRequests: React.FC<ResearchRequestsProps> = ({ sessions, onSession
           {requests.length === 0 && (
             <div className="neural-glass rounded-organic p-12 text-center">
               <GraduationCap className="h-16 w-16 text-muted-foreground/30 mx-auto mb-4 animate-organic-float" />
-              <h3 className="text-xl font-semibold text-muted-foreground mb-2">No Active Research</h3>
-              <p className="text-muted-foreground">
+              <h3 className="text-base md:text-lg font-semibold text-muted-foreground mb-2 text-center">No Active Research</h3>
+              <p className="text-muted-foreground text-sm text-center">
                 Check back soon for new research partnership opportunities.
               </p>
             </div>

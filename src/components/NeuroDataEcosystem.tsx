@@ -6,20 +6,16 @@ import { Badge } from './ui/badge';
 import { Progress } from './ui/progress';
 import { Alert, AlertDescription } from './ui/alert';
 import { 
-  Coins, 
-  Zap, 
   TrendingUp, 
   Users, 
   Database, 
   Shield, 
   Award, 
-  Brain,
   ShoppingCart,
   Wallet,
   Target,
   Lock,
   Upload,
-  Activity,
   Eye,
   Info,
   Plus,
@@ -30,6 +26,79 @@ import {
   AlertCircle,
   DollarSign
 } from 'lucide-react';
+
+// Custom distinctive icons specific to neuroscience/EEG
+const SynapseNetwork = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="6" cy="6" r="2" fill="currentColor" opacity="0.8"/>
+    <circle cx="18" cy="6" r="2" fill="currentColor" opacity="0.8"/>
+    <circle cx="12" cy="12" r="2" fill="currentColor"/>
+    <circle cx="6" cy="18" r="2" fill="currentColor" opacity="0.8"/>
+    <circle cx="18" cy="18" r="2" fill="currentColor" opacity="0.8"/>
+    <path d="m8 8 4 4m0 0 4-4M12 12l-4 4m4-4 4 4" stroke="currentColor" strokeWidth="1" opacity="0.6"/>
+    <circle cx="12" cy="12" r="6" stroke="currentColor" strokeWidth="1" strokeDasharray="2,2" fill="none" opacity="0.3"/>
+  </svg>
+);
+
+const NeuralWave = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 12c0-1 1-2 2-2s2 1 2 2-1 2-2 2-2-1-2-2zM18 12c0-1 1-2 2-2s2 1 2 2-1 2-2 2-2-1-2-2z" fill="currentColor" opacity="0.6"/>
+    <path d="M6 12c1.5-4 3-4 4.5 0S13 16 14.5 12s3-4 4.5 0" stroke="currentColor" strokeWidth="2" fill="none"/>
+    <circle cx="4" cy="8" r="1" fill="currentColor" opacity="0.4"/>
+    <circle cx="8" cy="16" r="1" fill="currentColor" opacity="0.4"/>
+    <circle cx="16" cy="8" r="1" fill="currentColor" opacity="0.4"/>
+    <circle cx="20" cy="16" r="1" fill="currentColor" opacity="0.4"/>
+  </svg>
+);
+
+const EEGElectrode = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.3"/>
+    <circle cx="12" cy="8" r="1.5" fill="currentColor"/>
+    <circle cx="16" cy="12" r="1.5" fill="currentColor"/>
+    <circle cx="12" cy="16" r="1.5" fill="currentColor"/>
+    <circle cx="8" cy="12" r="1.5" fill="currentColor"/>
+    <circle cx="14.5" cy="9.5" r="1" fill="currentColor" opacity="0.6"/>
+    <circle cx="14.5" cy="14.5" r="1" fill="currentColor" opacity="0.6"/>
+    <circle cx="9.5" cy="14.5" r="1" fill="currentColor" opacity="0.6"/>
+    <circle cx="9.5" cy="9.5" r="1" fill="currentColor" opacity="0.6"/>
+    <path d="M12 4v4M20 12h-4M12 20v-4M4 12h4" stroke="currentColor" strokeWidth="1.5" opacity="0.7"/>
+  </svg>
+);
+
+const DataCrystal = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2L4 7v10l8 5 8-5V7l-8-5z" stroke="currentColor" strokeWidth="2" fill="none"/>
+    <path d="M4 7l8 5 8-5M12 12v10" stroke="currentColor" strokeWidth="1.5" opacity="0.7"/>
+    <circle cx="12" cy="7" r="2" fill="currentColor" opacity="0.8"/>
+    <circle cx="8" cy="14" r="1" fill="currentColor" opacity="0.6"/>
+    <circle cx="16" cy="14" r="1" fill="currentColor" opacity="0.6"/>
+    <circle cx="12" cy="17" r="1.5" fill="currentColor" opacity="0.7"/>
+  </svg>
+);
+
+const QuantumCoin = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.6"/>
+    <circle cx="12" cy="12" r="6" stroke="currentColor" strokeWidth="1.5" fill="none" opacity="0.8"/>
+    <circle cx="12" cy="12" r="3" fill="currentColor"/>
+    <path d="M12 6v12M6 12h12" stroke="currentColor" strokeWidth="1" opacity="0.4"/>
+    <circle cx="12" cy="6" r="1" fill="currentColor" opacity="0.7"/>
+    <circle cx="18" cy="12" r="1" fill="currentColor" opacity="0.7"/>
+    <circle cx="12" cy="18" r="1" fill="currentColor" opacity="0.7"/>
+    <circle cx="6" cy="12" r="1" fill="currentColor" opacity="0.7"/>
+  </svg>
+);
+
+const BioElectric = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 2L6 8l4 4-4 4 2 6h8l-2-6 4-4-4-4 2-6H8z" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.6"/>
+    <circle cx="12" cy="12" r="2" fill="currentColor"/>
+    <circle cx="12" cy="8" r="1" fill="currentColor" opacity="0.8"/>
+    <circle cx="12" cy="16" r="1" fill="currentColor" opacity="0.8"/>
+    <path d="M9 9l6 6M15 9l-6 6" stroke="currentColor" strokeWidth="1" opacity="0.4"/>
+  </svg>
+);
 import { skyEcosystem, DataNFT, ResearchProject, SKYWallet, SKYStakePool } from '../utils/skyEcosystem';
 import SessionTokenizer from './SessionTokenizer';
 import ResearchRequests from './ResearchRequests';
@@ -130,13 +199,13 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
 
   const getCategoryIcon = (category: string) => {
     const icons = {
-      'neuroscience': Brain,
+      'neuroscience': SynapseNetwork,
       'psychology': Users,
       'ai-training': Database,
       'medical': Shield,
-      'wellness': Activity
+      'wellness': NeuralWave
     };
-    return icons[category as keyof typeof icons] || Brain;
+    return icons[category as keyof typeof icons] || SynapseNetwork;
   };
 
   const getQualityColor = (quality: string) => {
@@ -169,13 +238,13 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
             
             <div className="flex items-center justify-center gap-6">
               <div className="neural-hexagon">
-                <Brain className="h-12 w-12 text-white z-10 relative" />
+                <SynapseNetwork className="h-12 w-12 text-white z-10 relative" />
               </div>
               <div className="text-left">
-                <h1 className="text-5xl sm:text-6xl font-bold neural-text-gradient leading-tight">
+                <h1 className="text-lg md:text-xl font-bold neural-text-gradient leading-tight text-center">
                   SkyBrain India
                 </h1>
-                <p className="text-xl text-muted-foreground mt-3 font-medium">
+                <p className="text-sm md:text-base text-muted-foreground mt-3 font-medium text-center">
                   Helping Wellness Brands Get FSSAI-Compliant with Neural Data Backing
                 </p>
               </div>
@@ -197,10 +266,10 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
           
           {/* Enhanced description with better hierarchy */}
           <div className="max-w-4xl mx-auto space-y-4">
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground leading-relaxed">
+            <h2 className="text-base md:text-lg font-bold text-foreground leading-relaxed text-center">
               Help wellness companies get <span className="neural-text-gradient">FSSAI-compliant</span> with neural data backing
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
+            <p className="text-base text-muted-foreground leading-relaxed">
               Earn ₹15,000-30,000 annually while providing scientific validation for Ayurvedic products, CBD oils, and wellness apps.
             </p>
           </div>
@@ -211,7 +280,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
 
         {/* Enhanced Value Overview with varied card types */}
         <section className="space-y-8">
-          <h2 className="text-3xl font-bold text-center neural-text-gradient">
+          <h2 className="text-base md:text-lg font-bold text-center neural-text-gradient">
             Platform Overview
           </h2>
           
@@ -220,7 +289,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
               <div className="neural-blob w-20 h-20 mx-auto mb-6">
                 <Database className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-3xl font-bold text-foreground mb-2 neural-glow-text">
+              <h3 className="text-base md:text-lg font-bold text-foreground mb-2 neural-glow-text text-center">
                 {sessions.length}
               </h3>
               <p className="text-sm text-cyan-300 font-medium tracking-wide">FSSAI Studies Active</p>
@@ -230,7 +299,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
               <div className="neural-hexagon w-20 h-20 mx-auto mb-6">
                 <TrendingUp className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-3xl font-bold text-foreground mb-2 neural-glow-text">
+              <h3 className="text-base md:text-lg font-bold text-foreground mb-2 neural-glow-text text-center">
                 ₹{Math.min(wallet.lifetimeEarnings * 500, 25000).toLocaleString()}
               </h3>
               <p className="text-sm text-emerald-300 font-medium tracking-wide">Annual Potential</p>
@@ -240,7 +309,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
               <div className="neural-blob w-20 h-20 mx-auto mb-6" style={{clipPath: 'polygon(50% 0%, 90% 25%, 85% 75%, 50% 100%, 15% 75%, 10% 25%)'}}>
                 <Shield className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-3xl font-bold text-foreground mb-2 neural-glow-text">
+              <h3 className="text-base md:text-lg font-bold text-foreground mb-2 neural-glow-text text-center">
                 3
               </h3>
               <p className="text-sm text-blue-300 font-medium tracking-wide">Ayurvedic Products Validating</p>
@@ -250,7 +319,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
               <div className="neural-hexagon w-20 h-20 mx-auto mb-6">
                 <Building className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-3xl font-bold text-foreground mb-2 neural-glow-text">
+              <h3 className="text-base md:text-lg font-bold text-foreground mb-2 neural-glow-text text-center">
                 15
               </h3>
               <p className="text-sm text-purple-300 font-medium tracking-wide">Partner Companies</p>
@@ -268,51 +337,45 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
               <TabsList className="grid w-full grid-cols-6 gap-2 bg-transparent p-0">
                 <TabsTrigger 
                   value="vision" 
-                  className="neural-btn-primary data-[state=active]:neural-text-gradient data-[state=active]:neural-border-glow px-4 py-3 rounded-organic text-xs sm:text-sm font-semibold transition-all duration-500 group"
+                  className="neural-btn-primary data-[state=active]:neural-text-gradient data-[state=active]:neural-border-glow px-3 py-2 rounded-organic text-xs font-semibold transition-all duration-500 group"
                 >
-                  <Brain className="h-4 w-4 sm:h-5 sm:w-5 mr-2 group-data-[state=active]:animate-neural-pulse" />
-                  <span className="hidden sm:inline">Vision</span>
-                  <span className="sm:hidden">Vision</span>
+                  <SynapseNetwork className="h-4 w-4 sm:h-5 sm:w-5 mr-2 group-data-[state=active]:animate-neural-pulse" />
+                  <span>Vision</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="control" 
-                  className="neural-btn-secondary data-[state=active]:neural-text-gradient data-[state=active]:neural-border-glow px-4 py-3 rounded-neural text-xs sm:text-sm font-semibold transition-all duration-500 group"
+                  className="neural-btn-secondary data-[state=active]:neural-text-gradient data-[state=active]:neural-border-glow px-3 py-2 rounded-neural text-xs font-semibold transition-all duration-500 group"
                 >
                   <Shield className="h-4 w-4 sm:h-5 sm:w-5 mr-2 group-data-[state=active]:animate-neural-pulse" />
-                  <span className="hidden sm:inline">Data Control</span>
-                  <span className="sm:hidden">Control</span>
+                  <span>Control</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="dashboard" 
-                  className="neural-btn-accent data-[state=active]:neural-text-gradient data-[state=active]:neural-border-glow px-4 py-3 rounded-flow text-xs sm:text-sm font-semibold transition-all duration-500 group"
+                  className="neural-btn-accent data-[state=active]:neural-text-gradient data-[state=active]:neural-border-glow px-3 py-2 rounded-flow text-xs font-semibold transition-all duration-500 group"
                 >
                   <BarChart3 className="h-4 w-4 sm:h-5 sm:w-5 mr-2 group-data-[state=active]:animate-neural-pulse" />
-                  <span className="hidden sm:inline">Dashboard</span>
-                  <span className="sm:hidden">Dash</span>
+                  <span>Dashboard</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="fssai" 
-                  className="neural-btn-primary data-[state=active]:neural-text-gradient data-[state=active]:neural-border-glow px-4 py-3 rounded-organic text-xs sm:text-sm font-semibold transition-all duration-500 group"
+                  className="neural-btn-primary data-[state=active]:neural-text-gradient data-[state=active]:neural-border-glow px-3 py-2 rounded-organic text-xs font-semibold transition-all duration-500 group"
                 >
                   <Plus className="h-4 w-4 sm:h-5 sm:w-5 mr-2 group-data-[state=active]:animate-neural-pulse" />
-                  <span className="hidden sm:inline">FSSAI Validation</span>
-                  <span className="sm:hidden">Validate</span>
+                  <span>FSSAI</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="research" 
-                  className="neural-btn-secondary data-[state=active]:neural-text-gradient data-[state=active]:neural-border-glow px-4 py-3 rounded-neural text-xs sm:text-sm font-semibold transition-all duration-500 group"
+                  className="neural-btn-secondary data-[state=active]:neural-text-gradient data-[state=active]:neural-border-glow px-3 py-2 rounded-neural text-xs font-semibold transition-all duration-500 group"
                 >
-                  <Brain className="h-4 w-4 sm:h-5 sm:w-5 mr-2 group-data-[state=active]:animate-neural-pulse" />
-                  <span className="hidden sm:inline">Research</span>
-                  <span className="sm:hidden">Study</span>
+                  <EEGElectrode className="h-4 w-4 sm:h-5 sm:w-5 mr-2 group-data-[state=active]:animate-neural-pulse" />
+                  <span>Research</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="insights" 
-                  className="neural-btn-accent data-[state=active]:neural-text-gradient data-[state=active]:neural-border-glow px-4 py-3 rounded-flow text-xs sm:text-sm font-semibold transition-all duration-500 group"
+                  className="neural-btn-accent data-[state=active]:neural-text-gradient data-[state=active]:neural-border-glow px-3 py-2 rounded-flow text-xs font-semibold transition-all duration-500 group"
                 >
-                  <Brain className="h-4 w-4 sm:h-5 sm:w-5 mr-2 group-data-[state=active]:animate-neural-pulse" />
-                  <span className="hidden sm:inline">Insights</span>
-                  <span className="sm:hidden">Learn</span>
+                  <DataCrystal className="h-4 w-4 sm:h-5 sm:w-5 mr-2 group-data-[state=active]:animate-neural-pulse" />
+                  <span>Insights</span>
                 </TabsTrigger>
               </TabsList>
             </div>
@@ -328,13 +391,13 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                   
                   <div className="flex flex-col lg:flex-row items-center justify-center gap-8">
                     <div className="neural-blob w-32 h-32 animate-neural-pulse">
-                      <Brain className="h-16 w-16 text-white" />
+                      <SynapseNetwork className="h-16 w-16 text-white" />
                     </div>
                     <div className="text-left max-w-2xl">
-                      <h2 className="text-4xl lg:text-5xl font-bold neural-text-gradient mb-4 leading-tight">
+                      <h2 className="text-lg md:text-xl font-bold neural-text-gradient mb-4 leading-tight text-center">
                         Following the AI Data Playbook
                       </h2>
-                      <p className="text-xl text-muted-foreground leading-relaxed">
+                      <p className="text-sm md:text-base text-muted-foreground leading-relaxed text-center">
                         Massive contextual data collection → Find the right fit → Revenue sharing
                       </p>
                     </div>
@@ -342,7 +405,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                 </div>
                 
                 <div className="max-w-5xl mx-auto space-y-6">
-                  <p className="text-xl text-foreground leading-relaxed font-medium">
+                  <p className="text-sm md:text-base text-foreground leading-relaxed font-medium text-center">
                     Just like ChatGPT's pre-launch phase, we're collecting rich contextual neural data with 
                     <span className="neural-text-gradient font-bold"> full user control</span>. 
                     You decide where your data goes. We find the right applications. Revenue comes when real value is created.
@@ -355,7 +418,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                     <div className="neural-hexagon w-24 h-24 mx-auto mb-6">
                       <Database className="h-10 w-10 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-foreground mb-4 neural-glow-text">Rich Contextual Data</h3>
+                    <h3 className="text-lg md:text-xl lg:text-xl font-bold text-foreground mb-4 neural-glow-text">Rich Contextual Data</h3>
                     <p className="text-muted-foreground leading-relaxed">
                       EEG + lifestyle + wellness practices + longitudinal tracking = valuable intelligence
                     </p>
@@ -365,7 +428,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                     <div className="neural-blob w-24 h-24 mx-auto mb-6" style={{clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)'}}>
                       <Shield className="h-10 w-10 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-foreground mb-4 neural-glow-text">You Control Everything</h3>
+                    <h3 className="text-lg md:text-xl lg:text-xl font-bold text-foreground mb-4 neural-glow-text">You Control Everything</h3>
                     <p className="text-muted-foreground leading-relaxed">
                       Choose data destinations, modify permissions anytime, full transparency on usage
                     </p>
@@ -375,7 +438,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                     <div className="neural-hexagon w-24 h-24 mx-auto mb-6">
                       <TrendingUp className="h-10 w-10 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-foreground mb-4 neural-glow-text">Delayed Value Creation</h3>
+                    <h3 className="text-lg md:text-xl lg:text-xl font-bold text-foreground mb-4 neural-glow-text">Delayed Value Creation</h3>
                     <p className="text-muted-foreground leading-relaxed">
                       No unsustainable promises. Earnings come when your data creates real value (6-8 weeks to 6 months)
                     </p>
@@ -385,7 +448,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
 
               {/* Enhanced Strategy Section */}
               <section className="space-y-8">
-                <h2 className="text-3xl font-bold text-center neural-text-gradient mb-8">
+                <h2 className="text-lg md:text-xl lg:text-xl font-bold text-center neural-text-gradient mb-8">
                   Our Dual Strategy Approach
                 </h2>
                 
@@ -395,12 +458,12 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                       <div className="neural-blob w-16 h-16">
                         <Building className="h-8 w-8 text-white" />
                       </div>
-                      <h3 className="text-2xl font-bold text-foreground neural-glow-text">
+                      <h3 className="text-lg md:text-xl lg:text-xl font-bold text-foreground neural-glow-text">
                         Bengaluru Center Strategy
                       </h3>
                     </div>
                     
-                    <p className="text-lg text-muted-foreground leading-relaxed">
+                    <p className="text-base text-muted-foreground leading-relaxed">
                       Our flagship data collection center creates the gold-standard training dataset that powers everything else.
                     </p>
                     
@@ -433,12 +496,12 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                       <div className="neural-hexagon w-16 h-16">
                         <Users className="h-8 w-8 text-white" />
                       </div>
-                      <h3 className="text-2xl font-bold text-foreground neural-glow-text">
+                      <h3 className="text-lg md:text-xl lg:text-xl font-bold text-foreground neural-glow-text">
                         Global Platform Vision
                       </h3>
                     </div>
                     
-                    <p className="text-lg text-muted-foreground leading-relaxed">
+                    <p className="text-base text-muted-foreground leading-relaxed">
                       Web3 platform scales data collection globally while maintaining user control and enabling wellness validation at massive scale.
                     </p>
                     
@@ -470,27 +533,27 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
 
               {/* Current Opportunity Highlight */}
               <section className="neural-section neural-card-accent p-12 text-center space-y-8 animate-organic-scale">
-                <h2 className="text-4xl font-bold neural-text-gradient mb-6">
+                <h2 className="text-lg md:text-xl font-bold neural-text-gradient mb-6 text-center">
                   The Indian Wellness Validation Crisis
                 </h2>
                 
-                <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+                <p className="text-sm md:text-base text-muted-foreground max-w-4xl mx-auto leading-relaxed text-center">
                   FSSAI now requires scientific backing for wellness claims. 10,000+ Indian companies need affordable validation. 
                   We're solving this while building the foundation for personalized neurotechnology.
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
                   <div className="neural-process-card animate-organic-scale neural-stagger-item">
-                    <div className="text-4xl font-bold neural-glow-text mb-4">₹50,000 Cr</div>
-                    <p className="text-lg text-muted-foreground">Indian wellness market needing validation</p>
+                    <div className="text-lg md:text-xl font-bold neural-glow-text mb-4 text-center">₹50,000 Cr</div>
+                    <p className="text-sm text-muted-foreground text-center">Indian wellness market needing validation</p>
                   </div>
                   <div className="neural-process-card animate-organic-scale neural-stagger-item">
-                    <div className="text-4xl font-bold neural-glow-text mb-4">6 weeks</div>
-                    <p className="text-lg text-muted-foreground">vs 6 months traditional validation</p>
+                    <div className="text-lg md:text-xl font-bold neural-glow-text mb-4 text-center">6 weeks</div>
+                    <p className="text-sm text-muted-foreground text-center">vs 6 months traditional validation</p>
                   </div>
                   <div className="neural-process-card animate-organic-scale neural-stagger-item">
-                    <div className="text-4xl font-bold neural-glow-text mb-4">1/10th cost</div>
-                    <p className="text-lg text-muted-foreground">vs clinical trials</p>
+                    <div className="text-lg md:text-xl font-bold neural-glow-text mb-4 text-center">1/10th cost</div>
+                    <p className="text-sm text-muted-foreground text-center">vs clinical trials</p>
                   </div>
                 </div>
               </section>
@@ -501,7 +564,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                   <div className="neural-hexagon w-20 h-20">
                     <DollarSign className="h-10 w-10 text-white" />
                   </div>
-                  <h2 className="text-3xl font-bold neural-text-gradient">
+                  <h2 className="text-base md:text-lg font-bold neural-text-gradient text-center">
                     Sustainable Economics (No False Promises)
                   </h2>
                 </div>
@@ -510,10 +573,10 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                   <div className="flex items-start gap-4">
                     <AlertCircle className="h-8 w-8 text-yellow-400 animate-synapse-flicker mt-1" />
                     <div className="space-y-4">
-                      <h3 className="text-xl font-bold text-foreground">
+                      <h3 className="text-lg font-bold text-foreground">
                         We don't promise unsustainable high earnings.
                       </h3>
-                      <p className="text-lg text-muted-foreground leading-relaxed">
+                      <p className="text-base text-muted-foreground leading-relaxed">
                         Your primary value is discovering what works for YOUR brain. 
                         Earnings come when your data creates real value - typically ₹20,000-70,000 annually.
                       </p>
@@ -523,21 +586,21 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                   <div className="neural-card-secondary p-8 text-center space-y-4 animate-organic-scale neural-stagger-item">
-                    <h3 className="text-3xl font-bold text-green-400 neural-glow-text">₹650-1,200</h3>
-                    <p className="text-lg font-medium text-foreground">Per quality session</p>
-                    <p className="text-sm text-muted-foreground">When data is used</p>
+                    <h3 className="text-base md:text-lg font-bold text-green-400 neural-glow-text text-center">₹650-1,200</h3>
+                    <p className="text-sm font-medium text-foreground text-center">Per quality session</p>
+                    <p className="text-xs text-muted-foreground text-center">When data is used</p>
                   </div>
                   
                   <div className="neural-card-accent p-8 text-center space-y-4 animate-organic-scale neural-stagger-item">
-                    <h3 className="text-3xl font-bold text-blue-400 neural-glow-text">₹2,000-8,000</h3>
-                    <p className="text-lg font-medium text-foreground">Per validation study</p>
-                    <p className="text-sm text-muted-foreground">6-8 week timeline</p>
+                    <h3 className="text-base md:text-lg font-bold text-blue-400 neural-glow-text text-center">₹2,000-8,000</h3>
+                    <p className="text-sm font-medium text-foreground text-center">Per validation study</p>
+                    <p className="text-xs text-muted-foreground text-center">6-8 week timeline</p>
                   </div>
                   
                   <div className="neural-card-primary p-8 text-center space-y-4 animate-organic-scale neural-stagger-item">
-                    <h3 className="text-3xl font-bold text-purple-400 neural-glow-text">₹20,000-70,000</h3>
-                    <p className="text-lg font-medium text-foreground">Annual cap</p>
-                    <p className="text-sm text-muted-foreground">Sustainable scaling</p>
+                    <h3 className="text-base md:text-lg font-bold text-purple-400 neural-glow-text text-center">₹20,000-70,000</h3>
+                    <p className="text-sm font-medium text-foreground text-center">Annual cap</p>
+                    <p className="text-xs text-muted-foreground text-center">Sustainable scaling</p>
                   </div>
                 </div>
                 
@@ -563,7 +626,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
             {/* Enhanced Dashboard Tab */}
             <TabsContent value="dashboard" className="space-y-12 animate-neural-fade-in">
               
-              <h2 className="text-4xl font-bold text-center neural-text-gradient mb-12">
+              <h2 className="text-lg md:text-xl font-bold text-center neural-text-gradient mb-8">
                 Your Performance Dashboard
               </h2>
               
@@ -575,16 +638,16 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                       <div className="neural-blob w-16 h-16">
                         <Signal className="h-8 w-8 text-white" />
                       </div>
-                      <h3 className="text-2xl font-bold text-foreground neural-glow-text">
+                      <h3 className="text-lg md:text-xl lg:text-xl font-bold text-foreground neural-glow-text">
                         Data Quality Score
                       </h3>
                     </div>
                     
                     <div className="text-center space-y-4">
-                      <div className="text-5xl font-bold neural-text-gradient mb-4">
+                      <div className="text-lg md:text-xl font-bold neural-text-gradient mb-2 text-center">
                         {wallet.dataQualityScore.toFixed(1)}%
                       </div>
-                      <p className="text-lg text-muted-foreground">
+                      <p className="text-sm text-muted-foreground text-center">
                         Based on {wallet.totalSessionsContributed} sessions
                       </p>
                     </div>
@@ -593,18 +656,18 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                       <Progress value={wallet.dataQualityScore} className="h-4 rounded-full bg-muted" />
                       <div className="grid grid-cols-3 gap-4">
                         <div className="neural-glass p-4 text-center rounded-organic">
-                          <div className="text-green-400 font-bold text-lg">{wallet.acceptedSubmissions}</div>
-                          <div className="text-sm text-muted-foreground">Accepted</div>
+                          <div className="text-green-400 font-bold text-sm text-center">{wallet.acceptedSubmissions}</div>
+                          <div className="text-xs text-muted-foreground text-center">Accepted</div>
                         </div>
                         <div className="neural-glass p-4 text-center rounded-neural">
-                          <div className="text-foreground font-bold text-lg">{wallet.totalSessionsContributed}</div>
-                          <div className="text-sm text-muted-foreground">Total</div>
+                          <div className="text-foreground font-bold text-sm text-center">{wallet.totalSessionsContributed}</div>
+                          <div className="text-xs text-muted-foreground text-center">Total</div>
                         </div>
                         <div className="neural-glass p-4 text-center rounded-flow">
-                          <div className="text-blue-400 font-bold text-lg">
+                          <div className="text-blue-400 font-bold text-sm text-center">
                             {((wallet.acceptedSubmissions/wallet.totalSessionsContributed)*100).toFixed(1)}%
                           </div>
-                          <div className="text-sm text-muted-foreground">Success</div>
+                          <div className="text-xs text-muted-foreground text-center">Success</div>
                         </div>
                       </div>
                     </div>
@@ -615,16 +678,16 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                       <div className="neural-hexagon w-16 h-16">
                         <Target className="h-8 w-8 text-white" />
                       </div>
-                      <h3 className="text-2xl font-bold text-foreground neural-glow-text">
+                      <h3 className="text-lg md:text-xl lg:text-xl font-bold text-foreground neural-glow-text">
                         Research Impact Score
                       </h3>
                     </div>
                     
                     <div className="text-center space-y-4">
-                      <div className="text-5xl font-bold neural-text-gradient mb-4">
+                      <div className="text-lg md:text-xl font-bold neural-text-gradient mb-2 text-center">
                         {wallet.researchImpactScore.toFixed(1)}/10
                       </div>
-                      <p className="text-lg text-muted-foreground">
+                      <p className="text-sm text-muted-foreground text-center">
                         Research contribution quality
                       </p>
                     </div>
@@ -633,11 +696,11 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                       <Progress value={wallet.researchImpactScore * 10} className="h-4 rounded-full bg-muted" />
                       <div className="grid grid-cols-2 gap-4">
                         <div className="neural-glass p-4 text-center rounded-neural">
-                          <div className="text-purple-400 font-bold text-lg">{wallet.researchContributions}</div>
+                          <div className="text-purple-400 font-bold text-sm text-center">{wallet.researchContributions}</div>
                           <div className="text-sm text-muted-foreground">Projects</div>
                         </div>
                         <div className="neural-glass p-4 text-center rounded-organic">
-                          <div className="text-cyan-400 font-bold text-lg">{wallet.dataSubmissions}</div>
+                          <div className="text-cyan-400 font-bold text-sm text-center">{wallet.dataSubmissions}</div>
                           <div className="text-sm text-muted-foreground">Submissions</div>
                         </div>
                       </div>
@@ -649,22 +712,22 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                       <div className="neural-blob w-16 h-16" style={{clipPath: 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)'}}>
                         <Award className="h-8 w-8 text-white" />
                       </div>
-                      <h3 className="text-2xl font-bold text-foreground neural-glow-text">
+                      <h3 className="text-lg md:text-xl lg:text-xl font-bold text-foreground neural-glow-text">
                         Staking Rewards
                       </h3>
                     </div>
                     
                     <div className="text-center space-y-4">
-                      <div className="text-5xl font-bold neural-text-gradient mb-4">
+                      <div className="text-lg md:text-xl font-bold neural-text-gradient mb-2 text-center">
                         {wallet.stakingRewards.toLocaleString()}
                       </div>
-                      <p className="text-lg text-muted-foreground">
+                      <p className="text-sm text-muted-foreground text-center">
                         SKY earned from staking
                       </p>
                     </div>
                     
                     <div className="neural-glass p-4 rounded-flow text-center">
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-xs text-muted-foreground text-center">
                         Auto-compounding rewards from staking pools
                       </p>
                     </div>
@@ -676,9 +739,9 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
               <section className="neural-card-primary p-10 space-y-8 animate-organic-scale">
                 <div className="flex items-center justify-center gap-4 mb-8">
                   <div className="neural-hexagon w-20 h-20">
-                    <Zap className="h-10 w-10 text-white" />
+                    <BioElectric className="h-10 w-10 text-white" />
                   </div>
-                  <h2 className="text-3xl font-bold neural-text-gradient">
+                  <h2 className="text-base md:text-lg font-bold neural-text-gradient text-center">
                     Quick Actions
                   </h2>
                 </div>
@@ -688,7 +751,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                     onClick={handleCreateDemoSession} 
                     className="neural-btn-primary group"
                   >
-                    <Brain className="h-6 w-6 mr-4 group-hover:animate-neural-pulse" />
+                    <EEGElectrode className="h-6 w-6 mr-4 group-hover:animate-neural-pulse" />
                     Create Demo Session
                   </button>
                   
@@ -697,7 +760,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                     disabled={loading} 
                     className="neural-btn-secondary group"
                   >
-                    <Coins className="h-6 w-6 mr-4 group-hover:animate-neural-pulse" />
+                    <QuantumCoin className="h-6 w-6 mr-4 group-hover:animate-neural-pulse" />
                     {loading ? 'Minting...' : 'Mint Current Data'}
                   </button>
                   
@@ -712,14 +775,23 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
               </section>
             </TabsContent>
 
-
-
+            {/* FSSAI Tab */}
+            <TabsContent value="fssai" className="space-y-6">
+              <Card className="bg-card border-border">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Shield className="h-5 w-5" />
+                    FSSAI-Compliant Wellness Validation
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="grid gap-6">
                     <Card className="bg-gradient-to-r from-blue-100/10 to-green-100/10 border-blue-400/40">
                       <CardHeader className="pb-3">
                         <div className="flex items-center justify-between">
                           <Badge className="bg-blue-600">Cognitive Enhancement</Badge>
                           <div className="text-right">
-                            <div className="text-lg font-bold text-primary">₹12,000</div>
+                            <div className="text-base font-bold text-primary">₹12,000</div>
                             <div className="text-xs text-muted-foreground">per participant</div>
                           </div>
                         </div>
@@ -727,7 +799,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                           <Building className="h-4 w-4" />
                           हिमालय ब्राह्मी गोलियां Validation
                         </CardTitle>
-                        <p className="text-sm text-muted-foreground">Himalaya Drug Company</p>
+                        <p className="text-xs text-muted-foreground text-center">Himalaya Drug Company</p>
                       </CardHeader>
                       <CardContent className="space-y-3">
                         <p className="text-sm">Testing memory enhancement claims through cognitive EEG markers. 45-day longitudinal study.</p>
@@ -749,7 +821,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                         <div className="flex items-center justify-between">
                           <Badge className="bg-purple-600">CBD/Hemp</Badge>
                           <div className="text-right">
-                            <div className="text-lg font-bold text-primary">₹15,000</div>
+                            <div className="text-base font-bold text-primary">₹15,000</div>
                             <div className="text-xs text-muted-foreground">per participant</div>
                           </div>
                         </div>
@@ -757,7 +829,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                           <Building className="h-4 w-4" />
                           Boheco CBD Oil Anxiety Study
                         </CardTitle>
-                        <p className="text-sm text-muted-foreground">India Hemp Organics</p>
+                        <p className="text-xs text-muted-foreground text-center">India Hemp Organics</p>
                       </CardHeader>
                       <CardContent className="space-y-3">
                         <p className="text-sm">Validating anxiety reduction and sleep improvement claims through EEG analysis.</p>
@@ -779,7 +851,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                         <div className="flex items-center justify-between">
                           <Badge className="bg-teal-600">Wellness App</Badge>
                           <div className="text-right">
-                            <div className="text-lg font-bold text-primary">₹3,000</div>
+                            <div className="text-base font-bold text-primary">₹3,000</div>
                             <div className="text-xs text-muted-foreground">per participant</div>
                           </div>
                         </div>
@@ -787,7 +859,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                           <Building className="h-4 w-4" />
                           Art of Living Meditation App
                         </CardTitle>
-                        <p className="text-sm text-muted-foreground">Art of Living Foundation</p>
+                        <p className="text-xs text-muted-foreground text-center">Art of Living Foundation</p>
                       </CardHeader>
                       <CardContent className="space-y-3">
                         <p className="text-sm">Measuring meditation effectiveness through real-time EEG feedback integration.</p>
@@ -803,8 +875,6 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                         </Button>
                       </CardContent>
                     </Card>
-                  </div>
-                </div>
 
                 {/* Partner Companies */}
                 <Card className="bg-gradient-to-r from-orange-50/10 to-green-50/10 border border-orange-200/20">
@@ -837,16 +907,16 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                   </CardContent>
                 </Card>
               </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
+                </CardContent>
+              </Card>
+            </TabsContent>
 
-        {/* Research Tab */}
-        <TabsContent value="research" className="space-y-6">
+            {/* Research Tab */}
+            <TabsContent value="research" className="space-y-6">
           <Card className="bg-card border-border">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Brain className="h-5 w-5" />
+                <DataCrystal className="h-5 w-5" />
                 Research Marketplace
               </CardTitle>
             </CardHeader>
@@ -874,7 +944,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                           {project.category}
                         </Badge>
                         <div className="text-right">
-                          <div className="text-lg font-bold text-primary">₹{project.rewards.perSubmission}</div>
+                          <div className="text-base font-bold text-primary">₹{project.rewards.perSubmission}</div>
                           <div className="text-xs text-muted-foreground">per submission</div>
                         </div>
                       </div>
@@ -882,7 +952,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                         <IconComponent className="h-4 w-4" />
                         {project.title}
                       </CardTitle>
-                      <p className="text-sm text-muted-foreground">{project.institution}</p>
+                      <p className="text-xs text-muted-foreground text-center">{project.institution}</p>
                     </CardHeader>
                     <CardContent className="space-y-3">
                       <p className="text-sm">{project.description}</p>
@@ -923,10 +993,10 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
               })}
             </div>
           </div>
-        </TabsContent>
+            </TabsContent>
 
-        {/* Marketplace Tab */}
-        <TabsContent value="marketplace" className="space-y-6">
+            {/* Marketplace Tab */}
+            <TabsContent value="marketplace" className="space-y-6">
           <Card className="bg-card border-border">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -973,7 +1043,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                             <span>Quality: {item.metadata.signalQuality.toFixed(1)}%</span>
                           </div>
                           <div className="flex items-center justify-between">
-                            <div className="text-lg font-bold text-primary">₹{item.price * 80}</div>
+                            <div className="text-base font-bold text-primary">₹{item.price * 80}</div>
                             <Button 
                               size="sm"
                               disabled={wallet.balance < item.price}
@@ -991,14 +1061,14 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
               </div>
             </CardContent>
           </Card>
-        </TabsContent>
+            </TabsContent>
 
-        {/* Personal Insights Tab */}
-        <TabsContent value="insights" className="space-y-6">
+            {/* Personal Insights Tab */}
+            <TabsContent value="insights" className="space-y-6">
           <Card className="bg-card border-border">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Brain className="h-5 w-5" />
+                <NeuralWave className="h-5 w-5" />
                 Your Personal Brain Insights
               </CardTitle>
             </CardHeader>
@@ -1017,7 +1087,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                   <Card className="bg-muted/30">
                     <CardHeader className="pb-3">
                       <CardTitle className="text-base flex items-center gap-2">
-                        <Activity className="h-4 w-4" />
+                        <NeuralWave className="h-4 w-4" />
                         Wellness Response Patterns
                       </CardTitle>
                     </CardHeader>
@@ -1048,7 +1118,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                   <Card className="bg-muted/30">
                     <CardHeader className="pb-3">
                       <CardTitle className="text-base flex items-center gap-2">
-                        <Zap className="h-4 w-4" />
+                        <BioElectric className="h-4 w-4" />
                         Cognitive Optimization
                       </CardTitle>
                     </CardHeader>
@@ -1083,20 +1153,20 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                   <CardContent className="space-y-4">
                     <div className="grid grid-cols-3 gap-4 text-center">
                       <div>
-                        <div className="text-2xl font-bold">{sessions.length}</div>
+                        <div className="text-lg font-bold text-center">{sessions.length}</div>
                         <div className="text-xs text-muted-foreground">Sessions Contributed</div>
                       </div>
                       <div>
-                        <div className="text-2xl font-bold">73%</div>
+                        <div className="text-lg font-bold text-center">73%</div>
                         <div className="text-xs text-muted-foreground">Context Richness</div>
                       </div>
                       <div>
-                        <div className="text-2xl font-bold">4</div>
+                        <div className="text-lg font-bold text-center">4</div>
                         <div className="text-xs text-muted-foreground">Active Destinations</div>
                       </div>
                     </div>
                     <div className="pt-3 border-t">
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-xs text-muted-foreground text-center">
                         Your data is currently being matched with wellness validation studies and AI training models. 
                         Monetization happens when the right fit is found - typically 6-8 weeks for wellness studies, 
                         3-6 months for research applications.
@@ -1134,10 +1204,11 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
               </div>
             </CardContent>
           </Card>
-        </TabsContent>
-      </Tabs>
+            </TabsContent>
+          </Tabs>
+        </section>
 
-      {/* NFT Detail Modal */}
+        {/* NFT Detail Modal */}
       {selectedNFT && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
           <Card className="bg-card border-border max-w-2xl w-full max-h-[90vh] overflow-y-auto">
@@ -1216,39 +1287,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
             </CardContent>
           </Card>
         </div>
-            {/* Enhanced FSSAI Tab */}
-            <TabsContent value="fssai" className="space-y-8 animate-neural-fade-in">
-              <h2 className="text-4xl font-bold text-center neural-text-gradient mb-12">
-                FSSAI-Compliant Wellness Validation
-              </h2>
-              {/* Keep existing FSSAI content but wrap in neural sections */}
-              <div className="neural-section">
-                {/* Original FSSAI content remains the same but should be wrapped in neural containers */}
-              </div>
-            </TabsContent>
-
-            {/* Enhanced Research Tab */}
-            <TabsContent value="research" className="space-y-8 animate-neural-fade-in">
-              <h2 className="text-4xl font-bold text-center neural-text-gradient mb-12">
-                Research Marketplace
-              </h2>
-              <div className="neural-section">
-                <ResearchRequests sessions={sessions} onSessionUpdate={onSessionUpdate} />
-                {/* Keep existing research content */}
-              </div>
-            </TabsContent>
-
-            {/* Enhanced Insights Tab */}
-            <TabsContent value="insights" className="space-y-8 animate-neural-fade-in">
-              <h2 className="text-4xl font-bold text-center neural-text-gradient mb-12">
-                Your Personal Brain Insights
-              </h2>
-              <div className="neural-section">
-                {/* Keep existing insights content but wrap in neural containers */}
-              </div>
-            </TabsContent>
-          </Tabs>
-        </section>
+      )}
 
         {/* Neural wave divider at bottom */}
         <div className="neural-wave-bottom" />
@@ -1260,7 +1299,7 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-neural-fade-in">
           <div className="neural-card-primary max-w-3xl w-full max-h-[90vh] overflow-y-auto p-8 space-y-6">
             <div className="flex items-center justify-between mb-8">
-              <h2 className="text-3xl font-bold neural-text-gradient truncate">{selectedNFT.title}</h2>
+              <h2 className="text-xl md:text-2xl lg:text-2xl font-bold neural-text-gradient truncate">{selectedNFT.title}</h2>
               <button 
                 onClick={() => setSelectedNFT(null)}
                 className="neural-btn-secondary w-12 h-12 rounded-full p-0 flex items-center justify-center"
@@ -1290,19 +1329,19 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
                 </div>
                 <div className="neural-glass p-4 rounded-organic">
                   <h4 className="text-sm text-muted-foreground mb-2">Price</h4>
-                  <p className="text-2xl font-bold neural-text-gradient">₹{selectedNFT.price * 80}</p>
+                  <p className="text-xl font-bold neural-text-gradient">₹{selectedNFT.price * 80}</p>
                 </div>
               </div>
             </div>
 
             {/* Band Powers Visualization */}
             <div className="neural-glass p-6 rounded-flow">
-              <h4 className="text-lg font-bold text-foreground mb-4">Brain Wave Analysis</h4>
+              <h4 className="text-base font-bold text-foreground mb-4">Brain Wave Analysis</h4>
               <div className="grid grid-cols-5 gap-4">
                 {Object.entries(selectedNFT.metadata.bandPowers).map(([band, power], index) => (
                   <div key={band} className="neural-process-card p-4 text-center animate-organic-scale neural-stagger-item">
                     <div className="text-sm font-medium text-muted-foreground capitalize mb-2">{band}</div>
-                    <div className="text-xl font-bold neural-glow-text">{power.toFixed(1)}</div>
+                    <div className="text-lg font-bold neural-glow-text">{power.toFixed(1)}</div>
                   </div>
                 ))}
               </div>
@@ -1312,15 +1351,15 @@ const NeuroDataEcosystem: React.FC<NeuroDataEcosystemProps> = ({ sessions, onSes
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               <div className="neural-glass p-4 rounded-organic text-center">
                 <h5 className="text-sm text-muted-foreground mb-2">Signal Quality</h5>
-                <p className="text-lg font-bold text-green-400">{selectedNFT.metadata.signalQuality.toFixed(1)}%</p>
+                <p className="text-base font-bold text-green-400">{selectedNFT.metadata.signalQuality.toFixed(1)}%</p>
               </div>
               <div className="neural-glass p-4 rounded-neural text-center">
                 <h5 className="text-sm text-muted-foreground mb-2">Verification</h5>
-                <p className="text-lg font-bold text-blue-400">{selectedNFT.metadata.verificationScore.toFixed(1)}%</p>
+                <p className="text-base font-bold text-blue-400">{selectedNFT.metadata.verificationScore.toFixed(1)}%</p>
               </div>
               <div className="neural-glass p-4 rounded-flow text-center">
                 <h5 className="text-sm text-muted-foreground mb-2">Sales</h5>
-                <p className="text-lg font-bold text-purple-400">{selectedNFT.sales}</p>
+                <p className="text-base font-bold text-purple-400">{selectedNFT.sales}</p>
               </div>
               <div className="neural-glass p-4 rounded-organic text-center">
                 <h5 className="text-sm text-muted-foreground mb-2">Created</h5>
