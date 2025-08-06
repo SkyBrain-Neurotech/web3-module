@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
@@ -27,6 +27,8 @@ import {
 const EducationalLanding = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
+  const [headerVisible, setHeaderVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const educationSteps = [
     {
@@ -241,8 +243,7 @@ const EducationalLanding = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-blue-200">
-                  The NFT representing your neural session is minted directly to your wallet. 
-                  No middlemen, no shared ownership.
+                  The NFT representing your neural session is minted directly to your wallet.
                 </p>
               </CardContent>
             </Card>
@@ -543,12 +544,47 @@ const EducationalLanding = () => {
     }
   };
 
+  // Handle scroll-based header visibility
+  useEffect(() => {
+    let ticking = false;
+    let prevScrollY = 0;
+    
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          
+          // Show header when scrolling up or at top, hide when scrolling down
+          if (currentScrollY < prevScrollY || currentScrollY <= 50) {
+            setHeaderVisible(true);
+          } else if (currentScrollY > prevScrollY && currentScrollY > 100) {
+            setHeaderVisible(false);
+          }
+          
+          prevScrollY = currentScrollY;
+          setLastScrollY(currentScrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    // Initial setup
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const currentStepData = educationSteps[currentStep];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-950 to-gray-900">
       {/* Progress Header */}
-      <div className="sticky top-0 bg-gray-900/90 backdrop-blur-sm border-b border-gray-800 z-40">
+      <div className={`sticky top-0 bg-gray-900/90 backdrop-blur-sm border-b border-gray-800 z-40 transition-all duration-300 ${
+        headerVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'
+      }`}>
         <div className="container mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
@@ -588,7 +624,9 @@ const EducationalLanding = () => {
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12 lg:py-16 xl:py-20">
+      <div className={`container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12 lg:py-16 xl:py-20 transition-all duration-300 ${
+        !headerVisible ? 'mt-16' : ''
+      }`}>
         {currentStepData.content}
       </div>
 

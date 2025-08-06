@@ -229,6 +229,16 @@ function App() {
             });
         }
         
+        // Listen for PWA events globally
+        window.addEventListener('beforeinstallprompt', (e) => {
+          console.log('🎯 beforeinstallprompt event fired in App!', e);
+          // Don't prevent default here - let usePWAInstall hook handle it
+        });
+        
+        window.addEventListener('appinstalled', () => {
+          console.log('✅ App was installed successfully!');
+        });
+        
         console.log('🎉 App initialization completed successfully');
       } catch (err) {
         console.error('❌ App initialization error:', err);

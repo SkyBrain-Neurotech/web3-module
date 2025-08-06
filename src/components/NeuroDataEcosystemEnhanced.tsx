@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
@@ -125,6 +125,9 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
   });
   const [achievements, setAchievements] = useState<string[]>([]);
   const [pendingTransactions, setPendingTransactions] = useState<any[]>([]);
+  const [headerVisible, setHeaderVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // User profile for research matching
   const [userProfile] = useState({
@@ -151,6 +154,39 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
       setShowOnboarding(false);
     }
   }, []);
+
+  // Handle scroll-based header visibility
+  useEffect(() => {
+    let ticking = false;
+    let prevScrollY = 0;
+    
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          
+          // Show header when scrolling up or at top, hide when scrolling down
+          if (currentScrollY < prevScrollY || currentScrollY <= 50) {
+            setHeaderVisible(true);
+          } else if (currentScrollY > prevScrollY && currentScrollY > 100) {
+            setHeaderVisible(false);
+          }
+          
+          prevScrollY = currentScrollY;
+          setLastScrollY(currentScrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    // Initial setup
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []); // Remove lastScrollY dependency
 
   useEffect(() => {
     // Simulate active session data changes
@@ -321,9 +357,11 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
     <>
       {showOnboarding && <OnboardingFlow onComplete={handleOnboardingComplete} />}
       
-      <div className="p-3 sm:p-4 md:p-6 space-y-3 sm:space-y-4 md:space-y-6 max-w-7xl mx-auto min-h-screen">
+      <div className="p-2 sm:p-3 md:p-4 space-y-2 sm:space-y-3 md:space-y-4 max-w-7xl mx-auto min-h-screen">
         {/* Enhanced Header with Live Stats */}
-        <div className="text-center space-y-3 md:space-y-4 px-2">
+        <div className={`text-center space-y-2 md:space-y-3 px-2 transition-all duration-300 sticky top-0 z-50 bg-gray-900/95 backdrop-blur-md border-b border-gray-800/50 rounded-b-xl ${
+          headerVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'
+        }`}>
           <div className="flex items-center justify-center gap-2 md:gap-3">
             <div className="p-2 md:p-3 bg-gradient-to-r from-cyan-500 to-teal-500 rounded-lg md:rounded-xl shadow-lg relative">
               <QuantumCoin className="h-6 md:h-8 w-6 md:w-8 text-white" />
@@ -332,7 +370,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
               )}
             </div>
             <div>
-              <h1 className="text-lg md:text-xl font-bold text-white text-center">
+              <h1 className="text-base md:text-lg font-bold text-white text-center">
                 SKY Ecosystem
               </h1>
               <p className="text-muted-foreground text-xs font-medium text-center">Decentralized Neurodata Economy</p>
@@ -351,10 +389,12 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
         </div>
 
         {/* Enhanced Wallet Overview with Achievements */}
-        <div className="space-y-3 md:space-y-4 px-2">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+        <div className={`space-y-2 md:space-y-3 px-2 transition-all duration-300 ${
+          !headerVisible ? 'mt-16' : ''
+        }`}>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-1.5 md:gap-3">
             <Card className="glass-morphism-card border-cyan-400/40 shadow-lg hover:shadow-cyan-500/20 transition-all duration-300">
-              <CardContent className="p-3 md:p-4 text-center">
+              <CardContent className="p-2 md:p-3 text-center">
                 <div className="p-1.5 md:p-2 bg-gradient-to-r from-cyan-500/20 to-teal-500/20 rounded-lg w-fit mx-auto mb-1.5 md:mb-2">
                   <Wallet className="h-4 md:h-6 w-4 md:w-6 text-cyan-400 mx-auto" />
                 </div>
@@ -366,7 +406,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
             </Card>
 
             <Card className="glass-morphism-card border-emerald-400/40 shadow-lg hover:shadow-emerald-500/20 transition-all duration-300">
-              <CardContent className="p-3 md:p-4 text-center">
+              <CardContent className="p-2 md:p-3 text-center">
                 <div className="p-1.5 md:p-2 bg-gradient-to-r from-emerald-500/20 to-green-500/20 rounded-lg w-fit mx-auto mb-1.5 md:mb-2">
                   <TrendingUp className="h-4 md:h-6 w-4 md:w-6 text-emerald-400 mx-auto" />
                 </div>
@@ -378,7 +418,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
             </Card>
 
             <Card className="glass-morphism-card border-blue-400/40 shadow-lg hover:shadow-blue-500/20 transition-all duration-300">
-              <CardContent className="p-4 text-center">
+              <CardContent className="p-3 text-center">
                 <div className="p-2 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 rounded-lg w-fit mx-auto mb-2">
                   <Database className="h-6 w-6 text-blue-400 mx-auto" />
                 </div>
@@ -390,7 +430,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
             </Card>
 
             <Card className="glass-morphism-card border-purple-400/40 shadow-lg hover:shadow-purple-500/20 transition-all duration-300">
-              <CardContent className="p-4 text-center">
+              <CardContent className="p-3 text-center">
                 <div className="p-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-lg w-fit mx-auto mb-2">
                   <Trophy className="h-6 w-6 text-purple-400 mx-auto" />
                 </div>
@@ -511,9 +551,9 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
           </TabsList>
 
           {/* Enhanced Dashboard Tab */}
-          <TabsContent value="dashboard" className="space-y-6">
+          <TabsContent value="dashboard" className="space-y-4">
             {/* User Profile & Scoring System */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
               <Card className="glass-morphism-accent shadow-xl">
                 <CardHeader className="pb-4">
                   <CardTitle className="flex items-center gap-2 text-lg font-semibold">
@@ -729,7 +769,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
           </TabsContent>
 
           {/* Professional Mint Data Tab */}
-          <TabsContent value="mint" className="space-y-6">
+          <TabsContent value="mint" className="space-y-4">
             <Card className="glass-morphism-accent">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -751,7 +791,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
                     </AlertDescription>
                   </Alert>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-4">
                       <h3 className="text-lg font-semibold">Live Data Minting</h3>
                       <p className="text-muted-foreground text-sm">
@@ -786,7 +826,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
                   {/* My NFTs with Enhanced Display */}
                   <div className="space-y-4">
                     <h3 className="text-lg font-semibold">My Data NFTs ({dataNFTs.length})</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                       {dataNFTs.map((nft) => {
                         const pricing = enhancedBlockchain.calculateDynamicPrice(
                           nft.metadata.signalQuality,
@@ -857,7 +897,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
           </TabsContent>
 
           {/* Professional Research Tab with AI Matching */}
-          <TabsContent value="research" className="space-y-6">
+          <TabsContent value="research" className="space-y-4">
             <Card className="glass-morphism-accent">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -885,7 +925,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
           </TabsContent>
 
           {/* Professional Marketplace Tab */}
-          <TabsContent value="marketplace" className="space-y-6">
+          <TabsContent value="marketplace" className="space-y-4">
             <Card className="glass-morphism-accent">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -909,7 +949,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
                       <p className="text-sm mt-2">Be the first to list your data NFTs!</p>
                     </div>
                   ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                       {marketplaceItems.map((item) => (
                         <Card key={item.id} className="glass-morphism-card hover:border-primary/50 transition-colors">
                           <CardHeader className="pb-2">
@@ -953,7 +993,7 @@ const NeuroDataEcosystemEnhanced: React.FC<NeuroDataEcosystemEnhancedProps> = ({
           </TabsContent>
 
           {/* Professional Staking Tab */}
-          <TabsContent value="staking" className="space-y-6">
+          <TabsContent value="staking" className="space-y-4">
             {/* Staking Overview - Glass Morphism Header */}
             <div className="glass-morphism-surface rounded-2xl p-6 mb-8">
               <div className="flex items-center justify-between mb-4">

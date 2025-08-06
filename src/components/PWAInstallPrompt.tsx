@@ -6,34 +6,29 @@ import { usePWAInstall } from '../hooks/usePWAInstall';
 import { Download, Tablet, Smartphone, X, Sparkles } from 'lucide-react';
 
 const PWAInstallPrompt: React.FC = () => {
-  const { canInstall, installApp, isInstalled } = usePWAInstall();
+  const { canInstall, installApp, isInstalled, isTabletMode } = usePWAInstall();
   const [isVisible, setIsVisible] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
 
   useEffect(() => {
-    // Detect tablet devices
-    const userAgent = navigator.userAgent;
-    const isTabletDevice = /iPad|Android(?=.*Mobile)|Tablet/.test(userAgent) ||
-      (window.innerWidth >= 768 && window.innerWidth <= 1024);
+    setIsTablet(isTabletMode);
     
-    setIsTablet(isTabletDevice);
-    
-    // Show prompt only on tablets and if installable
-    if (canInstall && isTabletDevice && !isInstalled) {
-      // Show prompt after 3 seconds to let page load
+    // Show prompt for testing - force it to appear
+    if (!isInstalled) {
+      // Show prompt after a delay
       const timer = setTimeout(() => {
+        console.log('📱 Forcing PWA prompt to show for testing');
         setIsVisible(true);
-      }, 3000);
+      }, 3000); // Show after 3 seconds
       
       return () => clearTimeout(timer);
     }
-  }, [canInstall, isInstalled]);
+  }, [canInstall, isInstalled, isTabletMode]);
 
   const handleInstall = async () => {
     const success = await installApp();
-    if (success) {
-      setIsVisible(false);
-    }
+    // Always hide the prompt after attempting installation
+    setIsVisible(false);
   };
 
   const handleDismiss = () => {
@@ -47,7 +42,7 @@ const PWAInstallPrompt: React.FC = () => {
     return null;
   }
 
-  if (!isVisible || !canInstall || isInstalled || !isTablet) {
+  if (!isVisible || isInstalled) {
     return null;
   }
 

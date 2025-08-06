@@ -167,7 +167,7 @@ const WellnessValidationLanding = () => {
       icon: '📱'
     },
     {
-      product: 'RestorePlus Supplement',
+      product: 'RestorePlus',
       brand: 'Patanjali Ayurved',
       result: '78% faster recovery from cognitive load',
       participants: 320,
@@ -717,7 +717,7 @@ const WellnessValidationLanding = () => {
       </div>
 
       {/* Success Stories */}
-      <div className="section-organic section-curved-bottom bg-gradient-to-b from-background to-card/20 py-20 sm:py-24 lg:py-32 relative">
+      <div className="section-organic section-curved-bottom bg-gradient-to-b from-background to-card/20 py-8 sm:py-12 md:py-16 lg:py-20 relative">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-10 right-10 w-72 h-72 bg-accent/5 rounded-full blur-3xl"></div>
@@ -725,63 +725,63 @@ const WellnessValidationLanding = () => {
         </div>
         
         <div className="container-responsive relative z-10">
-          <div className="text-center mb-16 sm:mb-20 lg:mb-24">
-            <div className="inline-flex items-center gap-3 bg-accent/10 text-accent px-6 py-3 rounded-full mb-6 font-sans font-medium">
+          <div className="text-center mb-6 sm:mb-8 md:mb-12 lg:mb-16">
+            <div className="inline-flex items-center gap-2 md:gap-3 bg-accent/10 text-accent px-4 md:px-6 py-2 md:py-3 rounded-full mb-4 md:mb-6 font-sans font-medium text-sm md:text-base">
               <TrendingUp className="h-5 w-5" />
               Client Success Stories
             </div>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-6 lg:mb-8 font-sans tracking-tight leading-tight">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-3 md:mb-5 font-sans tracking-tight leading-tight">
               Validation
               <span className="block bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
                 Success Stories
               </span>
             </h2>
-            <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-sans">
+            <p className="text-xs sm:text-sm md:text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed font-sans">
               Real results from wellness brands who trusted SkyBrain with their product validation
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 xl:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 lg:gap-6">
             {successStories.map((story, index) => (
               <Card key={index} className="process-flow-card group bg-card/80 backdrop-blur-sm border-border hover:border-accent/50 transition-all duration-500">
-                <CardContent className="p-6 lg:p-8">
+                <CardContent className="p-3 md:p-4 lg:p-6">
                   {/* Product Header */}
-                  <div className="text-center mb-6">
-                    <div className="text-6xl lg:text-7xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-center mb-3 md:mb-4">
+                    <div className="text-3xl md:text-4xl lg:text-5xl mb-2 md:mb-3 group-hover:scale-110 transition-transform duration-300">
                       {story.icon}
                     </div>
-                    <h3 className="text-lg lg:text-xl font-bold text-foreground font-sans mb-2 tracking-tight">
+                    <h3 className="text-sm md:text-base font-bold text-foreground font-sans mb-1.5 tracking-tight">
                       {story.product}
                     </h3>
-                    <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-sans font-medium">
+                    <div className="inline-flex items-center gap-1.5 bg-primary/10 text-primary px-2.5 py-0.5 rounded-full text-xs md:text-sm font-sans font-medium">
                       <Building2 className="h-3 w-3" />
                       {story.brand}
                     </div>
                   </div>
                   
                   {/* Results Highlight */}
-                  <div className="bg-gradient-to-r from-accent/20 to-primary/20 rounded-xl p-6 mb-6 border border-accent/20 group-hover:border-accent/40 transition-colors">
+                  <div className="bg-gradient-to-r from-accent/20 to-primary/20 rounded-lg p-3 md:p-4 mb-3 md:mb-4 border border-accent/20 group-hover:border-accent/40 transition-colors">
                     <div className="text-center">
-                      <div className="text-2xl lg:text-3xl font-bold text-accent mb-2 font-sans tracking-tight">
+                      <div className="text-base md:text-lg font-bold text-accent mb-1.5 font-sans tracking-tight">
                         {story.result}
                       </div>
-                      <div className="text-xs lg:text-sm text-muted-foreground font-sans font-medium bg-accent/10 px-3 py-1 rounded-full inline-block">
+                      <div className="text-xs text-muted-foreground font-sans font-medium bg-accent/10 px-2.5 py-0.5 rounded-full inline-block">
                         ✓ Clinically Validated Result
                       </div>
                     </div>
                   </div>
                   
                   {/* Study Details */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-center p-4 bg-muted/10 rounded-xl border border-border/30 group-hover:bg-muted/20 transition-colors">
-                      <Users className="h-5 w-5 text-secondary mx-auto mb-2" />
-                      <div className="font-bold text-foreground text-lg font-sans">{story.participants}</div>
+                  <div className="grid grid-cols-2 gap-2 md:gap-3">
+                    <div className="text-center p-2 md:p-3 bg-muted/10 rounded-lg border border-border/30 group-hover:bg-muted/20 transition-colors">
+                      <Users className="h-4 w-4 text-secondary mx-auto mb-1.5" />
+                      <div className="font-bold text-foreground text-sm md:text-base font-sans">{story.participants}</div>
                       <div className="text-muted-foreground text-xs font-sans">Participants</div>
                     </div>
-                    <div className="text-center p-4 bg-muted/10 rounded-xl border border-border/30 group-hover:bg-muted/20 transition-colors">
-                      <Clock className="h-5 w-5 text-accent mx-auto mb-2" />
-                      <div className="font-bold text-foreground text-lg font-sans">{story.duration}</div>
-                      <div className="text-muted-foreground text-xs font-sans">Study Duration</div>
+                    <div className="text-center p-2 md:p-3 bg-muted/10 rounded-lg border border-border/30 group-hover:bg-muted/20 transition-colors">
+                      <Clock className="h-4 w-4 text-accent mx-auto mb-1.5" />
+                      <div className="font-bold text-foreground text-sm md:text-base font-sans">{story.duration}</div>
+                      <div className="text-muted-foreground text-xs font-sans">Duration</div>
                     </div>
                   </div>
                 </CardContent>
@@ -790,11 +790,11 @@ const WellnessValidationLanding = () => {
           </div>
           
           {/* CTA Section */}
-          <div className="text-center mt-16 lg:mt-20">
-            <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-card/60 backdrop-blur-sm border border-border rounded-2xl px-8 py-6">
+          <div className="text-center mt-6 md:mt-8 lg:mt-12">
+            <div className="inline-flex flex-col sm:flex-row items-center gap-3 md:gap-4 bg-card/60 backdrop-blur-sm border border-border rounded-xl px-6 md:px-8 py-4 md:py-6">
               <div className="text-left">
-                <div className="text-foreground font-bold text-lg lg:text-xl font-sans">Ready to Join Our Success Stories?</div>
-                <div className="text-muted-foreground text-sm lg:text-base font-sans">Get your validation study started today</div>
+                <div className="text-foreground font-bold text-base md:text-lg font-sans">Ready to Join Our Success Stories?</div>
+                <div className="text-muted-foreground text-xs md:text-sm font-sans">Get your validation study started today</div>
               </div>
               <Button
                 onClick={() => setShowContactModal(true)}

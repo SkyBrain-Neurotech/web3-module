@@ -978,19 +978,171 @@
   left: 100%;
 }
 
-/* Tablet-Specific Optimizations */
+/* Tablet-Specific Optimizations - 20% Size Reduction */
 @media (min-width: 768px) and (max-width: 1023px) {
   .tablet-optimized {
-    font-size: 1.05rem;
+    font-size: 0.84rem;
   }
   
   .card-enhanced {
-    padding: 1.75rem;
+    padding: 1.4rem;
   }
   
   .grid-responsive {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.75rem;
+    gap: 1.4rem;
+  }
+
+  /* Moderate tablet font size reduction */
+  html {
+    font-size: 14px !important; /* Reduced from 16px by 20% */
+  }
+
+  /* Component spacing reductions for tablet */
+  .space-y-6 { gap: 1.2rem; } /* 20% reduction from 1.5rem */
+  .space-y-4 { gap: 0.8rem; } /* 20% reduction from 1rem */
+  .space-y-3 { gap: 0.6rem; } /* 20% reduction from 0.75rem */
+  .space-y-2 { gap: 0.4rem; } /* 20% reduction from 0.5rem */
+
+  /* Card padding reductions */
+  .p-2 { padding: 0.4rem !important; }
+  .p-3 { padding: 0.6rem !important; }
+  .p-4 { padding: 0.8rem !important; }
+  .p-6 { padding: 1.2rem !important; }
+  .p-8 { padding: 1.6rem !important; }
+
+  /* Margin reductions */
+  .m-2 { margin: 0.4rem !important; }
+  .m-3 { margin: 0.6rem !important; }
+  .m-4 { margin: 0.8rem !important; }
+  .m-6 { margin: 1.2rem !important; }
+  .m-8 { margin: 1.6rem !important; }
+
+  /* Vertical padding reductions */
+  .py-8 { padding-top: 1.6rem !important; padding-bottom: 1.6rem !important; }
+  .py-12 { padding-top: 2.4rem !important; padding-bottom: 2.4rem !important; }
+  .py-16 { padding-top: 3.2rem !important; padding-bottom: 3.2rem !important; }
+  .py-20 { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+  .py-24 { padding-top: 4.8rem !important; padding-bottom: 4.8rem !important; }
+
+  /* Gap reductions */
+  .gap-2 { gap: 0.4rem !important; }
+  .gap-3 { gap: 0.6rem !important; }
+  .gap-4 { gap: 0.8rem !important; }
+  .gap-6 { gap: 1.2rem !important; }
+  .gap-8 { gap: 1.6rem !important; }
+
+  /* Text size adjustments for better readability */
+  .text-4xl, .text-5xl, .text-6xl, .text-7xl {
+    line-height: 1.1 !important;
+  }
+
+  /* Component-specific optimizations */
+  .glass-morphism-card,
+  .glass-morphism-surface,
+  .glass-morphism-accent {
+    padding: 1.2rem !important; /* Reduced from 1.5rem equivalent */
+  }
+
+  /* Success stories specific optimization */
+  .process-flow-card {
+    margin-bottom: 1.6rem !important; /* 20% reduction */
+  }
+
+  /* Timeline alignment fixes for tablets */
+  .timeline-container {
+    padding: 1.6rem 0; /* 20% reduction */
+  }
+
+  .timeline-line {
+    left: 1.6rem; /* Better alignment for tablet */
+    width: 3px; /* Slightly thinner line */
+  }
+
+  .timeline-item {
+    margin-bottom: 3.2rem; /* 20% reduction */
+    padding-left: 4rem; /* 20% reduction */
+  }
+
+  .timeline-node {
+    left: -0.8rem; /* Adjusted for better alignment */
+    top: 1.6rem; /* 20% reduction */
+    width: 3.2rem; /* 20% reduction */
+    height: 3.2rem; /* 20% reduction */
+  }
+
+  .timeline-content {
+    padding: 1.6rem; /* 20% reduction */
+    margin-left: 0; /* Remove extra margin on tablet */
+  }
+
+  .timeline-content::before {
+    left: -19px; /* Adjusted arrow position */
+    top: 1.6rem; /* 20% reduction */
+    border-width: 10px; /* Smaller arrow */
+  }
+
+  /* Fix hexagon sizing in timeline for tablets */
+  .hexagon {
+    width: 3.2rem !important; /* 20% reduction from 4rem */
+    height: 3.2rem !important;
+    margin: 0 !important;
+  }
+
+  /* Ensure timeline items stack properly on tablet */
+  .timeline-item:nth-child(odd),
+  .timeline-item:nth-child(even) {
+    width: 100% !important;
+    padding-left: 4rem !important;
+    text-align: left !important;
+    padding-right: 0 !important;
+  }
+
+  .timeline-item:nth-child(odd) .timeline-content::before,
+  .timeline-item:nth-child(even) .timeline-content::before {
+    left: -19px !important;
+    right: auto !important;
+    border-right-color: var(--border-secondary) !important;
+    border-left-color: transparent !important;
+  }
+
+  /* Fix phase number node positioning */
+  .timeline-node {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1rem !important; /* 20% reduction from text-xl */
+    line-height: 1 !important;
+  }
+
+  /* Consistent spacing in timeline content */
+  .timeline-content .flex.items-start {
+    gap: 0.8rem !important; /* 20% reduction from gap-4 */
+  }
+
+  .timeline-content .space-y-3 {
+    gap: 0.6rem !important; /* 20% reduction */
+  }
+
+  .timeline-content .space-y-4 {
+    gap: 0.8rem !important; /* 20% reduction */
+  }
+
+  /* Adjust timeline content text sizes for better tablet fit */
+  .timeline-content h3 {
+    font-size: 1.2rem !important; /* Smaller heading */
+    line-height: 1.2 !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .timeline-content h4 {
+    font-size: 1rem !important; /* Smaller subheading */
+    margin-bottom: 0.8rem !important;
+  }
+
+  /* Make task items more compact */
+  .timeline-content .grid > div {
+    padding: 0.6rem !important; /* Reduced from p-3 */
   }
 }
 
